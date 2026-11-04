@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New, Zen_Old_Mincho } from "next/font/google";
+import { AgeGate, AgeGateScript } from "@/components/layout/AgeGate";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { PrBar } from "@/components/layout/PrBar";
@@ -36,7 +37,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="ja" className={`${display.variable} ${body.variable} antialiased`}>
+    // data-age-ok は AgeGateScript が描画前に付けるので、ハイドレーションの差分警告を抑える
+    <html
+      lang="ja"
+      className={`${display.variable} ${body.variable} antialiased`}
+      suppressHydrationWarning
+    >
+      <head>
+        <AgeGateScript />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <PrBar />
         <Header />
@@ -44,6 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto max-w-[1120px] px-4">{children}</div>
         </main>
         <Footer />
+        <AgeGate />
       </body>
     </html>
   );
