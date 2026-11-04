@@ -37,14 +37,18 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-body);
-    font-size: 15px;
     line-height: 1.7;
+  }
+  /* 本文は15px。html は16pxのままにして、remで決まる余白・タップ領域（44px）を崩さない */
+  body {
+    font-size: 15px;
   }
   h1,
   h2,
   h3 {
     font-family: var(--font-display);
     text-wrap: balance;
+    word-break: auto-phrase;
   }
   :focus-visible {
     outline: 2px solid var(--color-accent);

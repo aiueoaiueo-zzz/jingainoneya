@@ -34,7 +34,7 @@ export function Header() {
         <Link
           href="/"
           onClick={close}
-          className="flex min-w-0 flex-wrap items-baseline gap-x-3 no-underline"
+          className="flex min-h-11 min-w-0 flex-wrap items-baseline content-center gap-x-3 no-underline"
         >
           <span className="font-display text-[22px] font-bold tracking-[0.08em]">{SITE_NAME}</span>
           <span className="font-display text-xs tracking-[0.06em] text-text-sub">
