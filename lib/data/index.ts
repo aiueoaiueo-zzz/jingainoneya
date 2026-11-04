@@ -1,16 +1,23 @@
 /**
  * データ取得の入口。DATA_SOURCE（mock / supabase）で仮データと本番データを切り替える。
- * ページやコンポーネントは必ずここから取得する。
+ * ページやコンポーネントは必ずここから取得する。未設定なら mock。
  */
 import { mockSource } from "./mock";
 import type { DataSource } from "./source";
+import { supabaseSource } from "./supabase";
 
 function resolveSource(): DataSource {
-  // 本番データは次のステップで追加する
+  const name = process.env.DATA_SOURCE ?? "mock";
+  if (name === "supabase") return supabaseSource;
+  if (name !== "mock") {
+    throw new Error(`DATA_SOURCE は mock か supabase を指定してください（現在：${name}）`);
+  }
   return mockSource;
 }
 
 const source = resolveSource();
+
+export const dataSourceName = source === supabaseSource ? "supabase" : "mock";
 
 export const getPickup = () => source.getPickup();
 export const getNewWorks = (limit = 10) => source.getNewWorks(limit);
