@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * デザイン仕様（夜の博物誌）
+ * 暗い地に明朝の見出し、黄土色のアクセント。スマホ幅優先。
+ */
+@theme {
+  --color-bg: #16171c;
+  --color-bg-deep: #0f1013;
+  --color-surface: #1c1d23;
+  --color-placeholder: #22242b;
+  --color-line: #2a2c34;
+  --color-line-strong: #3a3d47;
+  --color-text: #ece9e2;
+  --color-text-sub: #cfccc4;
+  --color-text-muted: #b3b0a8;
+  --color-accent: #e2b45c;
+  --color-on-accent: #1a1408;
+
+  --font-display: var(--font-zen-old-mincho), "Noto Serif JP", serif;
+  --font-body: var(--font-zen-kaku-gothic-new), "Hiragino Sans", "Noto Sans JP", sans-serif;
+
+  /* 角丸：カード8px、大きい枠12px、タグ・チップは全丸（rounded-full） */
+  --radius-card: 8px;
+  --radius-box: 12px;
+
+  /* 横スクロールのカード幅 */
+  --spacing-card: 168px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+  }
+  html,
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 年齢確認：承認済み（html[data-age-ok]）なら隠し、未承認ならスクロールを止める */
+html[data-age-ok] [data-age-gate] {
+  display: none;
+}
+html:not([data-age-ok]) body {
+  overflow: hidden;
 }
