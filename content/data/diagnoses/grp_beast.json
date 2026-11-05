@@ -1,0 +1,112 @@
+{
+  "id": "grp_beast",
+  "title": "あなたの獣・動物系診断",
+  "chartLabel": "ジャンルごとの相性",
+  "options": [
+    {
+      "key": "kemono",
+      "name": "獣人",
+      "image": "kemono",
+      "description": "耳やしっぽで感情が隠せない正直さと、体格差の頼もしさ。",
+      "link": "/articles/kemono-do",
+      "linkText": "獣人の解説記事を読む"
+    },
+    {
+      "key": "bird",
+      "name": "鳥人・ハーピー",
+      "image": "bird",
+      "description": "空を自由に飛ぶ存在が、翼で包み込んでくる距離の近さ。",
+      "link": "/articles/bird",
+      "linkText": "鳥人・ハーピーの解説記事を読む"
+    },
+    {
+      "key": "reptile",
+      "name": "竜人・爬虫類人",
+      "image": "reptile",
+      "description": "鱗と冷たい瞳の奥にある、意外なほどの情の深さ。",
+      "link": "/articles/reptile",
+      "linkText": "竜人・爬虫類人の解説記事を読む"
+    },
+    {
+      "key": "insect",
+      "name": "蟲人",
+      "image": "insect",
+      "description": "人とはまったく違う体のつくりが生む、異質さと神秘性。",
+      "link": "/articles/insect",
+      "linkText": "蟲人の解説記事を読む"
+    }
+  ],
+  "questions": [
+    {
+      "text": "もふもふした毛並みに触れたい？",
+      "yes": {
+        "kemono": 2
+      },
+      "no": {
+        "reptile": 1,
+        "insect": 1
+      }
+    },
+    {
+      "text": "空や翼にロマンを感じる？",
+      "yes": {
+        "bird": 2
+      },
+      "no": {
+        "kemono": 1
+      }
+    },
+    {
+      "text": "冷たい肌や、鱗のなめらかな質感にひかれる？",
+      "yes": {
+        "reptile": 2
+      },
+      "no": {
+        "kemono": 1,
+        "bird": 1
+      }
+    },
+    {
+      "text": "人とまったく違う体のつくりに、ゾクっとする？",
+      "yes": {
+        "insect": 2,
+        "reptile": 1
+      },
+      "no": {
+        "kemono": 1,
+        "bird": 1
+      }
+    },
+    {
+      "text": "耳やしっぽで感情がバレてしまう描写が好き？",
+      "yes": {
+        "kemono": 2,
+        "reptile": 1
+      },
+      "no": {
+        "insect": 1,
+        "bird": 1
+      }
+    },
+    {
+      "text": "羽づくろいのような、くすぐったい親密さに弱い？",
+      "yes": {
+        "bird": 2
+      },
+      "no": {
+        "reptile": 1
+      }
+    },
+    {
+      "text": "群れや巣など、本能の強い存在に惹かれる？",
+      "yes": {
+        "insect": 2,
+        "kemono": 1
+      },
+      "no": {
+        "bird": 1,
+        "reptile": 1
+      }
+    }
+  ]
+}

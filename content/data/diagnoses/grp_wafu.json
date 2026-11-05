@@ -1,0 +1,111 @@
+{
+  "id": "grp_wafu",
+  "title": "あなたの和風・怪異系診断",
+  "chartLabel": "ジャンルごとの相性",
+  "options": [
+    {
+      "key": "kaii",
+      "name": "都市伝説・怪異",
+      "image": "kaii",
+      "description": "正体の分からない怖さと、それでも目が離せない引力。見てはいけないものに見初められる物語。",
+      "link": "/articles/kaii",
+      "linkText": "都市伝説・怪異の解説記事を読む"
+    },
+    {
+      "key": "oni",
+      "name": "鬼",
+      "image": "oni",
+      "description": "角と怪力、豪快さの裏にある義理堅さ。和の世界観との相性も抜群。",
+      "link": "/articles/oni",
+      "linkText": "鬼の解説記事を読む"
+    },
+    {
+      "key": "yokai",
+      "name": "妖怪・あやかし",
+      "image": "yokai",
+      "description": "狐や天狗など、言い伝えに根ざした妖しさと、人との古い約束。",
+      "link": "/articles/yokai",
+      "linkText": "妖怪・あやかしの解説記事を読む"
+    },
+    {
+      "key": "ghost",
+      "name": "幽霊・霊体",
+      "image": "ghost",
+      "description": "触れられない、いつか消えてしまうかもしれない。はかなさが生む切なさ。",
+      "link": "/articles/ghost",
+      "linkText": "幽霊・霊体の解説記事を読む"
+    }
+  ],
+  "questions": [
+    {
+      "text": "相手の正体は、分からないままのほうがゾクゾクする？",
+      "yes": {
+        "kaii": 2
+      },
+      "no": {
+        "yokai": 1,
+        "oni": 1
+      }
+    },
+    {
+      "text": "触れられない切なさに弱い？",
+      "yes": {
+        "ghost": 2
+      },
+      "no": {
+        "oni": 1
+      }
+    },
+    {
+      "text": "豪快で、力強い相手がいい？",
+      "yes": {
+        "oni": 2
+      },
+      "no": {
+        "ghost": 1,
+        "yokai": 1
+      }
+    },
+    {
+      "text": "狐や天狗など、昔話に出てくる存在が好き？",
+      "yes": {
+        "yokai": 2
+      },
+      "no": {
+        "kaii": 1
+      }
+    },
+    {
+      "text": "「振り返ってはいけない」のような、ルールのある話が好き？",
+      "yes": {
+        "kaii": 2,
+        "yokai": 1
+      },
+      "no": {
+        "oni": 1,
+        "ghost": 1
+      }
+    },
+    {
+      "text": "何百年越しの約束に弱い？",
+      "yes": {
+        "oni": 1,
+        "yokai": 1,
+        "ghost": 1
+      },
+      "no": {
+        "kaii": 1
+      }
+    },
+    {
+      "text": "いつか消えてしまう相手と過ごす話が好き？",
+      "yes": {
+        "ghost": 2
+      },
+      "no": {
+        "oni": 1,
+        "kaii": 1
+      }
+    }
+  ]
+}

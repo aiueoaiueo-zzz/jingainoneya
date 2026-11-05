@@ -1,0 +1,9 @@
+{
+  "categories": [
+    { "slug": "guide", "name": "入門ガイド" },
+    { "slug": "genre", "name": "ジャンル解説" },
+    { "slug": "talk", "name": "語り・考察" },
+    { "slug": "matome", "name": "おすすめまとめ" },
+    { "slug": "review", "name": "作品レビュー" }
+  ]
+}

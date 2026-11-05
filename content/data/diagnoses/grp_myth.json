@@ -1,0 +1,135 @@
+{
+  "id": "grp_myth",
+  "title": "あなたの幻想・神話系診断",
+  "chartLabel": "ジャンルごとの相性",
+  "options": [
+    {
+      "key": "dragon",
+      "name": "竜・ドラゴン",
+      "image": "dragon",
+      "description": "圧倒的な力と長い寿命。気まぐれな強者が見せる執着。",
+      "link": "/articles/dragon",
+      "linkText": "竜・ドラゴンの解説記事を読む"
+    },
+    {
+      "key": "merfolk",
+      "name": "人魚・水棲",
+      "image": "merfolk",
+      "description": "陸と海、住む世界が違う二人。会うたびに試される関係。",
+      "link": "/articles/merfolk",
+      "linkText": "人魚・水棲の解説記事を読む"
+    },
+    {
+      "key": "demon",
+      "name": "悪魔・天使",
+      "image": "demon",
+      "description": "契約、堕落、救済。善悪の枠を越えて惹かれ合う背徳感。",
+      "link": "/articles/demon",
+      "linkText": "悪魔・天使の解説記事を読む"
+    },
+    {
+      "key": "vampire",
+      "name": "吸血鬼",
+      "image": "vampire",
+      "description": "不老と渇き。相手を求めることが、生きることに直結する切実さ。",
+      "link": "/articles/vampire",
+      "linkText": "吸血鬼の解説記事を読む"
+    },
+    {
+      "key": "god",
+      "name": "神・神獣",
+      "image": "god",
+      "description": "崇められる存在が、ひとりの人間に心を寄せるという尊さ。",
+      "link": "/articles/god",
+      "linkText": "神・神獣の解説記事を読む"
+    },
+    {
+      "key": "ishu",
+      "name": "異種族（エルフなど）",
+      "image": "ishu",
+      "description": "人に近い姿と、人とは違う時間の流れ。ファンタジーの入り口にも。",
+      "link": "/articles/ishu",
+      "linkText": "異種族（エルフなど）の解説記事を読む"
+    }
+  ],
+  "questions": [
+    {
+      "text": "見た目は人に近いほうがいい？",
+      "yes": {
+        "ishu": 2,
+        "vampire": 1,
+        "demon": 1
+      },
+      "no": {
+        "dragon": 2,
+        "god": 1,
+        "merfolk": 1
+      }
+    },
+    {
+      "text": "契約や取引で結ばれる関係が好き？",
+      "yes": {
+        "demon": 2
+      },
+      "no": {
+        "ishu": 1,
+        "merfolk": 1
+      }
+    },
+    {
+      "text": "夜、月明かり、古城の雰囲気にひかれる？",
+      "yes": {
+        "vampire": 2
+      },
+      "no": {
+        "god": 1,
+        "ishu": 1
+      }
+    },
+    {
+      "text": "崇めたくなるほど格上の存在がいい？",
+      "yes": {
+        "god": 2,
+        "dragon": 1
+      },
+      "no": {
+        "ishu": 1,
+        "merfolk": 1
+      }
+    },
+    {
+      "text": "会える場所や時間が限られる恋に弱い？",
+      "yes": {
+        "merfolk": 2,
+        "vampire": 1
+      },
+      "no": {
+        "dragon": 1,
+        "demon": 1
+      }
+    },
+    {
+      "text": "宝物のように、独り占めされたい？",
+      "yes": {
+        "dragon": 2,
+        "demon": 1
+      },
+      "no": {
+        "god": 1,
+        "ishu": 1
+      }
+    },
+    {
+      "text": "生きる時間の長さが違う、寿命の差に泣きたい？",
+      "yes": {
+        "ishu": 1,
+        "vampire": 1,
+        "dragon": 1
+      },
+      "no": {
+        "demon": 1,
+        "god": 1
+      }
+    }
+  ]
+}

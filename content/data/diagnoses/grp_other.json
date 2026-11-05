@@ -1,0 +1,112 @@
+{
+  "id": "grp_other",
+  "title": "あなたの異形・その他診断",
+  "chartLabel": "ジャンルごとの相性",
+  "options": [
+    {
+      "key": "monster",
+      "name": "モンスター・クリーチャー",
+      "image": "monster",
+      "description": "人ならざる見た目と、優しい中身のギャップ。",
+      "link": "/articles/monster",
+      "linkText": "モンスター・クリーチャーの解説記事を読む"
+    },
+    {
+      "key": "slime",
+      "name": "スライム・不定形",
+      "image": "slime",
+      "description": "形が決まっていない自由さと、ほかにない独特の表現。",
+      "link": "/articles/slime",
+      "linkText": "スライム・不定形の解説記事を読む"
+    },
+    {
+      "key": "plant",
+      "name": "植物・菌類",
+      "image": "plant",
+      "description": "静かでゆっくり、それでいて逃れられない包容力。",
+      "link": "/articles/plant",
+      "linkText": "植物・菌類の解説記事を読む"
+    },
+    {
+      "key": "alien",
+      "name": "宇宙人・異星人",
+      "image": "alien",
+      "description": "言葉も常識も通じない、究極の異文化交流。",
+      "link": "/articles/alien",
+      "linkText": "宇宙人・異星人の解説記事を読む"
+    }
+  ],
+  "questions": [
+    {
+      "text": "見た目のインパクトは、強ければ強いほどいい？",
+      "yes": {
+        "monster": 2,
+        "slime": 1
+      },
+      "no": {
+        "plant": 1,
+        "alien": 1
+      }
+    },
+    {
+      "text": "形すら決まっていない存在にひかれる？",
+      "yes": {
+        "slime": 2
+      },
+      "no": {
+        "monster": 1
+      }
+    },
+    {
+      "text": "宇宙規模の、究極の異文化交流がしたい？",
+      "yes": {
+        "alien": 2
+      },
+      "no": {
+        "plant": 1
+      }
+    },
+    {
+      "text": "静かで、ゆっくり進む関係が好き？",
+      "yes": {
+        "plant": 2
+      },
+      "no": {
+        "monster": 1,
+        "alien": 1
+      }
+    },
+    {
+      "text": "見上げるほど大きな体に守られたい？",
+      "yes": {
+        "monster": 2,
+        "plant": 1
+      },
+      "no": {
+        "slime": 1,
+        "alien": 1
+      }
+    },
+    {
+      "text": "相手に合わせて姿を変えてくれる健気さに弱い？",
+      "yes": {
+        "slime": 2,
+        "alien": 1
+      },
+      "no": {
+        "monster": 1,
+        "plant": 1
+      }
+    },
+    {
+      "text": "人間を観察して、学んでくる相手にときめく？",
+      "yes": {
+        "alien": 2
+      },
+      "no": {
+        "plant": 1,
+        "slime": 1
+      }
+    }
+  ]
+}
