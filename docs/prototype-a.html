@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="rating" content="adult">
+<meta name="description" content="人外好きが、人外好きのために選ぶ。獣人・竜・鬼・怪異・機械など、人ならざるものが登場する成人向け作品を紹介・語るブログ。">
+<meta property="og:title" content="人外ノ閨｜ヒトでは満たされない夜に。">
+<meta property="og:description" content="人外好きが、人外好きのために選ぶ。人外ジャンルの解説と作品紹介。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<title>人外ノ閨 段階A試作</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@600;700&display=swap">
+<style>
+:root{
+  /* 段階A：記事が主役の語りブログ。暗い地に明朝の見出し、黄土色のアクセント、本文は読みやすい1カラム */
+  --bg:#15161B; --bg-deep:#0E0F12; --surface:#1E2028; --surface-2:#262833; --ph:#23252D; --line:#2E313B; --line-strong:#41444F;
+  --text:#ECE9E2; --text-sub:#CFCCC4; --muted:#B3B0A8; --accent:#E2B45C; --on-accent:#1A1408; --danger:#F09A8A;
+  --display:'Zen Old Mincho','Noto Serif JP',serif;
+  --body:'Zen Kaku Gothic New','Hiragino Sans','Noto Sans JP',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--body);font-size:15px;line-height:1.8}
+a{color:var(--text)}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.4}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.proto{background:var(--accent);color:var(--on-accent);font-size:12px;font-weight:700;text-align:center;padding:4px 12px}
+.agebar{background:var(--bg-deep);border-bottom:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center;padding:6px 16px}
+header.site{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.hrow{height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{text-decoration:none;display:flex;align-items:baseline;flex-wrap:wrap;gap:0 12px;min-width:0}
+.logo b{font-family:var(--display);font-size:22px;letter-spacing:.08em}
+.logo span{font-family:var(--display);font-size:12px;color:var(--text-sub);letter-spacing:.06em}
+.icons{display:flex;gap:2px}
+.ibtn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:0;border-radius:8px;cursor:pointer}
+.ibtn:hover{background:var(--surface)}
+.panel{border-top:1px solid var(--line-strong);background:var(--surface);max-height:75vh;overflow-y:auto;box-shadow:0 12px 24px rgba(0,0,0,.45)}
+.panel[hidden]{display:none}
+.sform{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 0}
+.sform label{font-size:13px;color:var(--muted)}
+.sform input{flex:1 1 220px;min-width:0;height:44px;padding:0 14px;background:var(--bg);border:1px solid var(--line-strong);border-radius:8px;color:var(--text)}
+.btn{height:44px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;border:1px solid var(--line-strong);background:transparent;text-decoration:none;font-weight:500;cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent);font-weight:700}
+.btn.small{height:36px;padding:0 14px;font-size:13px}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;padding:16px 16px 20px}
+.menu .mg{background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.menu h3{font-family:var(--body);font-size:12px;color:var(--accent);letter-spacing:.1em;font-weight:700;margin:2px 0 4px}
+.menu a{display:flex;justify-content:space-between;align-items:center;min-height:40px;padding:0 4px;border-top:1px solid var(--line);text-decoration:none;font-weight:500;font-size:14px;color:var(--text)}
+.menu a::after{content:'›';color:var(--muted)}
+.menu a:hover{color:var(--accent)}
+main{padding:28px 0 64px}
+.stack{display:flex;flex-direction:column;gap:44px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.sec-head h2{font-size:21px}
+.more{font-size:14px;color:var(--text-sub)}
+.note{font-size:12px;color:var(--muted)}
+.hero{display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line);padding:8px 0 28px}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--accent)}
+.hero h1{font-size:30px;letter-spacing:.04em}
+.hero p{margin:0;color:var(--text-sub);max-width:34em}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.chipwrap{display:flex;gap:8px;flex-wrap:wrap}
+.chip{flex:0 0 auto;min-height:40px;padding:0 14px;display:inline-flex;align-items:center;background:#1F2027;border:1px solid #33363F;border-radius:999px;font-size:14px;font-weight:500;white-space:nowrap;text-decoration:none;cursor:pointer}
+.chip.on,.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.layout{display:flex;flex-wrap:wrap;gap:40px}
+.layout .main{flex:999 1 560px;min-width:0}
+.layout .side{flex:1 1 260px;display:flex;flex-direction:column;gap:24px}
+.feature{display:flex;flex-wrap:wrap;gap:20px;text-decoration:none;margin-bottom:20px}
+.feature .eye{flex:1 1 280px}
+.feature .txt{flex:999 1 260px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.feature h3{font-size:22px}
+.eye{aspect-ratio:16/9;background:var(--ph);border:1px solid #2E3039;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;color:#9C9A93;font-size:12px}
+.eye .glyph{font-family:var(--display);font-size:30px;color:#4A4C56}
+.list{display:flex;flex-direction:column}
+.row{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.row .eye{flex:0 0 132px;width:132px;align-self:flex-start}
+.row .txt{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px}
+.row b{font-size:16px;line-height:1.5}
+.lab{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px}
+.cat{font-weight:700;color:var(--accent)}
+.tag{font-size:11px;padding:0 8px;border:1px solid var(--line-strong);border-radius:999px;color:var(--text-sub)}
+.excerpt{font-size:13px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.box h2{font-size:17px;margin-bottom:10px}
+.box p{margin:0;font-size:14px;color:var(--text-sub)}
+.box ol{margin:0;padding-left:1.3em;display:flex;flex-direction:column;gap:8px;font-size:14px}
+.box ol a{text-decoration:none}
+.gl{display:flex;flex-direction:column;gap:12px}
+.gl h3{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:500;margin-bottom:4px}
+.gl .links{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:14px}
+.crumb{font-size:13px;color:var(--muted);margin-bottom:18px;display:flex;gap:6px;flex-wrap:wrap}
+.crumb a{color:var(--text-sub)}
+.article{max-width:680px}
+.article h1{font-size:28px;margin:8px 0 10px}
+.article h2{font-size:20px;margin:36px 0 12px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.article h3{font-size:16px;margin:20px 0 6px;color:var(--text)}
+.article p{color:var(--text-sub);margin:0 0 14px}
+.article ul,.article ol.body{color:var(--text-sub);padding-left:1.3em;margin:0 0 14px}
+.article li{margin-bottom:8px}
+.article li b{color:var(--text)}
+.article .eye{margin:16px 0}
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin:18px 0}
+.toc ol{margin:6px 0 0;padding-left:1.4em}
+.toc a{color:var(--text-sub);text-decoration:none}
+.glist{display:flex;flex-direction:column;gap:10px;margin:0 0 14px}
+.gitem{border-left:2px solid var(--accent);padding:2px 0 2px 12px;border-radius:0}
+.gitem b{display:block;color:var(--text)}
+.gitem span{color:var(--text-sub);font-size:14px}
+.scale{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0 18px}
+.scale div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-align:center;display:flex;flex-direction:column;gap:2px}
+.scale small{color:var(--accent);font-weight:700;font-size:12px}
+.scale b{font-size:14px}
+.scale span{font-size:12px;color:var(--muted);line-height:1.5}
+.bar{height:6px;border-radius:3px;background:linear-gradient(90deg,#3A3D47,var(--accent));margin:4px 0 6px}
+.callout{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:0 0 14px;font-size:14px;color:var(--text-sub)}
+.work{border:1px solid var(--line-strong);border-radius:12px;padding:16px;margin:14px 0 18px;display:flex;flex-direction:column;gap:6px}
+.work .wl{font-size:11px;letter-spacing:.1em;color:var(--muted)}
+.work b{font-size:17px;font-family:var(--display)}
+.work .meta{font-size:13px;color:var(--muted)}
+.work a{align-self:flex-start;margin-top:6px;font-size:14px;color:var(--text-sub)}
+.author{display:flex;gap:14px;align-items:flex-start;margin-top:32px}
+.avatar{flex:0 0 56px;height:56px;border-radius:50%;background:var(--bg-deep);border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px}
+.comments{margin-top:40px}
+.comments h2{margin-top:0}
+.cmt{border-bottom:1px solid var(--line);padding:14px 0;display:flex;flex-direction:column;gap:4px}
+.cmt .who{font-size:13px;font-weight:700}
+.cmt .who span{font-weight:400;color:var(--muted);margin-left:8px}
+.cmt p{margin:0;color:var(--text-sub);white-space:pre-wrap;word-break:break-word}
+.cform{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+.cform label{font-size:13px;color:var(--muted)}
+.cform input,.cform textarea{background:var(--bg);border:1px solid var(--line-strong);border-radius:8px;padding:10px 12px;color:var(--text);width:100%}
+.cform textarea{min-height:110px;resize:vertical}
+.cform .err{color:var(--danger);font-size:13px;min-height:1.2em}
+.cstatus{font-size:13px;border-radius:8px;padding:10px 12px;margin-top:6px}
+.cstatus.ok{background:#1E2A22;color:#A8DBB5}
+.cstatus.ng{background:#2E1F1D;color:var(--danger)}
+.cstatus.wait{background:var(--surface);color:var(--muted)}
+.picker{display:flex;flex-direction:column;gap:14px;margin-bottom:22px}
+.picker fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.picker legend{font-size:13px;color:var(--muted);margin-bottom:6px;padding:0}
+.picker .grp{font-size:12px;color:var(--muted);margin-top:4px}
+.selbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--text-sub)}
+.empty{padding:40px 0;text-align:center;color:var(--muted)}
+footer.site{border-top:1px solid var(--line);background:var(--bg-deep)}
+.foot{padding:28px 0;display:flex;flex-direction:column;gap:12px;font-size:13px;color:var(--muted)}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 22px}
+.foot a{color:var(--text-sub)}
+.foot button{background:none;border:0;padding:0;color:var(--text-sub);text-decoration:underline;cursor:pointer;font-size:13px}
+.gate{position:fixed;inset:0;z-index:100;background:rgba(10,10,13,.94);display:flex;align-items:center;justify-content:center;padding:20px}
+.gate[hidden]{display:none}
+.gate .gbox{max-width:420px;width:100%;background:var(--surface);border:1px solid var(--line-strong);border-radius:14px;padding:28px 22px;display:flex;flex-direction:column;gap:14px;text-align:center}
+.gate h2{font-size:26px;letter-spacing:.08em}
+.gate p{margin:0;color:var(--text-sub);font-size:14px}
+.gate .grow{display:flex;flex-direction:column;gap:10px;margin-top:6px}
+.diag{border:1px solid var(--accent);border-radius:14px;overflow:hidden;margin:16px 0 22px;background:var(--surface)}
+.dhead{background:var(--surface-2);padding:10px 16px;display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
+.dhead span{font-size:11px;letter-spacing:.14em;color:var(--accent);font-weight:700}
+.dhead b{font-family:var(--display);font-size:17px}
+.dbody{padding:18px 16px 20px;display:flex;flex-direction:column;gap:12px;min-height:170px}
+.dq-k{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:.08em}
+.dq{font-size:18px;line-height:1.55;color:var(--text)}
+.dr{font-family:var(--display);font-size:21px;color:var(--accent);line-height:1.45}
+.dbody p{margin:0;color:var(--text-sub);font-size:14px}
+.dans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:4px}
+.dans .btn{height:52px;font-size:16px}
+.dnav{display:flex;gap:8px;flex-wrap:wrap}
+.eye.art{position:relative;overflow:hidden;padding:0}
+.eye.art svg{width:100%;height:100%;display:block}
+.eyetag{position:absolute;right:6px;bottom:6px;font-size:10px;background:rgba(14,15,18,.75);color:var(--muted);padding:1px 6px;border-radius:4px}
+.fig{margin:16px 0 20px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.fig svg{display:block;width:100%;aspect-ratio:16/9;height:auto}
+.fig figcaption{padding:8px 12px;font-size:13px;color:var(--text-sub);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.fig figcaption span{font-size:11px;color:var(--muted)}
+.figrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0 18px}
+.fig.small{margin:0}
+.fig.small figcaption{font-size:12px;padding:6px 10px}
+.scale div svg{width:100%;aspect-ratio:16/9;border-radius:6px;margin-bottom:6px}
+.axes{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0 18px}
+.ax b{font-size:14px;color:var(--accent)}
+.axl{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-sub)}
+.axl i{flex:1;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--line-strong),var(--accent))}
+.axl span{flex:0 0 auto}
+.dprog{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);font-weight:700}
+.dpbar{flex:1;height:4px;border-radius:2px;background:var(--line-strong);overflow:hidden}
+.dpbar i{display:block;height:100%;background:var(--accent)}
+.dwin{display:flex;flex-wrap:wrap;gap:12px;align-items:center;background:var(--surface-2);border:1px solid var(--accent);border-radius:12px;padding:10px}
+.dwin svg{flex:0 0 120px;width:120px;aspect-ratio:16/9;border-radius:8px}
+.dwin p{font-size:13px}
+.dwin>div{flex:1 1 180px;min-width:0}
+.bars{display:flex;flex-direction:column;gap:8px}
+.brow{display:grid;grid-template-columns:44px minmax(0,7.5em) 1fr 3em;align-items:center;gap:8px;font-size:13px;color:var(--text-sub)}
+.bico svg{width:44px;height:28px;border-radius:5px;display:block}
+.bname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btrack{height:10px;border-radius:5px;background:var(--bg);border:1px solid var(--line)}
+.btrack i{display:block;height:100%;border-radius:5px;background:var(--line-strong)}
+.brow.top{color:var(--text);font-weight:700}
+.brow.top .btrack i{background:var(--accent)}
+.bpct{text-align:right;font-variant-numeric:tabular-nums}
+.tug{display:flex;flex-direction:column;gap:8px}
+.tugends{display:flex;justify-content:space-between;gap:10px}
+.tugends span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:13px}
+.tugends svg{width:96px;aspect-ratio:16/9;border-radius:8px}
+.tugbar{position:relative;height:12px;border-radius:6px;background:#3A5A6E}
+.tugbar i{position:absolute;left:0;top:0;bottom:0;border-radius:6px 0 0 6px;background:var(--accent)}
+.tugbar em{position:absolute;top:-5px;width:4px;height:22px;margin-left:-2px;background:var(--text);border-radius:2px}
+.tugpct{display:flex;justify-content:space-between;font-size:14px;font-weight:700;font-variant-numeric:tabular-nums}
+.hito{display:flex;gap:12px;align-items:flex-start;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:14px;margin:24px 0 8px}
+.hito b{font-size:14px;color:var(--accent)}
+.hito p{margin:4px 0 2px!important;font-size:14px}
+.hito small{font-size:11px;color:var(--muted)}
+.xshare{align-self:flex-start;gap:8px;background:#0E0F12;border-color:var(--line-strong)}
+.crowd{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.crowd summary{cursor:pointer;font-size:13px;color:var(--text-sub);font-weight:700}
+.crowd .bars{margin-top:10px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.turnstile{border:1px dashed var(--line-strong);border-radius:8px;padding:12px;font-size:12px;color:var(--muted);text-align:center}
+.sel{height:44px;background:var(--bg);color:var(--text);border:1px solid var(--line-strong);border-radius:8px;padding:0 10px}
+table.spec{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:12px}
+table.spec th{text-align:left;font-weight:500;color:var(--muted);width:7.5em;padding:10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.spec td{padding:10px 0;border-bottom:1px solid var(--line);color:var(--text-sub)}
+.check{display:flex;align-items:center;gap:8px}
+.check input{width:18px;height:18px;accent-color:var(--accent)}
+.carousel{position:relative}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;border-radius:12px}
+.track::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:center;text-decoration:none;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.slide .eye{border:0;border-radius:0;aspect-ratio:21/9}
+.slide .st{padding:14px 16px 18px;display:flex;flex-direction:column;gap:6px}
+.slide .st small{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:.08em}
+.slide .st b{font-family:var(--display);font-size:20px;line-height:1.45}
+.slide .st span{font-size:13px;color:var(--muted)}
+.cnav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px}
+.cnav button.arrow{width:40px;height:40px;border-radius:50%;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.dots{display:flex;gap:8px}
+.dots button{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:var(--line-strong);cursor:pointer}
+.dots button[aria-current="true"]{background:var(--accent)}
+@media (max-width:480px){.row .eye{flex-basis:104px;width:104px}.hero h1{font-size:26px}.scale{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="proto">段階A試作：記事・コメントは見本です（コメントはこの画面の中だけで動きます）</div>
+<div class="agebar">このサイトは18歳以上の方を対象としています</div>
+<header class="site">
+  <div class="wrap hrow">
+    <a class="logo" href="#home"><b>人外ノ閨</b><span>ヒトでは満たされない夜に。</span></a>
+    <div class="icons">
+      <button class="ibtn" id="btn-search" type="button" aria-label="検索（タグとキーワード）">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+      </button>
+      <button class="ibtn" id="btn-menu" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="panel-menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="panel" id="panel-menu" aria-label="サイトメニュー" hidden>
+    <div class="wrap menu" id="menu-grid"></div>
+  </nav>
+</header>
+
+<main><div class="wrap" id="view"></div></main>
+
+<footer class="site">
+  <div class="wrap foot">
+    <nav><a href="#about">このサイトについて</a><a href="#operator">運営者情報</a><a href="#privacy">プライバシーポリシー</a><a href="#contact">お問い合わせ</a></nav>
+    <p style="margin:0">成人向けの作品を紹介しています。18歳未満の方の閲覧はご遠慮ください。</p>
+    <div>© 人外ノ閨　<button type="button" id="reset-gate">年齢確認をもう一度表示する（試作用）</button></div>
+  </div>
+</footer>
+
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+  <div class="gbox">
+    <h2 id="gate-title">人外ノ閨</h2>
+    <p>このサイトには成人向けの作品紹介が含まれます。<br>あなたは18歳以上ですか？</p>
+    <div class="grow">
+      <button class="btn primary" type="button" id="gate-yes">18歳以上です（入場する）</button>
+      <button class="btn" type="button" id="gate-no">18歳未満です</button>
+    </div>
+    <p class="note" id="gate-msg">承認すると、この端末では30日間表示されません。</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const GROUPS = [
+    {name:'獣・動物系', items:[['kemono','獣人','獣'],['bird','鳥人・ハーピー','翼'],['reptile','竜人・爬虫類人','鱗'],['insect','蟲人','蟲']]},
+    {name:'幻想・神話系', items:[['dragon','竜・ドラゴン','竜'],['merfolk','人魚・水棲','鰭'],['demon','悪魔・天使','悪'],['vampire','吸血鬼','血'],['god','神・神獣','神'],['ishu','異種族（エルフなど）','異']]},
+    {name:'和風・怪異系', items:[['kaii','都市伝説・怪異','怪'],['oni','鬼','鬼'],['yokai','妖怪・あやかし','妖'],['ghost','幽霊・霊体','霊']]},
+    {name:'人工物系', items:[['machine','機械・ロボット','機'],['doll','人形・ゴーレム','偶']]},
+    {name:'異形・その他', items:[['monster','モンスター・クリーチャー','魔'],['slime','スライム・不定形','粘'],['plant','植物・菌類','植'],['alien','宇宙人・異星人','星']]}
+  ];
+  const GENRES = {};
+  GROUPS.forEach(g => g.items.forEach(([k,n,c]) => GENRES[k] = {name:n, g:c, group:g.name}));
+  const CATS = {guide:'入門ガイド', genre:'ジャンル解説', talk:'語り・考察', matome:'おすすめまとめ', review:'作品レビュー'};
+  const ALLG = Object.keys(GENRES);
+  const AUTHOR = '夜な夜な人外を探している、閨の主です。とくに怪異やホラー寄りの、八尺様のような得体の知れない存在に惹かれがち。人外であることが物語に効いている作品を選んで紹介しています。';
+
+  const GOOD = {
+    kemono:'耳やしっぽで感情が隠せない正直さと、体格差の頼もしさ。',
+    bird:'空を自由に飛ぶ存在が、翼で包み込んでくる距離の近さ。',
+    reptile:'鱗と冷たい瞳の奥にある、意外なほどの情の深さ。',
+    insect:'人とはまったく違う体のつくりが生む、異質さと神秘性。',
+    dragon:'圧倒的な力と長い寿命。気まぐれな強者が見せる執着。',
+    merfolk:'陸と海、住む世界が違う二人。会うたびに試される関係。',
+    demon:'契約、堕落、救済。善悪の枠を越えて惹かれ合う背徳感。',
+    vampire:'不老と渇き。相手を求めることが、生きることに直結する切実さ。',
+    god:'崇められる存在が、ひとりの人間に心を寄せるという尊さ。',
+    ishu:'人に近い姿と、人とは違う時間の流れ。ファンタジーの入り口にも。',
+    kaii:'正体の分からない怖さと、それでも目が離せない引力。見てはいけないものに見初められる物語。',
+    oni:'角と怪力、豪快さの裏にある義理堅さ。和の世界観との相性も抜群。',
+    yokai:'狐や天狗など、言い伝えに根ざした妖しさと、人との古い約束。',
+    ghost:'触れられない、いつか消えてしまうかもしれない。はかなさが生む切なさ。',
+    machine:'感情を知らない存在が、人間を学んでいく過程。',
+    doll:'作られた存在が持つ、主への一途さと、自我の芽生え。',
+    monster:'人ならざる見た目と、優しい中身のギャップ。',
+    slime:'形が決まっていない自由さと、ほかにない独特の表現。',
+    plant:'静かでゆっくり、それでいて逃れられない包容力。',
+    alien:'言葉も常識も通じない、究極の異文化交流。'
+  };
+
+
+  /* ---------- 仮イラスト（あとで画像に差し替え） ---------- */
+  const CA = '#E2B45C', CL = '#CFCCC4', CF = '#2C2E38', CS = '#6E6C68', CB = '#1B1C23', CW = '#E8E5DE', CG = '#6F9A6B';
+  const STARS = [[30,30],[72,150],[290,40],[262,150],[118,22],[300,110]].map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${i%2?1.6:2.2}" fill="${CL}" opacity=".55"/>`).join('');
+  const mirror = s => `<g transform="translate(320,0) scale(-1,1)">${s}</g>`;
+  const scalesPat = (() => { let o=''; for (let r=0;r<4;r++) for (let c=-1;c<12;c++) { const x = c*28 + (r%2?14:0), y = 30 + r*14; o += `<path d="M${x} ${y} a14 14 0 0 0 28 0" fill="none" stroke="${CS}" stroke-width="1.5"/>`; } return o; })();
+  const gearTeeth = (() => { let o=''; for (let i=0;i<10;i++) o += `<rect x="152" y="38" width="16" height="16" rx="2" fill="${CF}" stroke="${CL}" stroke-width="2" transform="rotate(${i*36} 160 92)"/>`; return o; })();
+  const rays = (() => { let o=''; for (let i=0;i<16;i++){ const a=i*Math.PI/8, r1=44, r2=i%2?62:78; o += `<line x1="${160+r1*Math.cos(a)}" y1="${92+r1*Math.sin(a)}" x2="${160+r2*Math.cos(a)}" y2="${92+r2*Math.sin(a)}" stroke="${CA}" stroke-width="2" opacity=".7"/>`; } return o; })();
+  const head = `<circle cx="160" cy="108" r="42" fill="${CF}" stroke="${CL}" stroke-width="2"/>`;
+  const ears = `<path d="M122 100 L128 42 L156 76 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/><path d="M198 100 L192 42 L164 76 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/>`;
+  const MOTIF = {
+    moon:`<circle cx="160" cy="90" r="44" fill="${CA}"/><circle cx="180" cy="76" r="42" fill="${CB}"/>`,
+    guide:`<circle cx="160" cy="90" r="44" fill="${CA}"/><circle cx="180" cy="76" r="42" fill="${CB}"/><path d="M60 150 Q 160 120 260 150" fill="none" stroke="${CS}" stroke-width="2" stroke-dasharray="4 6"/>`,
+    kemono:`${ears}${head}<circle cx="146" cy="104" r="4" fill="${CA}"/><circle cx="174" cy="104" r="4" fill="${CA}"/><path d="M200 136 Q 250 150 260 104 Q 266 84 252 74" fill="none" stroke="${CA}" stroke-width="7" stroke-linecap="round"/>`,
+    muzzle:`${ears}${head}<ellipse cx="160" cy="126" rx="24" ry="17" fill="${CF}" stroke="${CL}" stroke-width="2"/><ellipse cx="160" cy="116" rx="7" ry="5" fill="${CA}"/><circle cx="142" cy="98" r="4" fill="${CA}"/><circle cx="178" cy="98" r="4" fill="${CA}"/>`,
+    bird:`${['',''].map((_,i)=>{ const w = `<path d="M160 104 Q 112 40 36 52 Q 66 68 58 80 Q 94 80 90 96 Q 120 96 160 116 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/><path d="M150 100 Q 110 70 70 68" fill="none" stroke="${CA}" stroke-width="1.5"/>`; return i? mirror(w) : w; }).join('')}<circle cx="160" cy="82" r="16" fill="${CF}" stroke="${CL}" stroke-width="2"/><path d="M160 86 L170 92 L160 96 Z" fill="${CA}"/>`,
+    reptile:`${scalesPat}<path d="M104 112 Q 160 66 216 112 Q 160 158 104 112 Z" fill="${CB}" stroke="${CA}" stroke-width="3"/><ellipse cx="160" cy="112" rx="6" ry="32" fill="${CA}"/>`,
+    insect:`<ellipse cx="124" cy="96" rx="44" ry="18" fill="${CL}" opacity=".22" transform="rotate(-25 124 96)"/><ellipse cx="196" cy="96" rx="44" ry="18" fill="${CL}" opacity=".22" transform="rotate(25 196 96)"/><path d="M152 54 Q 140 26 118 22" fill="none" stroke="${CL}" stroke-width="2"/><path d="M168 54 Q 180 26 202 22" fill="none" stroke="${CL}" stroke-width="2"/><circle cx="118" cy="22" r="4" fill="${CA}"/><circle cx="202" cy="22" r="4" fill="${CA}"/><circle cx="160" cy="62" r="13" fill="${CF}" stroke="${CL}" stroke-width="2"/><ellipse cx="160" cy="92" rx="15" ry="18" fill="${CF}" stroke="${CL}" stroke-width="2"/><ellipse cx="160" cy="138" rx="19" ry="28" fill="${CF}" stroke="${CL}" stroke-width="2"/><path d="M146 88 L122 110 M174 88 L198 110 M146 98 L120 132 M174 98 L200 132" stroke="${CL}" stroke-width="2"/>`,
+    dragon:`<path d="M118 84 Q 92 40 124 18" fill="none" stroke="${CL}" stroke-width="7" stroke-linecap="round"/><path d="M202 84 Q 228 40 196 18" fill="none" stroke="${CL}" stroke-width="7" stroke-linecap="round"/><path d="M84 108 Q 160 48 236 108 Q 160 168 84 108 Z" fill="${CB}" stroke="${CA}" stroke-width="3"/><ellipse cx="160" cy="108" rx="8" ry="40" fill="${CA}"/>`,
+    merfolk:`${[120,140,160].map(y=>`<path d="M20 ${y} q 20 -10 40 0 t 40 0 t 40 0 t 40 0 t 40 0 t 40 0 t 40 0 t 40 0" fill="none" stroke="${CS}" stroke-width="1.5"/>`).join('')}<path d="M160 40 Q 146 92 160 118 Q 128 138 112 152 Q 146 150 160 136 Q 174 150 208 152 Q 192 138 160 118 Q 174 92 160 40 Z" fill="${CA}" opacity=".9"/>`,
+    demon:`<ellipse cx="160" cy="40" rx="42" ry="9" fill="none" stroke="${CA}" stroke-width="3" stroke-dasharray="18 8"/><path d="M126 96 Q 96 70 108 46 Q 116 74 140 84" fill="${CF}" stroke="${CL}" stroke-width="2"/><path d="M194 96 Q 224 70 212 46 Q 204 74 180 84" fill="${CF}" stroke="${CL}" stroke-width="2"/>${head}<path d="M84 130 Q 50 100 40 70 Q 70 92 96 100 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/>${mirror(`<path d="M84 130 Q 50 100 40 70 Q 70 92 96 100 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/>`)}`,
+    vampire:`<circle cx="160" cy="88" r="58" fill="${CA}"/><circle cx="184" cy="72" r="54" fill="${CB}"/><path d="M160 98 L150 84 L146 98 Q 124 88 96 102 Q 112 106 114 120 Q 130 110 146 120 L160 110 L174 120 Q 190 110 206 120 Q 208 106 224 102 Q 196 88 174 98 L170 84 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/>`,
+    god:`${rays}<circle cx="160" cy="92" r="34" fill="none" stroke="${CA}" stroke-width="3"/><circle cx="160" cy="92" r="16" fill="${CF}" stroke="${CL}" stroke-width="2"/>`,
+    ishu:`<path d="M150 150 Q 116 128 128 84 L 214 34 Q 180 90 180 120 Q 178 152 150 150 Z" fill="${CF}" stroke="${CL}" stroke-width="2"/><path d="M146 120 Q 150 96 176 76" fill="none" stroke="${CS}" stroke-width="2"/><ellipse cx="92" cy="60" rx="16" ry="7" fill="${CG}" transform="rotate(-30 92 60)"/><ellipse cx="246" cy="140" rx="16" ry="7" fill="${CG}" transform="rotate(20 246 140)"/>`,
+    kaii:`<circle cx="62" cy="36" r="14" fill="${CA}" opacity=".85"/><rect x="88" y="26" width="6" height="154" fill="${CS}"/><path d="M0 52 Q 90 66 320 46" fill="none" stroke="${CS}" stroke-width="1.5"/><ellipse cx="212" cy="48" rx="30" ry="6" fill="${CW}"/><path d="M200 48 L224 48 L222 34 Q 212 28 202 34 Z" fill="${CW}"/><path d="M198 54 L226 54 L240 180 L184 180 Z" fill="${CW}" opacity=".88"/><circle cx="132" cy="146" r="7" fill="${CF}" stroke="${CL}" stroke-width="2"/><rect x="126" y="154" width="12" height="26" rx="4" fill="${CF}" stroke="${CL}" stroke-width="2"/>`,
+    oni:`<path d="M132 76 L124 26 L148 68 Z" fill="${CA}"/><path d="M188 76 L196 26 L172 68 Z" fill="${CA}"/>${head}<path d="M144 128 L150 140 L156 128 M164 128 L170 140 L176 128" fill="${CW}"/><circle cx="146" cy="104" r="4" fill="${CA}"/><circle cx="174" cy="104" r="4" fill="${CA}"/>`,
+    yokai:`<path d="M160 156 Q 116 126 120 82 L 110 34 L 142 62 Q 160 56 178 62 L 210 34 L 200 82 Q 204 126 160 156 Z" fill="${CW}"/><path d="M134 94 Q 144 88 152 96" fill="none" stroke="${CA}" stroke-width="4" stroke-linecap="round"/><path d="M186 94 Q 176 88 168 96" fill="none" stroke="${CA}" stroke-width="4" stroke-linecap="round"/><path d="M160 66 L160 82" stroke="${CA}" stroke-width="4" stroke-linecap="round"/><ellipse cx="160" cy="134" rx="6" ry="4" fill="${CF}"/>`,
+    ghost:`<path d="M160 38 Q 206 38 206 94 L 206 150 Q 196 140 186 150 Q 176 140 166 150 Q 156 140 146 150 Q 136 140 126 150 L 114 142 L 114 94 Q 114 38 160 38 Z" fill="${CL}" opacity=".85"/><ellipse cx="146" cy="92" rx="5" ry="8" fill="${CB}"/><ellipse cx="174" cy="92" rx="5" ry="8" fill="${CB}"/><circle cx="74" cy="80" r="8" fill="${CA}" opacity=".85"/><path d="M74 72 Q 60 60 66 46" fill="none" stroke="${CA}" stroke-width="2" opacity=".7"/><circle cx="252" cy="120" r="6" fill="${CA}" opacity=".8"/>`,
+    machine:`${gearTeeth}<circle cx="160" cy="92" r="42" fill="${CF}" stroke="${CL}" stroke-width="2"/><circle cx="160" cy="92" r="16" fill="${CB}" stroke="${CA}" stroke-width="3"/><circle cx="160" cy="92" r="5" fill="${CA}"/>`,
+    doll:`<circle cx="160" cy="44" r="18" fill="${CW}"/><rect x="146" y="68" width="28" height="44" rx="10" fill="${CF}" stroke="${CL}" stroke-width="2"/>${[[140,74],[180,74],[126,104],[194,104],[150,128],[170,128],[150,158],[170,158]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="6" fill="${CB}" stroke="${CA}" stroke-width="2"/>`).join('')}<path d="M140 74 L126 104 L120 128 M180 74 L194 104 L200 128 M150 128 L150 158 L148 176 M170 128 L170 158 L172 176" stroke="${CL}" stroke-width="3" fill="none"/>`,
+    monster:`${[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4; return `<line x1="${160+52*Math.cos(a)}" y1="${92+52*Math.sin(a)}" x2="${160+66*Math.cos(a)}" y2="${92+66*Math.sin(a)}" stroke="${CL}" stroke-width="3" stroke-linecap="round"/>`;}).join('')}<circle cx="160" cy="92" r="48" fill="${CF}" stroke="${CL}" stroke-width="2"/><circle cx="160" cy="92" r="22" fill="${CA}"/><circle cx="160" cy="92" r="9" fill="${CB}"/><circle cx="82" cy="58" r="8" fill="${CA}" opacity=".7"/><circle cx="246" cy="136" r="6" fill="${CA}" opacity=".7"/>`,
+    slime:`<path d="M96 152 Q 86 104 128 84 Q 150 52 182 72 Q 228 82 224 122 Q 232 152 210 154 Z" fill="${CA}" opacity=".55" stroke="${CA}" stroke-width="2"/><ellipse cx="146" cy="96" rx="14" ry="8" fill="${CW}" opacity=".5"/><circle cx="246" cy="146" r="6" fill="${CA}" opacity=".55"/><circle cx="80" cy="150" r="4" fill="${CA}" opacity=".55"/>`,
+    plant:`<path d="M60 170 Q 100 100 160 110 Q 220 120 250 40" fill="none" stroke="${CG}" stroke-width="4"/><path d="M110 170 Q 130 130 170 140" fill="none" stroke="${CG}" stroke-width="3"/>${[[100,118,-30],[150,106,10],[196,104,-40],[230,70,30],[140,138,20]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="16" ry="7" fill="${CG}" transform="rotate(${r} ${x} ${y})"/>`).join('')}<circle cx="250" cy="40" r="10" fill="${CA}"/><circle cx="250" cy="40" r="4" fill="${CB}"/>`,
+    alien:`<circle cx="160" cy="92" r="36" fill="${CF}" stroke="${CL}" stroke-width="2"/><ellipse cx="160" cy="92" rx="76" ry="16" fill="none" stroke="${CA}" stroke-width="3" transform="rotate(-15 160 92)"/><circle cx="252" cy="40" r="8" fill="${CL}" opacity=".7"/><circle cx="72" cy="140" r="5" fill="${CA}"/>`
+  };
+  function art(key, label){ return `<svg viewBox="0 0 320 180" role="img" aria-label="${label||'イメージ図'}" preserveAspectRatio="xMidYMid slice"><rect width="320" height="180" fill="${CB}"/>${STARS}${MOTIF[key]||MOTIF.moon}</svg>`; }
+  function fig(key, cap){ return `<figure class="fig">${art(key, cap)}<figcaption>${cap}<span>仮イラスト：あとで画像に差し替え</span></figcaption></figure>`; }
+  function figRow(items){ return `<div class="figrow">${items.map(([k,c])=>`<figure class="fig small">${art(k,c)}<figcaption>${c}</figcaption></figure>`).join('')}</div>`; }
+
+  /* ---------- Yes/No 診断 ---------- */
+  const DIAGS = {
+    entry: {type:'score', title:'あなたの人外の入り口診断', chartLabel:'ルートごとの相性',
+      opts:[
+        {k:'soft', short:'甘々（ほぼ人間）', name:'「ほぼ人間」からの甘々ルート', motif:'kemono', desc:'ケモミミ型の獣人や、エルフなどの異種族がぴったり。人の表情はそのままに、耳やしっぽ、長い寿命みたいな「人じゃない部分」がちょっとずつ効いてくるので、入り口として最強です。', chips:['kemono','ishu'], link:'ishu', linkText:'異種族の解説記事を読む'},
+        {k:'sad', short:'はかなさ', name:'切なさで泣きたい、はかなさルート', motif:'vampire', desc:'吸血鬼、幽霊、人魚あたりが刺さるはず。「一緒にいられる時間に限りがある」設定が、甘いシーンを何倍にもしてくれます。ハンカチの用意を。', chips:['vampire','ghost','merfolk'], link:'vampire', linkText:'吸血鬼の解説記事を読む'},
+        {k:'pact', short:'契約・背徳', name:'背徳感がほしい、契約ルート', motif:'demon', desc:'悪魔・天使との契約ものがおすすめ。対価、約束、裏切るかもしれない緊張感。人に近い見た目なのに価値観がまるで違う、そのズレが楽しいタイプです。', chips:['demon','vampire'], link:'demon', linkText:'悪魔・天使の解説記事を読む'},
+        {k:'strong', short:'強者の溺愛', name:'強者に見初められたい、溺愛ルート', motif:'dragon', desc:'竜、神・神獣、鬼。何百年も生きている、国ひとつ滅ぼせるような存在が、なぜか自分にだけ手加減してくる。この落差が好きならもう沼の入り口に立っています。', chips:['dragon','god','oni'], link:'dragon', linkText:'竜・ドラゴンの解説記事を読む'},
+        {k:'horror', short:'怪異', name:'怖いのに目が離せない、怪異ルート', motif:'kaii', desc:'都市伝説・怪異やクリーチャー系へようこそ。正体が分からない、話が通じるかも分からない。それでも気に入られてしまう理不尽さが癖になります。最初は音声作品で「姿が見えない怖さ」から入るのもおすすめ。', chips:['kaii','monster','yokai'], link:'wafu', linkText:'和風・怪異系の入門記事を読む'},
+        {k:'made', short:'作られた存在', name:'心を学んでいく、作られた存在ルート', motif:'machine', desc:'機械・ロボット、人形・ゴーレム。最初は命令どおりにしか動かなかった存在が、だんだん「自分の意思」で選び始める。その成長を見守る楽しさがあります。', chips:['machine','doll'], link:'madeg', linkText:'人工物系の入門記事を読む'},
+        {k:'beast', short:'ガチ獣系', name:'人外度高めの、ガチ獣系ルート', motif:'muzzle', desc:'顔まで獣の獣人型、竜人、鳥人。人間とは違う顔だからこそ、感情が伝わったときの喜びが大きいタイプ。毛並み、鱗、翼の描写にこだわった作品を探してみてください。', chips:['kemono','reptile','bird'], link:'beast', linkText:'獣・動物系の入門記事を読む'}
+      ],
+      qs:[
+        ['人外でも、顔立ちや表情は人間寄りのほうが安心する？', {soft:2, sad:1, pact:1}, {beast:2, strong:1, horror:1}],
+        ['とにかく甘くて、安心できる関係が見たい？', {soft:2, strong:1}, {horror:1, pact:1, sad:1}],
+        ['寿命の差や、いつか終わる関係の切なさに弱い？', {sad:2}, {soft:1}],
+        ['圧倒的に強い存在に、自分だけ特別扱いされたい？', {strong:2, beast:1}, {made:1, soft:1}],
+        ['正直、ちょっと怖いくらいがちょうどいい？', {horror:2, pact:1}, {soft:1, made:1}],
+        ['人間の気持ちを少しずつ学んでいく存在にグッとくる？', {made:2}, {beast:1}],
+        ['契約や取引、背徳感のある関係にひかれる？', {pact:2, horror:1}, {soft:1}],
+        ['毛並み・鱗・翼など、体の描写にこだわりたい？', {beast:2, strong:1}, {made:1, sad:1}]
+      ]},
+    kemono: {type:'score', title:'あなたの獣度診断', chartLabel:'段階ごとの相性',
+      opts:[
+        {k:'s1', name:'段階1：ケモミミ型', motif:'kemono', desc:'人の表情はそのまま、耳としっぽだけが本音をバラしてしまうタイプが好きなあなた。「顔はすましてるのに、しっぽがめちゃくちゃ振れてる」場面を探しましょう。', chips:['kemono']},
+        {k:'s2', name:'段階2：獣人型', motif:'muzzle', desc:'顔も体も獣、でも二足歩行で言葉を話すタイプ。体格差、毛並み、表情の読み方を覚えていく楽しさ。獣人ジャンルのど真ん中です。', chips:['kemono','reptile']},
+        {k:'s3', name:'段階3：獣の姿の人外', motif:'god', desc:'神獣や魔獣のように、獣の姿のまま言葉と心を持つ存在が刺さるあなた。種族の壁が一番高いぶん、心が通った瞬間の重みは格別です。', chips:['god','dragon'], link:'god', linkText:'神・神獣の解説記事を読む'},
+        {k:'shift', name:'行き来する：変身もの', motif:'yokai', desc:'人の姿と獣の姿、両方を楽しみたいあなた。正体を隠していた相手が、ある日本当の姿を見せてくれる展開がたまらないはず。', chips:['kemono','yokai'], link:'yokai', linkText:'妖怪・あやかしの解説記事を読む'}
+      ],
+      qs:[
+        ['眉や口元など、人間の表情で感情を読みたい？', {s1:2, shift:1}, {s2:1, s3:1}],
+        ['毛並みやマズルなど、獣の顔立ちそのものが好き？', {s2:2, s3:1}, {s1:2}],
+        ['二足歩行で、人間と同じ目線で話してほしい？', {s1:1, s2:2}, {s3:2}],
+        ['普段は人の姿で、ときどき獣の姿になる展開に燃える？', {shift:2}, {s2:1, s3:1}],
+        ['神話や伝承のような、スケールの大きい世界観が好き？', {s3:2}, {s1:1}],
+        ['耳やしっぽで本音がバレる描写が好き？', {s1:2, shift:1}, {s3:1}]
+      ]},
+    made: {type:'score', title:'あなたの「作られた存在」タイプ診断', chartLabel:'タイプごとの相性',
+      opts:[
+        {k:'android', name:'アンドロイド', motif:'machine', desc:'人間そっくりなのに、ふとした瞬間に「人じゃない」ことが分かってしまう。そのギャップにやられるタイプです。', chips:['machine'], link:'machine', linkText:'機械・ロボットの解説記事を読む'},
+        {k:'robot', name:'ロボット', motif:'machine', desc:'いかにも機械な体で、不器用に感情を学んでいく。ぎこちない優しさに弱いあなたに。', chips:['machine'], link:'machine', linkText:'機械・ロボットの解説記事を読む'},
+        {k:'ai', name:'AI・電子の存在', motif:'guide', desc:'体がないからこそ、言葉選びひとつで距離が縮まっていく。音声作品との相性が抜群のタイプです。', chips:['machine'], link:'machine', linkText:'機械・ロボットの解説記事を読む'},
+        {k:'doll', name:'動く人形', motif:'doll', desc:'作り手への一途さ、人形らしい不完全さ、そして芽生えてしまう自我。美しさと不気味さの境目が好きなあなたに。', chips:['doll'], link:'doll', linkText:'人形・ゴーレムの解説記事を読む'},
+        {k:'golem', name:'ゴーレム', motif:'monster', desc:'土や石でできた大きな体と、主を守るために生まれた忠実さ。寡黙で大きい存在が好きなら、ここです。', chips:['doll','monster'], link:'doll', linkText:'人形・ゴーレムの解説記事を読む'}
+      ],
+      qs:[
+        ['見た目は人間そっくりなほうがいい？', {android:2, doll:1}, {robot:1, golem:1, ai:1}],
+        ['機械やプログラムより、魔法や呪いで動いている設定が好き？', {doll:2, golem:1}, {android:1, robot:1, ai:1}],
+        ['体がなくても、声や言葉だけで関係が成り立つ話が好き？', {ai:2}, {robot:1, golem:1}],
+        ['金属の体、駆動音、メンテナンスの場面が好き？', {robot:2, android:1}, {doll:1, golem:1}],
+        ['大きくて寡黙な、守ってくれる存在がいい？', {golem:2, robot:1}, {android:1, ai:1}],
+        ['美しさと不気味さの境目にひかれる？', {doll:2, android:1}, {robot:1, ai:1}]
+      ]},
+    kaii: {type:'score', title:'あなたの怪異タイプ診断', chartLabel:'タイプごとの相性',
+      opts:[
+        {k:'urban', name:'都市伝説系', motif:'kaii', desc:'いつもの帰り道、見上げるほど背の高い影。八尺様のように、条件がそろうと現れる「何か」に見初められる話が刺さるタイプです。', chips:['kaii'], link:'kaii', linkText:'都市伝説・怪異の解説記事を読む'},
+        {k:'other', name:'異界・神隠し系', motif:'moon', desc:'気づいたら知らない場所にいて、そこに住むものに気に入られてしまう。帰れるかどうか分からない不安と甘さが同居する世界観です。', chips:['kaii','god'], link:'god', linkText:'神・神獣の解説記事を読む'},
+        {k:'ghost', name:'幽霊・霊体', motif:'ghost', desc:'触れられない、いつか消えるかもしれない。怖さよりも、はかなさと切なさが勝つタイプのあなたに。', chips:['ghost'], link:'ghost', linkText:'幽霊・霊体の解説記事を読む'},
+        {k:'oni', name:'鬼', motif:'oni', desc:'角と怪力、でも約束は絶対に守る。荒々しさと義理堅さのギャップに弱いあなたに。', chips:['oni'], link:'oni', linkText:'鬼の解説記事を読む'},
+        {k:'yokai', name:'妖怪・あやかし', motif:'yokai', desc:'狐や天狗など、昔話に出てくる存在との古い契り。人の世界と少しずれた時間を生きる相手との関係が刺さるタイプです。', chips:['yokai'], link:'yokai', linkText:'妖怪・あやかしの解説記事を読む'}
+      ],
+      qs:[
+        ['相手の正体が、最後まで分からないほうがゾクゾクする？', {urban:2, other:1}, {oni:1, yokai:1}],
+        ['日常のすぐ隣に、それが潜んでいる怖さが好き？', {urban:2, ghost:1}, {other:2}],
+        ['言い伝えや契り、古い約束が絡む話が好き？', {yokai:2, oni:1}, {urban:1}],
+        ['相手は力強く、豪快なほうがいい？', {oni:2}, {ghost:1, yokai:1}],
+        ['触れられない、はかない相手に弱い？', {ghost:2}, {oni:1}],
+        ['知らない場所に迷い込んでしまう話が好き？', {other:2, yokai:1}, {urban:1, ghost:1}]
+      ]}
+  };
+  const DS = {};
+  function scoreResult(d, ans){
+    const sc = {}, mx = {};
+    d.opts.forEach(o => { sc[o.k] = 0; mx[o.k] = 0; });
+    d.qs.forEach(([q, y, n], i) => { d.opts.forEach(o => { mx[o.k] += Math.max(y[o.k]||0, n[o.k]||0); }); const pick = ans[i] === 'yes' ? y : n; Object.entries(pick).forEach(([k,v]) => { if (k in sc) sc[k] += v; }); });
+    return d.opts.map(o => ({...o, pct: mx[o.k] ? Math.round(sc[o.k] / mx[o.k] * 100) : 0, raw: sc[o.k]})).sort((a,b) => b.pct - a.pct || b.raw - a.raw);
+  }
+  function scoreChart(d, list){
+    if (d.opts.length === 2) {
+      const [a, b] = d.opts.map(o => list.find(x => x.k === o.k));
+      const tot = (a.pct + b.pct) || 1, la = Math.round(a.pct / tot * 100);
+      return `<div class="tug" role="img" aria-label="${a.name} ${la}%、${b.name} ${100-la}%">
+        <div class="tugends"><span>${art(a.motif,'')}<b>${a.name}</b></span><span>${art(b.motif,'')}<b>${b.name}</b></span></div>
+        <div class="tugbar"><i style="width:${la}%"></i><em style="left:${la}%"></em></div>
+        <div class="tugpct"><span>${la}%</span><span>${100-la}%</span></div></div>`;
+    }
+    return `<div class="bars" role="img" aria-label="相性：${list.map(x => x.name + ' ' + x.pct + '%').join('、')}">${list.map((x,i) => `<div class="brow${i===0?' top':''}"><span class="bico">${art(x.motif,'')}</span><span class="bname">${x.short || x.name}</span><span class="btrack"><i style="width:${Math.max(x.pct,4)}%"></i></span><span class="bpct">${x.pct}%</span></div>`).join('')}</div>`;
+  }
+  const COUNTS = {};
+  function shareUrl(d, top){
+    const text = `人外ノ閨の「${d.title.replace('あなたの','')}」で、私は「${top.name}」でした（相性${top.pct}%）\n#人外ノ閨診断 #人外`;
+    return 'https://x.com/intent/post?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent('https://[サイトのURL]/');
+  }
+  function crowd(d, id){
+    const c = COUNTS[id] || {}, tot = Object.values(c).reduce((a,b)=>a+b,0);
+    if (!tot) return '';
+    const rows = d.opts.map(o => ({...o, n:c[o.k]||0})).sort((a,b)=>b.n-a.n);
+    return `<details class="crowd"><summary>みんなの結果を見る（${tot}人）</summary><div class="bars">${rows.map(o => `<div class="brow"><span class="bico">${art(o.motif,'')}</span><span class="bname">${o.short || o.name}</span><span class="btrack"><i style="width:${Math.max(Math.round(o.n/tot*100),3)}%;background:#6E7FA3"></i></span><span class="bpct">${Math.round(o.n/tot*100)}%</span></div>`).join('')}</div><p class="note" style="margin:6px 0 0">試作ではこの画面での回答だけを集計しています。本番では全員の回答を集計します。</p></details>`;
+  }
+  function diag(id){
+    const d = DIAGS[id];
+    if (d.type === 'score') {
+      const s = DS[id] || (DS[id] = {ans:[]});
+      const n = d.qs.length, i = s.ans.length;
+      let inner;
+      if (i < n) {
+        inner = `<div class="dprog"><span>Q${i+1} / ${n}</span><span class="dpbar"><i style="width:${i/n*100}%"></i></span></div><b class="dq">${d.qs[i][0]}</b>
+          <div class="dans"><button type="button" class="btn primary" data-dans="${id}" data-v="yes">はい</button><button type="button" class="btn" data-dans="${id}" data-v="no">いいえ</button></div>
+          ${i ? `<div class="dnav"><button type="button" class="btn small" data-dback="${id}">ひとつ戻る</button></div>` : ''}`;
+      } else {
+        const list = scoreResult(d, s.ans), top = list[0];
+        if (!s.counted) { s.counted = true; const c = COUNTS[id] = COUNTS[id] || {}; c[top.k] = (c[top.k] || 0) + 1; }
+        inner = `<span class="dq-k">診断結果：あなたにいちばん合うのは</span>
+          <div class="dwin">${art(top.motif, top.name)}<div><b class="dr">${top.name}</b><p>${top.desc}</p></div></div>
+          <span class="dq-k" style="margin-top:4px">${d.chartLabel || 'タイプごとの相性'}</span>${scoreChart(d, list)}
+          ${top.link ? `<a class="btn primary" style="align-self:flex-start" href="#article-${top.link}">${top.linkText || top.name + 'の解説記事を読む'}</a>` : ''}
+          ${top.chips && top.chips.length ? `<div class="chipwrap">${top.chips.map(k=>`<a class="chip" href="#genre-${k}">${GENRES[k].name}の記事一覧</a>`).join('')}</div>` : ''}
+          <a class="btn xshare" href="${shareUrl(d, top)}" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.7L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.2-8.3L2 3h6.4l4.4 5.8L17.8 3Zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5Z"/></svg>結果をXでシェア</a>
+          ${crowd(d, id)}
+          <div class="dnav"><button type="button" class="btn small" data-dback="${id}">ひとつ戻る</button><button type="button" class="btn small" data-dreset="${id}">最初からやり直す</button></div>`;
+      }
+      return `<div class="diag" data-diag="${id}" aria-live="polite"><div class="dhead"><span>YES / NO 診断・全${n}問</span><b>${d.title}</b></div><div class="dbody">${inner}</div></div>`;
+    }
+    const s = DS[id] || (DS[id] = {cur:d.start, hist:[]});
+    const n = d.nodes[s.cur];
+    const step = s.hist.length + 1;
+    let inner;
+    if (n.r) {
+      inner = `<span class="dq-k">診断結果</span><b class="dr">${n.r}</b><p>${n.d}</p>
+        ${n.art ? `<a class="btn primary" style="align-self:flex-start" href="#article-${n.art === 'kemono' ? '2' : n.art}">${GENRES[n.art].name}の解説記事を読む</a>` : ''}
+        <div class="chipwrap">${n.g.map(k=>`<a class="chip" href="#genre-${k}">${GENRES[k].name}の記事一覧</a>`).join('')}</div>
+        <div class="dnav"><button type="button" class="btn small" data-dback="${id}">ひとつ戻る</button><button type="button" class="btn small" data-dreset="${id}">最初からやり直す</button></div>`;
+    } else {
+      inner = `<span class="dq-k">Q${step}</span><b class="dq">${n.q}</b>
+        <div class="dans"><button type="button" class="btn primary" data-dans="${id}" data-v="yes">はい</button><button type="button" class="btn" data-dans="${id}" data-v="no">いいえ</button></div>
+        ${s.hist.length ? `<div class="dnav"><button type="button" class="btn small" data-dback="${id}">ひとつ戻る</button></div>` : ''}`;
+    }
+    return `<div class="diag" data-diag="${id}" aria-live="polite"><div class="dhead"><span>YES / NO 診断</span><b>${d.title}</b></div><div class="dbody">${inner}</div></div>`;
+  }
+  function diagAct(id, fn){ const s = DS[id] || (DS[id] = DIAGS[id].type === 'score' ? {ans:[]} : {cur:DIAGS[id].start, hist:[]}); fn(s); const el = document.querySelector(`[data-diag="${id}"]`); if (el) el.outerHTML = diag(id); }
+
+
+  /* ---------- ジャンル解説記事（ジャンルごと） ---------- */
+  const GA = {
+    bird:{t:'鳥人・ハーピーの魅力：翼で包まれたい人のための入門', ex:'空を飛べる存在が、わざわざ地上に降りてきてくれる。その特別感と、翼ならではの距離の近さを語ります。',
+      i:'翼。そう、翼です。腕の代わりに翼がある、あるいは背中に大きな翼が生えている。鳥人・ハーピーものの魅力は、ほぼこの一語に詰まっていると言っても過言ではありません。',
+      g:[['翼で包まれる距離感','大きな翼で、外の世界から隠すように包み込む。抱きしめるのとは違う、鳥人ならではの愛情表現です。'],['空と地上の差','本当はどこへでも飛んでいける存在が、自分のそばにとどまってくれる。それだけで「選ばれた」感がすごい。'],['羽づくろいの親密さ','鳥にとって羽づくろいは信頼の証。触らせてくれる、整えてくれる。その意味を知ると一コマの重みが変わります。']],
+      ty:[['腕が翼のハーピー型','手が使えない不便さと、それを補い合う関係が見どころ。'],['背中に翼の有翼人型','人の姿に翼。天使に近い神々しさも出せるタイプ。'],['鳥の頭を持つ鳥人型','猛禽の鋭い目つきと、ふとした瞬間のやわらかい仕草のギャップ。']],
+      q:['手が翼になっている不自由さに、ちょっとときめく？','鋭い目つきの猛禽系が好き？'], r:[[0,['bird']],[2,['bird','reptile']],[1,['bird','demon']]],
+      tip:'翼の描写は、絵で見てこそ。最初は同人誌やCG集で、羽の描き込みが好みの作品を探すのがおすすめです。', end:'翼を広げた姿も、たたんだ姿も、どっちも尊い。あなたの推し翼、コメントで教えてください。'},
+    reptile:{t:'竜人・爬虫類人の魅力：冷たい鱗と、熱い情', ex:'鱗、縦長の瞳、長いしっぽ。冷たそうな見た目の奥にある情の深さを語ります。',
+      i:'体温が低そう、表情が読めなさそう、ちょっと怖そう。……その第一印象が、全部ひっくり返る瞬間がたまらないジャンルです。',
+      g:[['鱗の質感','光の当たり方で色を変える鱗。触れたときの「思ったよりなめらか」という驚きまで含めて魅力です。'],['読めない表情、読めた瞬間','縦長の瞳は感情を映しにくい。だからこそ、瞳孔がふっと開く一瞬に全部持っていかれます。'],['しっぽは正直','獣人と同じく、しっぽが感情を語るタイプ。巻きつけてくるのは、たいてい無意識です。']],
+      ty:[['竜人型','竜の血を引く誇り高い戦士や王族。角や翼があることも。'],['リザードマン型','より爬虫類らしい、頭まで鱗に覆われたタイプ。'],['蛇系（ラミアなど）','下半身が蛇。「巻きつく」の意味がひとつ増えます。']],
+      q:['角や翼など、竜らしい「格」がほしい？','長い蛇の体に、ぐるりと囲まれたい？'], r:[[0,['reptile','dragon']],[2,['reptile']],[1,['reptile','monster']]],
+      tip:'体温の描写に注目。「冷たい体が少しずつあたたまっていく」演出がある作品は、だいたい当たりです。', end:'冷たい鱗の下の熱い情、ぜひ味わってください。'},
+    insect:{t:'蟲人の魅力：人とまったく違う体が生む、異質さと美しさ', ex:'複眼、触角、外骨格、透きとおる羽。人外の中でも「異質さ」が際立つ蟲人ものの入り口です。',
+      i:'正直に言います。蟲人は人を選びます。選びますが、刺さった人は深く深く沈んでいくジャンルです。人の体の常識がまったく通じない存在と心を通わせる、その異質さこそが魅力です。',
+      g:[['体のつくりがまるで違う','外骨格、複眼、何本もの腕。人間の当たり前がひとつも通じないからこそ、触れ合い方ひとつに発見があります。'],['美しさと不気味さの境目','蝶の羽の模様、甲虫のつややかな殻。怖いのに、見とれてしまう。'],['本能と理性のせめぎあい','群れや女王といった虫ならではの本能と、個人としての感情。その揺れがドラマを生みます。']],
+      ty:[['蝶・蛾系','鱗粉と大きな羽。はかなく妖しい美しさ。'],['甲虫系','硬い外骨格と力強さ。頼れる守護者タイプ。'],['蜂・蟻系','群れ、巣、女王。社会性が物語に絡むタイプ。']],
+      q:['大きな羽の、はかない美しさにひかれる？','群れや巣のような「社会」が絡む話が好き？'], r:[[0,['insect']],[2,['insect']],[1,['insect','reptile']]],
+      tip:'まずは人型に近い蟲人から。触角や羽がついた人の姿のキャラクターなら、異質さに少しずつ慣れていけます。', end:'一度ハマると抜け出せない蟲人の世界。同志の方、コメントでぜひ。'},
+    dragon:{t:'竜・ドラゴンの魅力：国を滅ぼせる存在に、なぜか気に入られてしまう', ex:'圧倒的な力、何百年もの寿命、宝への執着。竜ものの魅力と、竜のタイプを語ります。',
+      i:'竜。ファンタジーの頂点。山のような体、空を覆う翼、何百年も生きる知性。そんな存在が、なぜかひとりの人間にだけ執着する。……もうあらすじだけで優勝しています。',
+      g:[['力の差が生む溺愛','爪ひとつで人を傷つけられる相手が、細心の注意を払って触れてくる。この気づかいに弱い人、多いはず。'],['竜は宝を集める','気に入ったものを巣にため込む習性。その「宝」が自分だったら……という設定、王道にして至高。'],['時間の流れが違う','人の一生は竜にとって一瞬。その一瞬をどう過ごすかが、物語の芯になります。']],
+      ty:[['西洋竜','翼と四肢を持つ巨体。宝と巣と誇り。'],['東洋の龍','長い体で空を泳ぐ、神に近い存在。'],['人に化ける竜','普段は人の姿、本当の姿は巨大な竜。正体を明かす場面が見せ場。']],
+      q:['神さまに近い、神秘的な存在がいい？','普段は人の姿で、正体を隠しているのが好き？'], r:[[1,['dragon','god']],[2,['dragon','reptile']],[0,['dragon']]],
+      tip:'竜ものは「正体を見せる場面」が山場になることが多いので、あらすじにその気配がある作品を選ぶと当たりやすいです。', end:'竜に見初められたい人生だった。そう思ったあなたは、もう立派な竜好きです。'},
+    merfolk:{t:'人魚・水棲人外の魅力：住む世界が違うふたりの、試される恋', ex:'陸と海。会うたびに試される関係と、水の中でしか見られない美しさを語ります。',
+      i:'人魚ものの切なさは、だいたい「住む世界が違う」の一言に集約されます。陸では長くいられない、海では人が息をできない。それでも会いたい。……ほら、もう泣けてきた。',
+      g:[['会えない時間が長い','波打ち際でしか会えない、満月の夜しか会えない。制約があるほど、会えた瞬間がまぶしい。'],['水の中の美しさ','揺れる髪、光るうろこ、泡。水中の描写が美しい作品は、それだけで価値があります。'],['歌と声','人魚といえば歌。音声作品との相性が抜群です。']],
+      ty:[['人魚型','上半身が人、下半身が魚。王道。'],['深海の存在','光の届かない海の底に住む、少し怖い水棲人外。'],['水の精霊型','川や湖に住む、人に近い姿の水の存在。']],
+      q:['ちょっと怖い、未知の深海にひかれる？','海より、川や湖など身近な水辺の話が好き？'], r:[[1,['merfolk','monster']],[2,['merfolk','yokai']],[0,['merfolk']]],
+      tip:'声で魅せるジャンルなので、音声作品から入るのもおすすめです。', end:'住む世界が違っても会いに来てしまう。その健気さを、ぜひ。'},
+    demon:{t:'悪魔・天使の魅力：契約と堕落、善悪を越えて惹かれ合う', ex:'願いと引き換えの契約、堕ちていく天使、救おうとする悪魔。背徳感が魅力のジャンルを語ります。',
+      i:'悪魔と天使。対極に見えて、実はどちらも「人間とは違うルールで生きている」存在です。そのルールと人間の感情がぶつかるとき、物語が動き出します。',
+      g:[['契約という名の関係','願いと対価。最初は取引だったはずの関係が、いつの間にか取引じゃなくなっていく。'],['堕ちる・救う','天使が人のために堕ちる、悪魔が人のために誓いを破る。立場を捨てる瞬間の重み。'],['美しさと危うさ','角と黒い翼、光輪と白い翼。見た目の美しさに、どこか危険な香りが混ざります。']],
+      ty:[['契約悪魔','願いと引き換えに現れる、取引上手な存在。'],['堕天使','天から落ちた、光と影をあわせ持つ存在。'],['守護天使','人を見守る、規律に厳しい存在。']],
+      q:['取引や駆け引きのある関係が好き？','清らかなものが揺らぐ瞬間に弱い？'], r:[[0,['demon']],[1,['demon','vampire']],[2,['demon','god']]],
+      tip:'「契約の内容」が物語の鍵になることが多いので、あらすじで契約の条件をチェックしてから読むと楽しさ倍増です。', end:'悪魔に魂を売るなら、せめて推しの悪魔に。'},
+    vampire:{t:'吸血鬼の魅力：不老と渇き、求めることが生きること', ex:'永遠に近い命と、血への渇き。吸血鬼ものの切実さと美しさを語ります。',
+      i:'吸血鬼ものの魅力は、「相手を求めること」と「生きること」が直結しているところにあります。好きだから求める、ではなく、求めないと生きられない。この切実さは、ほかのジャンルではなかなか出せません。',
+      g:[['渇きと理性','本能のままに求めたい気持ちと、相手を傷つけたくない気持ち。その葛藤が色っぽさの源です。'],['終わらない時間','年をとらない吸血鬼と、年をとっていく人間。いつか来る別れが、今を特別にします。'],['夜の美しさ','古城、月明かり、燭台。耽美な世界観が好きな人にはたまりません。']],
+      ty:[['古き貴族型','何百年も生きる、気品と退屈を抱えた存在。'],['現代に生きる吸血鬼','人間社会に紛れて暮らす、少し俗っぽい吸血鬼。'],['なりたての吸血鬼','渇きに戸惑い、人間だった頃の自分と揺れる存在。']],
+      q:['古城や燭台など、耽美な世界観が好き？','吸血鬼になってしまった戸惑いや葛藤が見たい？'], r:[[0,['vampire']],[2,['vampire','ghost']],[1,['vampire','kaii']]],
+      tip:'「血を求める場面」の描き方は作品によってまったく違います。甘めか切なめか、試し読みで温度を確かめてから選ぶのがおすすめです。', end:'永遠の夜に、ひとりだけを選ぶ。吸血鬼もの、ぜひ。'},
+    god:{t:'神・神獣の魅力：崇められる存在が、ひとりの人間に心を寄せる', ex:'土地の神、神の使い、伝説の神獣。人知を超えた存在との関係の尊さを語ります。',
+      i:'神さま。世界のルールそのものみたいな存在が、ひとりの人間を気にかける。その時点で、もう物語としてずるいんですよ。',
+      g:[['格の違い','祈られる側と、祈る側。立場の差があるからこそ、対等に話せた瞬間が光ります。'],['約束と加護','神との約束は重い。守られるのも、破るのも、物語の大事件になります。'],['人の世界とのずれ','時間の感覚も、善悪の基準も、人とは少しずつ違う。そのずれが愛おしいんです。']],
+      ty:[['土地の神','山や川、社に宿る、その土地とともにある神。'],['神獣','白い獣や霊鳥など、神の力を持つ獣の姿の存在。'],['異国の神','神話に出てくるような、人とかけ離れた存在。']],
+      q:['獣の姿をした、神々しい存在にひかれる？','和風の社や、昔からの言い伝えが好き？'], r:[[1,['god','kemono']],[0,['god','yokai']],[2,['god','dragon']]],
+      tip:'神ものは「供物」「祀る」「名前」などの儀式的な要素が多いジャンル。その設定が丁寧な作品ほど、関係の重みが増します。', end:'神さまに見つかってしまった人生、悪くないと思いませんか。'},
+    ishu:{t:'異種族（エルフなど）の魅力：人に近くて、人とは違う時間を生きる', ex:'エルフ、ドワーフ、遠い土地の種族。ファンタジーの入り口にぴったりな異種族ものの魅力を語ります。',
+      i:'異種族ものは、人外ジャンルのいちばんやさしい入り口です。見た目は人に近い。でも寿命や文化、価値観がちょっとずつ違う。この「ちょっとずつ」が、じわじわ効いてきます。',
+      g:[['見た目は人に近い','人外度が低めなので、人外ものが初めてでも入りやすい。'],['寿命の差','何百年も生きるエルフにとって、人間の一生は短すぎる。その差が切なさを生みます。'],['文化の違い','食べ物、礼儀、愛情表現。すれ違いから始まる関係は、だいたい名作です。']],
+      ty:[['エルフ','長命で美しく、少し人間を見下している（最初は）。'],['ドワーフ','頑固で職人気質、でも情に厚い。'],['未知の種族','言葉も文化も分からない、遠い土地の種族。']],
+      q:['寿命の差の切なさに弱い？','頑固な職人気質の相手が好き？'], r:[[0,['ishu','vampire']],[1,['ishu']],[2,['ishu','alien']]],
+      tip:'異種族ものは、文化の違いの描き方で面白さが決まります。あらすじに「価値観の違い」がありそうな作品を探してみてください。', end:'人に近いからこそ際立つ違い。異種族もの、ぜひ入り口に。'},
+    kaii:{t:'都市伝説・怪異の魅力：日常の隣にいる「何か」に見初められる', ex:'八尺様のような、条件がそろうと現れる正体不明の存在。怖さと引力の正体を語ります。',
+      i:'いつもの帰り道。生け垣の向こうに、ありえない高さの帽子が見える。……都市伝説・怪異ものの怖さは、それが日常のすぐ隣にあるところです。そして、そんな「何か」に気に入られてしまう話に、どうしようもなくひかれてしまうんです。（和風・怪異系全体の語りは<a href="#article-7">こちらの記事</a>でもしています）',
+      g:[['正体が分からない','何者なのか、なぜ自分なのか。分からないことが、そのまま魅力になります。'],['ルールがある','「目を合わせてはいけない」「返事をしてはいけない」。決まりごとと、それが破られる瞬間。'],['逃げられない執着','人の理屈が通じない相手の「気に入った」は、ちょっとやそっとでは終わりません。']],
+      ty:[['条件で現れる怪異','特定の場所、時間、行動で現れる存在。'],['ネット発の怪異','掲示板や噂話から広まった、新しい怪異。'],['名前のない「何か」','名前すら分からない、説明できない存在。']],
+      q:['決まった場所や時間に現れる、ルールのある怪異が好き？','噂やネットの書き込みから広がる怖さにひかれる？'], r:[[0,['kaii']],[1,['kaii','ghost']],[2,['kaii','monster']]],
+      tip:'音声作品で、夜に。これ以上は言いません。', end:'怖いのに、また読んでしまう。それがあなたの答えです。'},
+    oni:{t:'鬼の魅力：角と怪力、でも約束は絶対に守る', ex:'荒々しさと義理堅さのギャップ。和の世界観で輝く鬼ものの魅力を語ります。',
+      i:'鬼。昔話では退治される側ですが、人外ものでは話が変わります。豪快で、力が強くて、酒が好きで、でも一度した約束は何百年たっても守る。……ずるくないですか？',
+      g:[['豪快さと優しさのギャップ','大声で笑って、片手で岩を持ち上げる。なのに、人間の小さな手を握るときだけ、やけに慎重。'],['約束を守る','鬼は嘘をつかない、という言い伝えも。その誠実さが、関係に安心感をくれます。'],['和の世界観','山、祭り、酒、月。和風の舞台装置と相性抜群です。']],
+      ty:[['山の鬼','人里離れた山に住む、荒々しい鬼。'],['都の鬼','人に化けて都に紛れる、知略の鬼。'],['鬼の一族','一族の掟やしきたりの中で生きる鬼。']],
+      q:['人に化けて正体を隠しているのが好き？','一族の掟やしがらみが絡む話にひかれる？'], r:[[1,['oni','yokai']],[2,['oni']],[0,['oni','monster']]],
+      tip:'鬼ものは「約束」が物語の鍵になることが多いです。誰と、どんな約束をしたのかに注目して読んでみてください。', end:'角があっても、怪力でも、約束を守る相手は信じられる。鬼もの、ぜひ。'},
+    yokai:{t:'妖怪・あやかしの魅力：狐や天狗との、古い約束の物語', ex:'狐、天狗、猫又。昔話に根ざした存在との、時間を越えた関係を語ります。',
+      i:'あやかしものの魅力は、「昔からそこにいた」存在との関係です。子どもの頃に会ったことがある、先祖が約束を交わした。そんな古い縁が、今になって動き出す。',
+      g:[['古い縁','何十年、何百年前の約束が、今の物語につながる。時間のスケールがエモいんです。'],['化ける、だます','狐や狸は化ける。本当の姿はどれなのか、どこまでが本心なのか。その曖昧さが楽しい。'],['ふたつの世界の境目','神社、鳥居、夕暮れ時。人の世界とあやかしの世界を行き来する雰囲気がたまりません。']],
+      ty:[['狐','化けるのが得意で、気まぐれ。尾が増えるほど力が強い。'],['天狗','山に住む、誇り高く強い存在。'],['猫又・化け猫','長く生きた猫が変化した、気ままな存在。']],
+      q:['化かす・化かされる駆け引きが好き？','山の上の、誇り高い存在にひかれる？'], r:[[0,['yokai','kemono']],[1,['yokai','bird']],[2,['yokai','kemono']]],
+      tip:'和風あやかしは、怖さよりも切なさが前に出る作品が多め。ホラーが苦手な人の怪異系入門にもおすすめです。', end:'夕暮れの鳥居の向こうで、誰かが待っているかもしれません。'},
+    ghost:{t:'幽霊・霊体の魅力：触れられない相手と、いつか来る別れ', ex:'見えるのに触れられない、そこにいるのに、いつ消えるか分からない。はかなさが魅力のジャンルを語ります。',
+      i:'幽霊ものは、人外ジャンルの中でもいちばん切ないかもしれません。手を伸ばしてもすり抜ける。いつか成仏してしまうかもしれない。それでも一緒にいたい。……書いているだけで泣きそうです。',
+      g:[['触れられない','触れられないからこそ、言葉や視線の一つひとつが大事になります。'],['未練と成仏','未練があるからここにいる。それが解消されたら、いなくなってしまう。この矛盾。'],['見えるのは自分だけ','ふたりだけの秘密の関係。周りから見たら、独り言を言っている人。']],
+      ty:[['そばにいる幽霊','部屋や場所に縛られた、穏やかな幽霊。'],['怨霊・悪霊','強い執着を持つ、少し怖い霊。'],['守護霊','ずっと昔から見守ってくれていた存在。']],
+      q:['少し怖いくらいの、強い執着がほしい？','ずっと見守ってくれていた、という設定に弱い？'], r:[[1,['ghost','kaii']],[2,['ghost','god']],[0,['ghost']]],
+      tip:'幽霊ものは結末で印象が大きく変わります。切ないのが苦手な人は、レビューで結末の温度だけ確認しておくと安心です。', end:'触れられなくても、そばにいる。その尊さを、ぜひ。'},
+    machine:{t:'機械・ロボットの魅力：感情を知らない存在が、心を学んでいく', ex:'アンドロイド、ロボット、AI。作られた存在が人間を理解していく過程の尊さを語ります。',
+      i:'機械ものの醍醐味は、なんといっても「学習」です。感情を知らない、命令しか理解できない存在が、少しずつ人間の気持ちを覚えていく。その成長記録を、特等席で見られるジャンルです。（作られた存在全般の語りは<a href="#article-5">こちらの記事</a>でもしています）',
+      g:[['初めての感情','「この反応の名前が分かりません」。それ、恋ですよ。'],['命令と意思','プログラムされた役割を、自分の意思で越えていく瞬間。'],['人間より人間らしい','人間の嘘やごまかしを知らないぶん、まっすぐな言葉が刺さります。']],
+      ty:[['アンドロイド','人そっくりの見た目に、機械の中身。'],['ロボット','いかにも機械な体。不器用な優しさ。'],['AI・電子の存在','体を持たない、声と言葉だけの存在。']],
+      q:['見た目は人間そっくりがいい？','体がなくても、言葉だけで関係が成り立つ話が好き？'], r:[[0,['machine','doll']],[2,['machine','ghost']],[1,['machine']]],
+      tip:'機械ものは「メンテナンス」「記録」「起動」など、機械ならではの場面が見どころ。そこが丁寧な作品を選ぶと満足度が高いです。', end:'心を学んだ機械は、たぶん人間より一途です。'},
+    doll:{t:'人形・ゴーレムの魅力：作られた存在の、主への一途さ', ex:'動く人形、球体関節、土のゴーレム。作り手との関係と、芽生える自我を語ります。',
+      i:'人形やゴーレムは、魔法や呪い、職人の技で「作られた」存在です。作り手がいる、という一点だけで、関係にものすごい重みが生まれます。',
+      g:[['作り手との関係','自分を作った人、自分を直してくれる人。その相手に向ける感情は、ほかのどんな関係とも違います。'],['美しさと不気味さ','精巧な人形の顔、関節の継ぎ目。きれいなのに、どこか怖い。'],['自我の芽生え','動くはずのない人形が、自分の意思を持ち始める瞬間。']],
+      ty:[['球体関節人形','美しく精巧な、魂の宿った人形。'],['ゴーレム','土や石でできた大きな体。主を守る忠実な存在。'],['からくり人形','歯車とぜんまいで動く、和の機械仕掛け。']],
+      q:['大きくて寡黙な、守ってくれる存在が好き？','和風の世界観が好き？'], r:[[1,['doll','monster']],[2,['doll','yokai']],[0,['doll','machine']]],
+      tip:'人形ものは「誰が作ったのか」で物語の方向が決まります。作り手との関係がしっかり描かれている作品を選んでみてください。', end:'作られた存在の一途さに、ぜひ溺れてください。'},
+    monster:{t:'モンスター・クリーチャーの魅力：人ならざる見た目と、優しい中身', ex:'異形の姿、大きな体、いくつもの目。見た目と中身のギャップが魅力のジャンルを語ります。',
+      i:'モンスターものの魅力は、ずばりギャップです。見た瞬間に逃げ出したくなるような姿なのに、中身はとても優しい。もしくは、見た目どおり危険なのに、自分にだけは優しい。どっちもおいしい。',
+      g:[['見た目と中身の落差','恐ろしい姿の存在が、花を摘んできてくれる。この落差だけでご飯が進みます。'],['言葉がいらない関係','言葉を持たないクリーチャーとの、仕草だけのコミュニケーション。'],['世界にひとつの姿','決まった形がないぶん、作者の想像力が爆発するジャンル。']],
+      ty:[['大型の魔物','見上げるほど大きな、迷宮や森の主。'],['異形のクリーチャー','いくつもの目や腕を持つ、説明しがたい存在。'],['人型のモンスター','人に近い形だけど、どこかが決定的に違う存在。']],
+      q:['見上げるほど大きい存在に守られたい？','説明できないくらい異形なほど、ゾクっとする？'], r:[[0,['monster','dragon']],[1,['monster','kaii']],[2,['monster','reptile']]],
+      tip:'見た目の好みが強く出るジャンルなので、試し読みで「この姿なら好き」と思えるかを必ず確認してください。', end:'怖い見た目ほど、優しさがしみる。モンスターもの、ぜひ。'},
+    slime:{t:'スライム・不定形の魅力：形が決まっていない存在の自由さ', ex:'ぷるぷる、とろとろ、形を変える体。ほかにない独特の表現が魅力のジャンルを語ります。',
+      i:'スライム、不定形。人外の中でも、かなり上級者向けに見えるジャンルです。でも実は、「形が決まっていない」というのは、どんな姿にもなれるということ。その自由さが魅力です。',
+      g:[['どんな姿にもなれる','相手の好みに合わせて姿を変える。その健気さがたまりません。'],['独特の感触','ぷるぷる、ひんやり。ほかのジャンルでは出せない質感の描写。'],['個体と群れ','ひとつの体が分かれたり、まとまったり。「自分とは何か」がゆらぐ存在。']],
+      ty:[['スライム型','ぷるぷるした、かわいらしさもある不定形。'],['擬態型','人の姿をまねる、正体不明の不定形。'],['液体・霧の存在','水や霧のように、つかめない存在。']],
+      q:['人の姿をまねる、ちょっと不気味な存在にひかれる？','かわいらしさもほしい？'], r:[[1,['slime','kaii']],[0,['slime']],[2,['slime','ghost']]],
+      tip:'不定形ものは、「どうやって気持ちを伝えるか」の表現が作品ごとにまったく違います。そこを楽しむつもりで読むと、新しい扉が開きます。', end:'形がないからこそ、どんな形の愛にもなれる。'},
+    plant:{t:'植物・菌類の魅力：静かで、ゆっくりで、逃れられない包容力', ex:'森の精、花の化身、きのこの存在。静かな人外ものの魅力を語ります。',
+      i:'植物系の人外は、ほかのジャンルと比べるととても静かです。叫ばない、走らない。でも、ゆっくりと、確実に、根を張るように距離を詰めてくる。この静かな執着、一度知るとクセになります。',
+      g:[['静かな包容力','森そのもののような、大きくて穏やかな存在に包まれる安心感。'],['季節とともに変わる','春に咲き、冬に眠る。季節の移り変わりが関係に重なります。'],['根を張る','その場所から動けない、動かない。だから、会いに行くのはいつも人間のほう。']],
+      ty:[['花の化身','美しく、はかなく、季節とともに生きる存在。'],['森の精・樹の精','大きな木や森そのものに宿る存在。'],['菌類・きのこの存在','地下でつながる、ちょっと不思議な存在。']],
+      q:['大きな森や大樹のような存在に包まれたい？','地下でつながっているような、不思議な存在にひかれる？'], r:[[1,['plant','god']],[2,['plant','slime']],[0,['plant','ishu']]],
+      tip:'植物系は、季節や時間の描写が美しい作品が多いです。ゆっくり読める夜にどうぞ。', end:'静かな人外ほど、深く根を張る。植物系、ぜひ。'},
+    alien:{t:'宇宙人・異星人の魅力：言葉も常識も通じない、究極の異文化交流', ex:'遠い星から来た存在との出会い。人外ものの中でも最大級の「違い」を語ります。',
+      i:'宇宙人・異星人ものは、異文化交流の最終形です。言葉、体のつくり、常識、何もかもが違う。それでも、ほんの少しだけ通じ合える瞬間がある。そのわずかな「通じた」が、宇宙規模で尊いんです。',
+      g:[['何もかもが違う','挨拶の仕方から、愛情の示し方まで。違いを知るたびに、相手のことが分かっていきます。'],['地球の当たり前を知る','宇宙人の目を通すと、人間の当たり前がふしぎに見えてくる。'],['帰る場所の問題','いつか星に帰ってしまうかもしれない。その不安が物語を動かします。']],
+      ty:[['人に近い宇宙人','見た目は人に近いけれど、中身は宇宙規模で違う存在。'],['異形の異星人','地球の生き物とはまったく違う姿の存在。'],['観察者','人間を研究しに来た、好奇心旺盛な存在。']],
+      q:['人間を「研究対象」として見てくる相手にときめく？','見た目も地球の生き物とまったく違うほうがいい？'], r:[[2,['alien','machine']],[1,['alien','monster']],[0,['alien','ishu']]],
+      tip:'宇宙人ものは「最初の接触」の場面が見どころ。そこが丁寧な作品は、だいたい最後まで面白いです。', end:'遠い星から来た相手と、通じ合う一瞬を。'}
+  };
+  Object.entries(GA).forEach(([k, a]) => {
+    const [t0, t1, t2] = a.r.map(x => 't' + x[0]);
+    const opts = a.ty.map(([n, d], i) => ({k:'t' + i, name:n, motif:k, desc:d, chips:(a.r.find(x => x[0] === i) || [0, [k]])[1]}));
+    const qs = [
+      [a.q[0], {[t0]:2}, {[t1]:1, [t2]:1}],
+      [a.q[1], {[t1]:2}, {[t2]:2}],
+      ...a.ty.map(([n, d], i) => [`${d.replace(/。$/, '')}。……そんな相手に、ピンとくる？`, {['t' + i]:2}, Object.fromEntries([0,1,2].filter(j => j !== i).map(j => ['t' + j, 1]))])
+    ];
+    DIAGS['g_' + k] = {type:'score', title:`あなたの${GENRES[k].name}タイプ診断`, opts, qs};
+  });
+
+  const HITO = {
+    bird:'翼で包まれる描写は、正直いちばん「守られている感」が強い愛情表現だと思っています。',
+    reptile:'冷たい体があたたまっていく演出を見つけると、それだけで最後まで読んでしまいます。',
+    insect:'苦手な人がいるのも分かったうえで、あの異質さにしか出せない美しさがあると言いたい。',
+    dragon:'「宝物扱い」される話は、何度読んでも新鮮にうれしい。王道は強いです。',
+    merfolk:'ハッピーエンドかどうかを最後まで信じきれないところも含めて、人魚ものが好きです。',
+    demon:'契約の条件まで凝っている作品に出会うと、つい何度も読み込んでしまいます。',
+    vampire:'渇きをこらえる場面の、あの静かな緊張感がたまりません。',
+    god:'「名前を教えてはいけない」のような決まりごとがある神さまものに弱いです。',
+    ishu:'人外ジャンルに迷っている人には、まずここをすすめることが多いです。',
+    kaii:'閨の主のいちばんの推しジャンルです。怖い夜ほど、なぜか読みたくなります。',
+    oni:'豪快な鬼が、約束の日だけは律儀に現れる。そういう話に本当に弱いんです。',
+    yokai:'夕暮れの鳥居が出てくるだけで、もう期待値が上がってしまいます。',
+    ghost:'怪異好きとしては、怖さよりも切なさが勝つ幽霊ものも外せません。',
+    machine:'「記録」という言葉が「思い出」に変わる瞬間を、いつも探しています。',
+    doll:'美しいのに少し怖い。人形の持つ不気味さは、怪異好きにも刺さるはずです。',
+    monster:'見た目が怖ければ怖いほど、優しさが光る。ギャップは正義です。',
+    slime:'正直、最初は戸惑いました。でも表現の自由さに気づいてからは、すっかりハマっています。',
+    plant:'静かな人外ものは、疲れた夜にゆっくり読むのがいちばん合います。',
+    alien:'「人間ってふしぎだね」と言われる側に立つ感覚は、ほかではなかなか味わえません。',
+    beast:'もふもふ派、つるつる派、カチカチ派。どれも正解です。',
+    myth:'設定の厚みに溺れたい日は、この系統を選びます。',
+    wafu:'いちばん早口になる系統です。ここまで読んでくださってありがとうございます。',
+    madeg:'心がない状態から始まる物語は、結末が見えていても泣けてしまいます。',
+    other:'上級者向けだと思わずに、ぜひ一度のぞいてみてください。'
+  };
+  const hito = k => HITO[k] ? `<div class="hito"><span class="avatar" aria-hidden="true">閨</span><div><b>閨の主のひとこと</b><p>${HITO[k]}</p><small>下書き：公開前に自分の言葉に書き換え</small></div></div>` : '';
+
+  /* ---------- 系統ごとの入門記事 ---------- */
+  const GROUP_ARTS = [
+    {id:'beast', gi:0, motif:'kemono', t:'獣・動物系人外入門：もふもふ、翼、鱗、外骨格の違いと魅力', ex:'獣人、鳥人・ハーピー、竜人・爬虫類人、蟲人。生き物としての「体」の魅力が前に出る系統を、まとめて語ります。',
+      i:'毛並み、翼、鱗、外骨格。獣・動物系は、生き物としての「体」の魅力がいちばん前に出る系統です。同じ動物系でも、もふもふと、つるつると、カチカチでは、刺さる人がまったく違います。あなたはどの手ざわり派ですか？',
+      d:{q1:{q:'もふもふした毛並みに弱い？', yes:'kemono', no:'q2'}, q2:{q:'空や翼にロマンを感じる？', yes:'bird', no:'q3'}, q3:{q:'人とまったく違う体のつくりに、ゾクっとする？', yes:'insect', no:'reptile'}},
+      end:'手ざわりの好みが分かると、作品選びが一気に楽になります。気になったジャンルの記事も、ぜひのぞいてみてください。'},
+    {id:'myth', gi:1, motif:'dragon', t:'幻想・神話系人外入門：竜、人魚、悪魔、吸血鬼、神、エルフの魅力', ex:'物語や伝説の中で長く愛されてきた存在たち。世界観ごと好きになれる系統を、まとめて語ります。',
+      i:'竜、人魚、悪魔、吸血鬼、神、エルフ。幻想・神話系は、物語や伝説の中で長く愛されてきた存在たちです。どれも「設定」の厚みがすごいので、世界観ごと好きになれるのがこの系統の強みです。',
+      d:{q1:{q:'見た目は人に近いほうがいい？', yes:'q2', no:'q4'}, q2:{q:'背徳感や、契約・取引のある関係が好き？', yes:'q3', no:'ishu'}, q3:{q:'夜と月明かり、そして渇きにひかれる？', yes:'vampire', no:'demon'}, q4:{q:'崇めたくなるほどの、圧倒的な存在がいい？', yes:'q5', no:'merfolk'}, q5:{q:'鱗と翼、そして宝への執着が好き？', yes:'dragon', no:'god'}},
+      end:'伝説の存在に見初められる。その物語の大きさを、ぜひ味わってください。'},
+    {id:'wafu', gi:2, motif:'kaii', t:'和風・怪異系人外入門：都市伝説、鬼、あやかし、幽霊の魅力', ex:'怖さと切なさがいちばん近くにある系統。閨の主の推し系統を、早口でまとめて語ります。',
+      i:'都市伝説、鬼、あやかし、幽霊。和風・怪異系は、怖さと切なさがいちばん近くにある系統です。そして閨の主のいちばんの推し系統でもあります（早口になる予感しかしません）。',
+      d:{q1:{q:'相手の正体は、分からないままのほうがゾクゾクする？', yes:'kaii', no:'q2'}, q2:{q:'触れられない切なさに弱い？', yes:'ghost', no:'q3'}, q3:{q:'豪快で力強い相手がいい？', yes:'oni', no:'yokai'}},
+      end:'怖いのに離れられない。和風・怪異系の沼は、深くて静かです。'},
+    {id:'madeg', gi:3, motif:'machine', t:'人工物系人外入門：機械・ロボットと、人形・ゴーレムの魅力', ex:'誰かに「作られた」存在たち。心がない状態から始まる物語の魅力を、まとめて語ります。',
+      i:'機械、ロボット、人形、ゴーレム。人工物系は、誰かに「作られた」存在たちです。作り手がいること、心がない状態から始まること。この2つが、ほかの系統にはない物語を生みます。',
+      d:{q1:{q:'科学やプログラムで動いている設定が好き？', yes:'machine', no:'q2'}, q2:{q:'魔法や職人の技で作られた存在にひかれる？', yes:'doll', no:'machine'}},
+      end:'心を持たなかった存在が、心を持つ瞬間。その一点のために読む価値があります。'},
+    {id:'other', gi:4, motif:'monster', t:'異形・その他の人外入門：モンスター、スライム、植物、宇宙人の魅力', ex:'人の形からいちばん遠い存在たち。上級者向けに見えて、実はいちばん分かりやすい魅力を持つ系統です。',
+      i:'モンスター、スライム、植物、宇宙人。異形・その他は、人の形からいちばん遠い存在たちの系統です。上級者向けに見えますが、実は「見た目と中身のギャップ」という、いちばん分かりやすい魅力を持っています。',
+      d:{q1:{q:'見た目のインパクトは強ければ強いほどいい？', yes:'q2', no:'q3'}, q2:{q:'形すら決まっていない存在にひかれる？', yes:'slime', no:'monster'}, q3:{q:'宇宙規模の、究極の異文化交流がしたい？', yes:'alien', no:'plant'}},
+      end:'人の形から遠いほど、通じ合えた瞬間はまぶしい。ぜひ一歩踏み込んでみてください。'}
+  ];
+  const GQ = {
+    beast:[
+      ['もふもふした毛並みに触れたい？', {kemono:2}, {reptile:1, insect:1}],
+      ['空や翼にロマンを感じる？', {bird:2}, {kemono:1}],
+      ['冷たい肌や、鱗のなめらかな質感にひかれる？', {reptile:2}, {kemono:1, bird:1}],
+      ['人とまったく違う体のつくりに、ゾクっとする？', {insect:2, reptile:1}, {kemono:1, bird:1}],
+      ['耳やしっぽで感情がバレてしまう描写が好き？', {kemono:2, reptile:1}, {insect:1, bird:1}],
+      ['羽づくろいのような、くすぐったい親密さに弱い？', {bird:2}, {reptile:1}],
+      ['群れや巣など、本能の強い存在に惹かれる？', {insect:2, kemono:1}, {bird:1, reptile:1}]
+    ],
+    myth:[
+      ['見た目は人に近いほうがいい？', {ishu:2, vampire:1, demon:1}, {dragon:2, god:1, merfolk:1}],
+      ['契約や取引で結ばれる関係が好き？', {demon:2}, {ishu:1, merfolk:1}],
+      ['夜、月明かり、古城の雰囲気にひかれる？', {vampire:2}, {god:1, ishu:1}],
+      ['崇めたくなるほど格上の存在がいい？', {god:2, dragon:1}, {ishu:1, merfolk:1}],
+      ['会える場所や時間が限られる恋に弱い？', {merfolk:2, vampire:1}, {dragon:1, demon:1}],
+      ['宝物のように、独り占めされたい？', {dragon:2, demon:1}, {god:1, ishu:1}],
+      ['生きる時間の長さが違う、寿命の差に泣きたい？', {ishu:1, vampire:1, dragon:1}, {demon:1, god:1}]
+    ],
+    wafu:[
+      ['相手の正体は、分からないままのほうがゾクゾクする？', {kaii:2}, {yokai:1, oni:1}],
+      ['触れられない切なさに弱い？', {ghost:2}, {oni:1}],
+      ['豪快で、力強い相手がいい？', {oni:2}, {ghost:1, yokai:1}],
+      ['狐や天狗など、昔話に出てくる存在が好き？', {yokai:2}, {kaii:1}],
+      ['「振り返ってはいけない」のような、ルールのある話が好き？', {kaii:2, yokai:1}, {oni:1, ghost:1}],
+      ['何百年越しの約束に弱い？', {oni:1, yokai:1, ghost:1}, {kaii:1}],
+      ['いつか消えてしまう相手と過ごす話が好き？', {ghost:2}, {oni:1, kaii:1}]
+    ],
+    madeg:[
+      ['科学やプログラムで動いている設定が好き？', {machine:2}, {doll:2}],
+      ['金属の体や、駆動音にときめく？', {machine:2}, {doll:1}],
+      ['魔法や呪いで命が宿る設定が好き？', {doll:2}, {machine:1}],
+      ['作り手（主）との一対一の関係が見たい？', {doll:2, machine:1}, {machine:1}],
+      ['AIやデータのような、体のない存在も気になる？', {machine:2}, {doll:1}],
+      ['美しさと不気味さの境目にひかれる？', {doll:2}, {machine:1}]
+    ],
+    other:[
+      ['見た目のインパクトは、強ければ強いほどいい？', {monster:2, slime:1}, {plant:1, alien:1}],
+      ['形すら決まっていない存在にひかれる？', {slime:2}, {monster:1}],
+      ['宇宙規模の、究極の異文化交流がしたい？', {alien:2}, {plant:1}],
+      ['静かで、ゆっくり進む関係が好き？', {plant:2}, {monster:1, alien:1}],
+      ['見上げるほど大きな体に守られたい？', {monster:2, plant:1}, {slime:1, alien:1}],
+      ['相手に合わせて姿を変えてくれる健気さに弱い？', {slime:2, alien:1}, {monster:1, plant:1}],
+      ['人間を観察して、学んでくる相手にときめく？', {alien:2}, {plant:1, slime:1}]
+    ]
+  };
+  GROUP_ARTS.forEach(ga => {
+    DIAGS['grp_' + ga.id] = {type:'score', title:`あなたの${GROUPS[ga.gi].name}診断`, chartLabel:'ジャンルごとの相性', opts:GROUPS[ga.gi].items.map(([k,n]) => ({k, name:n, motif:k, desc:GOOD[k], link: k === 'kemono' ? '2' : k})), qs:GQ[ga.id]};
+  });
+
+  const bodyGenre = k => () => {
+    const a = GA[k], g = GENRES[k];
+    return `<p>${a.i}</p>
+      <nav class="toc" aria-label="目次"><b>目次</b><ol><li>${g.name}の良さ</li><li>${g.name}のタイプ</li><li>診断：あなたに合うタイプは？</li><li>楽しみ方のコツ</li></ol></nav>
+      <h2>${g.name}の良さ</h2>
+      <ul>${a.g.map(([h,t]) => `<li><b>${h}。</b>${t}</li>`).join('')}</ul>
+      <h2>${g.name}のタイプ</h2>
+      <div class="glist">${a.ty.map(([n,d]) => `<div class="gitem"><b>${n}</b><span>${d}</span></div>`).join('')}</div>
+      <h2>診断：あなたに合うタイプは？</h2>
+      ${diag('g_' + k)}
+      <h2>楽しみ方のコツ</h2>
+      <div class="callout">${a.tip}</div>
+      ${hito(k)}
+      <h2>まとめ</h2>
+      <p>${a.end}</p>
+      <p class="note">同じ系統のほかのジャンルは、<a href="#article-${GROUP_ARTS.find(x => GROUPS[x.gi].name === g.group).id}">${g.group}の入門記事</a>でまとめて紹介しています。</p>`;
+  };
+  const bodyGroup = ga => () => {
+    const grp = GROUPS[ga.gi];
+    return `<p>${ga.i}</p>
+      <nav class="toc" aria-label="目次"><b>目次</b><ol>${grp.items.map(([k,n]) => `<li>${n}</li>`).join('')}<li>診断：あなたはどのジャンル向き？</li></ol></nav>
+      ${grp.items.map(([k,n]) => `<h2>${n}</h2>${fig(k, `イメージ：${n}`)}<p><b>${GOOD[k]}</b></p><p>${(GA[k] && GA[k].ex) || '「どこまで獣か」の好みで、刺さる作品が大きく変わるジャンル。3段階のものさしで語っています。'}</p><p><a class="more" href="#article-${k === 'kemono' ? '2' : k}">${n}の記事を読む →</a></p>`).join('')}
+      <h2>診断：あなたはどのジャンル向き？</h2>
+      ${diag('grp_' + ga.id)}
+      ${hito(ga.id)}
+      <h2>まとめ</h2><p>${ga.end}</p>`;
+  };
+
+  /* ---------- 記事本文 ---------- */
+  const BODY_GUIDE = () => `
+    <p>人外、いいですよね。いや、いいんですよ本当に。……と、いきなり語り出すと置いていかれそうなので、この記事では「人外って何がそんなにいいの？」「どこから入ればいいの？」を、閨の主がなるべく落ち着いて（落ち着けるとは言っていない）まとめます。</p>
+    <nav class="toc" aria-label="目次"><b>目次</b><ol><li>人外の良さ：人じゃないからこそ</li><li>ジャンルごとの良さ</li><li>自分の好みを見つける3つの軸</li><li>診断：あなたの入り口はどこ？</li><li>最初の一作の選び方</li></ol></nav>
+    <h2>人外の良さ：人じゃないからこそ</h2>
+    <ul>
+      <li><b>常識が通じない、そこがいい。</b>人間なら「察して」で済むことが、人外相手だとまったく通じない。だからこそ、一個ずつ分かり合っていく過程そのものが物語になるんです。ここ、テストに出ます。</li>
+      <li><b>力と寿命の差がエモい。</b>国ひとつ吹き飛ばせるような竜が、あなたにだけは爪を立てないように気をつけてくれる。何百年も生きる相手にとっての「あなたと過ごす数十年」の重さ。もう説明だけで胸がいっぱいです。</li>
+      <li><b>普通の愛情表現が、特別になる。</b>手をつなぐ、名前を呼ぶ。人間同士なら当たり前のことが、種族の壁を越えた瞬間に「選ばれた」という意味を持つ。この破壊力を知ってしまうと、もう戻れません。</li>
+    </ul>
+    <h2>ジャンルごとの良さ</h2>
+    <p>人外とひとことで言っても、獣人とロボットじゃ刺さるポイントがまるで別物です。このサイトでは5つの系統、${Object.keys(GENRES).length}のジャンルに分けています。全部に一言ずつ語ってたらそれだけで日が暮れるので、本当に一言ずつです。</p>
+    ${GROUPS.map((g,gi) => `<h3>${g.name}</h3>${figRow(g.items.slice(0,3).map(([k,n]) => [k,n]))}<p class="note" style="margin:-4px 0 10px"><a href="#article-${GROUP_ARTS[gi].id}">${g.name}の入門記事を読む →</a></p><div class="glist">${g.items.map(([k,n]) => `<div class="gitem"><b><a href="#genre-${k}">${n}</a></b><span>${GOOD[k]}</span></div>`).join('')}</div>`).join('')}
+    <h2>自分の好みを見つける3つの軸</h2>
+    <p>「人外が好き」の中身は、だいたい次の3つの組み合わせでできています。自分がどこに刺さるのか分かると、作品探しが一気に楽になります。</p>
+    <div class="axes" role="img" aria-label="好みを見つける3つの軸の図">
+      <div class="ax"><b>人間度</b><div class="axl"><span>人に近い</span><i></i><span>人から遠い</span></div></div>
+      <div class="ax"><b>関係性</b><div class="axl"><span>対等な相棒</span><i></i><span>主従・契約</span></div></div>
+      <div class="ax"><b>温度</b><div class="axl"><span>甘い</span><i></i><span>ダーク</span></div></div>
+    </div>
+    <h3>1. 見た目の「人間度」</h3>
+    <p>人間にどこまで近いか、です。たとえば同じ「狼」でも、</p>
+    <ul>
+      <li><b>人間度・高</b>：人の姿に耳としっぽだけのケモミミ型、とがった耳のエルフ</li>
+      <li><b>人間度・中</b>：顔は狼そのもの、でも二足歩行で服も着る獣人型、鱗のある竜人</li>
+      <li><b>人間度・低</b>：大きな狼の姿の神獣、形が定まらないスライム、正体不明の怪異</li>
+    </ul>
+    ${figRow([['ishu','人間度・高：エルフ、ケモミミ'],['muzzle','人間度・中：獣人型、竜人'],['slime','人間度・低：スライム、怪異']])}
+    <p>このどこに刺さるかで、読むべき作品がまるっと変わります。獣人はとくに幅が広いので、<a href="#article-2">「獣度」の記事</a>で細かく語っています。</p>
+    <h3>2. ふたりの関係性</h3>
+    <ul>
+      <li><b>対等な相棒</b>：一緒に旅をする竜人の剣士と、背中を預け合う関係。</li>
+      <li><b>守る・守られる</b>：見上げるほど大きな鬼が、小さな人間を不器用に守ろうとする。</li>
+      <li><b>主従・契約</b>：願いと引き換えに契約した悪魔、作り手にだけ従う人形。</li>
+    </ul>
+    <p>同じ竜でも、相棒なのか、守護者なのか、契約相手なのかで、まったく別の味になります。</p>
+    <h3>3. 物語の温度</h3>
+    <ul>
+      <li><b>甘い</b>：最初から最後までひたすら溺愛。安心して浸れるやつ。</li>
+      <li><b>切ない</b>：吸血鬼との寿命の差、陸では長く生きられない人魚。幸せなのに泣けるやつ。</li>
+      <li><b>ダーク</b>：怪異に魅入られて、もう逃げられない。怖いのに読む手が止まらないやつ。</li>
+    </ul>
+    <div class="callout">好きな作品を3つ思い浮かべて、「人間度」「関係性」「温度」で並べてみてください。ジャンルはバラバラでも、だいたいどこかがそろっています。そこがあなたの「核」です。</div>
+    <h2>診断：あなたの入り口はどこ？</h2>
+    <p>考えるのが面倒な人のために、はい・いいえで答えるだけの診断を用意しました。直感で答えるのがコツです。</p>
+    ${diag('entry')}
+    <h2>最初の一作の選び方</h2>
+    <p>いきなり人外度マックスの作品に飛び込むと、「思ってたのと違う」で終わりがちです（経験者は語る）。おすすめは、次の3ステップで少しずつ沼を深くしていく方法です。</p>
+    <ol class="body">
+      <li><b>人間度・高 × 甘い、から始める。</b>たとえばケモミミ型の獣人が主人公を溺愛する話。人外らしさは耳やしっぽくらいなので、とにかく読みやすいです。</li>
+      <li><b>関係性はそのまま、人間度を上げる。</b>「守られる関係」が刺さったなら、次は顔まで獣の獣人、その次は竜。好きな関係性を軸にすれば、見た目のハードルは意外と越えられます。</li>
+      <li><b>温度を変えてみる。</b>甘い話に慣れたら、吸血鬼の寿命差ものや、怪異に見初められる話へ。同じ人外でも、温度が変わると別ジャンルくらい新鮮です。</li>
+    </ol>
+    <p>作品の形式にも向き不向きがあります。</p>
+    <ul>
+      <li><b>同人誌・漫画</b>：人外の描き方が一番よく分かる。試し読みを3ページ以上見て、絵柄が好みか確かめるのがおすすめ。</li>
+      <li><b>CG集</b>：短い時間で雰囲気をつかめるので、新しいジャンルの味見に。</li>
+      <li><b>音声作品</b>：見た目の好みに左右されず、声と言葉で関係性を味わえる。姿が見えないぶん、怪異系との相性は抜群です。</li>
+    </ul>
+    <h2>まとめ</h2>
+    <p>人外の魅力は、ひとことで言えば「人じゃないこと」そのものです。……と言いつつ、結局は好きな作品に出会うのが一番の近道。気になるジャンルが見つかったら、タグから記事をのぞいてみてください。そしてあなたの推し人外も、ぜひコメントで聞かせてください。全部読みます。</p>`;
+
+  const BODY_KEMONO = () => `
+    <p>獣人好き同士で話していると、なぜか会話がかみ合わない瞬間がありませんか？「獣人いいよね」「わかる、耳としっぽ最高」「え、顔まで獣じゃないの？」……そう、原因はたいてい「どこまで獣か」、つまり獣度の違いです。今日はこの獣度を3段階に分けて、全力で語ります。</p>
+    <nav class="toc" aria-label="目次"><b>目次</b><ol><li>獣度のものさし</li><li>段階1：ケモミミ型</li><li>段階2：獣人型</li><li>段階3：獣の姿の人外</li><li>行き来するタイプ：変身もの</li><li>診断：あなたの獣度は？</li></ol></nav>
+    <h2>獣度のものさし</h2>
+    <div class="bar" aria-hidden="true"></div>
+    <div class="scale">
+      <div>${art('kemono','段階1のイメージ')}<small>段階1</small><b>ケモミミ型</b><span>人の姿に耳としっぽ</span></div>
+      <div>${art('muzzle','段階2のイメージ')}<small>段階2</small><b>獣人型</b><span>顔も体も獣、二足歩行</span></div>
+      <div>${art('god','段階3のイメージ')}<small>段階3</small><b>獣の姿の人外</b><span>神獣・魔獣など</span></div>
+    </div>
+    <h2>段階1：ケモミミ型</h2>
+    <p>人間の姿に、獣の耳としっぽ。表情はすましているのに、耳がぺたんと伏せている。口では「別に」と言いながら、しっぽがちぎれそうなくらい揺れている。そう、このタイプの真価は「体のほうが正直」なところにあります。</p>
+    <p><b>こんな人に</b>：人外が初めての人、表情の描写をじっくり味わいたい人。</p>
+    <h2>段階2：獣人型</h2>
+    <p>顔も体も獣で、二足歩行して言葉を話すタイプ。毛並み、マズル（鼻先から口元にかけての部分）、見上げるほどの体格差。人間とは表情の作り方が違うので、最初は感情が読めない。だからこそ、耳の角度やひげの動きで「あ、今うれしいんだ」と分かった瞬間の感動がすごいんです。</p>
+    <p><b>こんな人に</b>：人外らしさをしっかり浴びたい人、体格差に弱い人。</p>
+    <h2>段階3：獣の姿の人外</h2>
+    <p>神獣や魔獣のように、獣の姿のまま、知性と言葉と深い感情を持つ存在です。種族の壁が一番高い。そのぶん、心が通った瞬間の重みは別格。神話や伝承みたいな、スケールの大きい世界観とセットで出てくることが多いのもポイントです。</p>
+    <div class="callout">このサイトでは、言葉と意思を持つ人外キャラクターが登場する作品だけを紹介します。実在の動物を扱う作品は紹介しません。</div>
+    <h2>行き来するタイプ：変身もの</h2>
+    <p>人の姿と獣の姿を行き来するキャラクターもいます。段階1から3までをひとりで全部見せてくれる、ある意味いちばん欲張りなタイプ。「どの姿のときに一番グッときたか」を考えると、自分の獣度が見えてくることもあります。</p>
+    <h2>診断：あなたの獣度は？</h2>
+    <p>はい・いいえで答えるだけです。迷ったら、好きな作品の好きな場面を思い浮かべてください。</p>
+    ${diag('kemono')}
+    <h2>まとめ</h2>
+    <p>同じ獣人好きでも、好きな段階は人それぞれ。でも、言葉より先に耳やしっぽ、毛並みで気持ちが伝わってくる瞬間が好き、というところはきっと共通しています。あなたの診断結果、ぜひコメントで教えてください。</p>`;
+
+  const BODY_MATOME = () => `
+    <p>言葉が通じない。文化も違う。なのに、気づいたら隣にいる。異種族ものの中でも「言葉の壁」がある作品には、ほかにはない距離の縮まり方があります。この記事では、その良さが特に出ている作品を5つ選びました。</p>
+    <nav class="toc" aria-label="目次"><b>目次</b><ol><li>言葉が通じない異種族ものの良さ</li><li>選んだ基準</li><li>おすすめ5選</li><li>まとめ</li></ol></nav>
+    ${figRow([['ishu','異種族'],['merfolk','人魚・水棲']])}
+    <h2>言葉が通じない異種族ものの良さ</h2>
+    <ul>
+      <li><b>仕草がそのまま言葉になる。</b>差し出された手、少しだけ近づいた距離。ひとつひとつの動きに意味が生まれます。</li>
+      <li><b>初めて通じた一言の破壊力。</b>覚えたての言葉で名前を呼ばれる。これだけでページをめくる手が止まります。</li>
+      <li><b>誤解すら愛おしい。</b>文化の違いから生まれるすれ違いが、ふたりの関係を深めるきっかけになります。</li>
+    </ul>
+    <h2>選んだ基準</h2>
+    <ol class="body">
+      <li>言葉が通じないことが、物語の中でちゃんと効いている</li>
+      <li>言葉以外の表現（仕草、表情、行動）が丁寧に描かれている</li>
+      <li>異種族ならではの文化や価値観の違いが感じられる</li>
+    </ol>
+    <h2>おすすめ5選</h2>
+    ${[1,2,3,4,5].map(i => `<h3>${i}. [作品タイトル]</h3><div class="work"><span class="wl">紹介している作品</span><b>[作品タイトル]</b><span class="meta">[サークル名]｜[形式]｜[ジャンル]</span><a href="#article-4">公式の作品ページを見る →</a></div><p>[この作品の「言葉の壁」の良さを2〜3行で。あなたのメモから作ります]</p>`).join('')}
+    <h2>まとめ</h2>
+    <p>言葉が通じないからこそ、伝わった瞬間がまぶしい。気になる作品があったら、ぜひ試し読みからどうぞ。「この作品も入れてほしかった」というおすすめも、コメントで待っています。</p>`;
+
+  const BODY_MADE = () => `
+    <p>感情を知らない存在が、少しずつ人間を理解していく。最初は命令どおりにしか動かなかったのに、ある日、自分の意思で何かを選ぶ。……この瞬間のために生きていると言っても過言ではありません。今日はロボットや人形など、「作られた存在」ものの好きなところを語らせてください。</p>
+    <nav class="toc" aria-label="目次"><b>目次</b><ol><li>「学んでいく」過程が好きな理由</li><li>作られた存在の5タイプ</li><li>診断：あなたに合うタイプは？</li><li>グッとくる場面あるある</li></ol></nav>
+    <h2>「学んでいく」過程が好きな理由</h2>
+    <ul>
+      <li><b>成長が目に見える。</b>昨日できなかった表情が、今日できるようになる。その変化を一緒に見守れるのが、作られた存在ものの醍醐味です。</li>
+      <li><b>初めての感情に、名前がない。</b>胸のあたりの不具合として報告される「それ」が、実は恋だと気づくまでの遠回り。最高です。</li>
+      <li><b>命令と意思のあいだで揺れる。</b>与えられた役割と、自分で選びたいこと。その葛藤が、人間よりも人間らしく見える瞬間があります。</li>
+    </ul>
+    ${figRow([['machine','機械・ロボット'],['doll','人形・ゴーレム']])}
+    <h2>作られた存在の5タイプ</h2>
+    <div class="glist">
+      <div class="gitem"><b>アンドロイド</b><span>人間そっくり。でもふとした瞬間に人じゃないことが分かってしまう。</span></div>
+      <div class="gitem"><b>ロボット</b><span>いかにも機械な体。不器用でぎこちない優しさ。</span></div>
+      <div class="gitem"><b>AI・電子の存在</b><span>体がなく、声や言葉だけで関係が育っていく。</span></div>
+      <div class="gitem"><b>動く人形</b><span>作り手への一途さと、美しさと不気味さの境目。</span></div>
+      <div class="gitem"><b>ゴーレム</b><span>土や石の大きな体。主を守るために生まれた忠実さ。</span></div>
+    </div>
+    <h2>診断：あなたに合うタイプは？</h2>
+    ${diag('made')}
+    <h2>グッとくる場面あるある</h2>
+    <ul>
+      <li>「理解できません」と言っていた相手が、初めて自分から手を伸ばしてくる</li>
+      <li>メンテナンス中、無防備になった相手を見守る静かな時間</li>
+      <li>記録として残していたはずの思い出を、「大切なもの」と言い換える</li>
+    </ul>
+    <h2>まとめ</h2>
+    <p>作られた存在ものは、「心とは何か」を一緒に考えさせてくれるジャンルです。あなたの好きな「初めて感情が動いた場面」、コメントで教えてもらえたらうれしいです。</p>`;
+
+  const BODY_KAII = () => `
+    <p>白い服、見上げるほどの背丈、どこからか聞こえる「ぽぽぽ」という声。……八尺様の話を初めて読んだ夜、怖くて眠れなかったのに、なぜか何度も読み返してしまった人、いませんか。閨の主はそのタイプです。今日は、怖いのに目が離せない「怪異系人外」の魅力を語ります。</p>
+    <nav class="toc" aria-label="目次"><b>目次</b><ol><li>怪異系人外の良さ</li><li>怪異のタイプ</li><li>診断：あなたが惹かれる怪異は？</li><li>楽しみ方のコツ</li></ol></nav>
+    ${fig('kaii','イメージ：日常のすぐ隣に、それはいる')}
+    <h2>怪異系人外の良さ</h2>
+    <ul>
+      <li><b>怖さと甘さが同居している。</b>逃げなきゃいけない相手なのに、なぜか自分にだけは優しい。その矛盾がたまらないんです。</li>
+      <li><b>見初められる理不尽さ。</b>理由も分からないまま、気に入られてしまう。人の理屈が通じない相手だからこそ生まれる、逃げ場のない執着。</li>
+      <li><b>ルールがある。</b>「振り返ってはいけない」「名前を教えてはいけない」。怪異ものにはたいてい決まりごとがあって、それを破るかどうかが物語の山場になります。</li>
+    </ul>
+    <h2>怪異のタイプ</h2>
+    <div class="glist">
+      <div class="gitem"><b>都市伝説系</b><span>日常のすぐ隣に潜む、条件がそろうと現れる「何か」。</span></div>
+      <div class="gitem"><b>異界・神隠し系</b><span>気づけば知らない場所。そこに住むものに気に入られてしまう。</span></div>
+      <div class="gitem"><b>幽霊・霊体</b><span>触れられない、いつか消えてしまうかもしれない存在。</span></div>
+      <div class="gitem"><b>鬼</b><span>荒々しさと、約束は必ず守る義理堅さ。</span></div>
+      <div class="gitem"><b>妖怪・あやかし</b><span>狐や天狗など、昔話に根ざした存在との古い契り。</span></div>
+    </div>
+    <h2>診断：あなたが惹かれる怪異は？</h2>
+    ${diag('kaii')}
+    <h2>楽しみ方のコツ</h2>
+    <ul>
+      <li><b>音声作品は、夜に部屋を暗くして。</b>姿が見えない怖さは、音だけのほうが何倍にもなります。ただし、本当に怖いのが苦手な人は昼間に。</li>
+      <li><b>ホラーが苦手なら、和風あやかしから。</b>怖さより「古い約束」の切なさが前に出る作品が多いので、入り口にちょうどいいです。</li>
+      <li><b>「ルール」に注目して読む。</b>どんな決まりがあって、それがいつ破られるのか。そこが分かると、怪異ものは二倍楽しくなります。</li>
+    </ul>
+    <h2>まとめ</h2>
+    <p>怪異系人外は、怖さと引き換えにしか味わえない甘さがあるジャンルです。あなたの「怖いけど好きな怪異」、コメントでこっそり教えてください。</p>`;
+
+  const ARTICLES = [
+    {id:'1', cat:'guide', genres:ALLG, date:'2026.11.05', title:'はじめての人外ジャンル入門：人外の良さと、自分の好みの見つけ方', ex:'人外の何がそんなにいいのか、ジャンルごとの魅力、そして自分に刺さるタイプの見つけ方を、診断つきで語ります。', body:BODY_GUIDE},
+    ...GROUP_ARTS.map(ga => ({id:ga.id, cat:'genre', genres:GROUPS[ga.gi].items.map(x=>x[0]), date:'2026.11.05', title:ga.t, ex:ga.ex, motif:ga.motif, body:bodyGroup(ga)})),
+    ...Object.keys(GA).map(k => ({id:k, cat:'genre', genres:[k], date:'2026.11.04', title:GA[k].t, ex:GA[k].ex, body:bodyGenre(k)})),
+    {id:'2', cat:'talk', genres:['kemono'], date:'2026.11.03', title:'獣人は「獣度」で選ぶ：ケモミミ型から、獣の姿の人外まで', ex:'獣人好き同士でも話がかみ合わないのは「どこまで獣か」の好みが違うから。3段階に分けて、診断つきで語ります。', body:BODY_KEMONO},
+    {id:'3', cat:'review', genres:['kemono'], date:'2026.11.01', title:'[作品タイトル] レビュー：無口な狼獣人が、言葉より仕草で心を開く', ex:'言葉が少ないぶん、仕草と距離感で関係が進んでいく一作。どこが刺さったのかを書きました。', works:1},
+    {id:'4', cat:'matome', genres:['ishu','merfolk'], date:'2026.10.29', title:'言葉が通じない異種族ものが好きな人へ、おすすめ5選', ex:'言葉が通じないからこそ生まれる距離の縮まり方。その良さが特に出ている作品を選びました。', body:BODY_MATOME},
+    {id:'5', cat:'talk', genres:['machine','doll'], date:'2026.10.26', title:'機械の体と人間の感情：「作られた存在」が学んでいく過程が好きな理由', ex:'感情を知らない存在が、少しずつ人間を理解していく。5つのタイプと診断つきで語ります。', body:BODY_MADE},
+    {id:'6', cat:'review', genres:['monster'], date:'2026.10.22', title:'[作品タイトル] レビュー：人ならざる見た目と、優しすぎる中身のギャップ', ex:'見た目の迫力と中身の優しさの落差がたまらない一作。モンスターもの初心者にもすすめやすい理由を書きました。', works:1},
+    {id:'7', cat:'talk', genres:['kaii','yokai','oni'], date:'2026.10.19', title:'怪異に見初められる話が好き：怖さと甘さが同居する、怪異系人外の魅力', ex:'見てはいけないものに、なぜか気に入られてしまう。怖いのに目が離せない怪異系人外の良さを、診断つきで語ります。', body:BODY_KAII}
+  ];
+  const POPULAR = ['2','1','4','3','7'];
+  const byId = Object.fromEntries(ARTICLES.map(a => [a.id, a]));
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  const COMMENTS = {
+    '1':[{name:'名無しの人外好き', date:'2026.11.05', text:'3つの軸で好きな作品を並べてみたら、全部「守る側が人外」でした。自分の好みがやっと言葉になった気がします。'}],
+    '2':[{name:'夜更かし狼', date:'2026.11.04', text:'完全に段階2派です。マズルの描写がある作品をもっと知りたいです。'},{name:'名無しの人外好き', date:'2026.11.04', text:'変身もの好きとしては最後の項目がうれしい。どの姿でグッとくるか、確かに人によって違いますね。'}]
+  };
+
+  function eye(a){ const key = a.motif || (a.cat === 'guide' ? 'guide' : a.genres[0]); return `<div class="eye art">${art(key, 'アイキャッチ：' + a.title)}<span class="eyetag">仮イラスト</span></div>`; }
+  function labels(a){
+    const shown = a.genres.length > 3 ? '<span class="tag">全ジャンル</span>' : a.genres.map(k=>`<span class="tag">${GENRES[k].name}</span>`).join('');
+    return `<div class="lab"><span class="cat">${CATS[a.cat]}</span>${shown}<span class="note">${a.date}</span></div>`;
+  }
+  function row(a){ return `<a class="row" href="#article-${a.id}">${eye(a)}<span class="txt">${labels(a)}<b>${a.title}</b><span class="excerpt">${a.ex}</span></span></a>`; }
+  function genreLinks(){
+    return `<div class="gl">${GROUPS.map(g => `<div><h3>${g.name}</h3><div class="links">${g.items.map(([k,n]) => `<a href="#genre-${k}">${n}</a>`).join('')}</div></div>`).join('')}</div>`;
+  }
+  function side(){
+    return `<aside class="side">
+      <div class="box"><h2>人気の記事</h2><ol>${POPULAR.map(id=>`<li><a href="#article-${id}">${byId[id].title}</a></li>`).join('')}</ol></div>
+      <div class="box"><h2>ジャンル</h2>${genreLinks()}<p style="margin-top:12px"><a class="more" href="#search">タグで探す →</a></p></div>
+      <div class="box"><h2>書いている人</h2><div style="display:flex;gap:12px;align-items:center;margin-bottom:10px"><span class="avatar" aria-hidden="true">閨</span><b>閨の主</b></div><p>${AUTHOR}</p></div>
+    </aside>`;
+  }
+  function listPage(title, crumb, items, extra){
+    return `<nav class="crumb" aria-label="現在地"><a href="#home">トップ</a>›<span>${crumb}</span></nav>
+      <div class="layout"><div class="main"><div class="sec-head"><h1 style="font-size:26px">${title}</h1><span class="note">${items.length}件</span></div>${extra||''}
+      ${items.length ? `<div class="list">${items.map(row).join('')}</div>` : '<p class="empty">まだ記事がありません。ほかのジャンルやタグも探してみてください。</p>'}</div>${side()}</div>`;
+  }
+
+  const st = { q:'', g:new Set(), c:new Set() };
+  const SLIDES = [
+    {id:'1', label:'はじめての方へ', sub:'人外の良さと、自分の好みの見つけ方'},
+    {id:'2', label:'特集：獣人', sub:'「どこまで獣か」で選ぶ、獣度のものさし'},
+    {id:'7', label:'特集：怪異・ホラー', sub:'怖いのに目が離せない、怪異系人外の魅力'},
+    {id:'4', label:'おすすめまとめ', sub:'言葉が通じない異種族もの5選'}
+  ];
+  function carousel(){
+    return `<div class="carousel"><div class="track" id="track" aria-roledescription="カルーセル">${SLIDES.map((sl,i)=>{ const a = byId[sl.id]; return `<a class="slide" href="#article-${a.id}" aria-label="${i+1}枚目／${SLIDES.length}枚：${esc(a.title)}">${eye(a)}<span class="st"><small>${sl.label}</small><b>${a.title}</b><span>${sl.sub}</span></span></a>`; }).join('')}</div>
+      <div class="cnav"><button class="arrow" type="button" data-step="-1" aria-label="前のスライド">‹</button><div class="dots">${SLIDES.map((_,i)=>`<button type="button" data-dot="${i}" aria-label="${i+1}枚目へ" aria-current="${i===0}"></button>`).join('')}</div><button class="arrow" type="button" data-step="1" aria-label="次のスライド">›</button></div></div>`;
+  }
+  function slideTo(i){ const t = document.getElementById('track'); if (!t) return; const n = SLIDES.length; i = (i + n) % n; t.scrollTo({left: t.clientWidth * i + 12 * i, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'}); }
+  function curSlide(){ const t = document.getElementById('track'); return t ? Math.round(t.scrollLeft / (t.clientWidth + 12)) : 0; }
+  function bindCarousel(){ const t = document.getElementById('track'); if (!t) return; t.addEventListener('scroll', () => { const c = curSlide(); document.querySelectorAll('[data-dot]').forEach(d => d.setAttribute('aria-current', String(Number(d.dataset.dot) === c))); }, {passive:true}); }
+
+  const views = {
+    home(){
+      const [first, ...rest] = ARTICLES;
+      return `<div class="stack">
+        <section class="hero" aria-labelledby="hero-h"><span class="eyebrow">人外好きが、人外好きのために選ぶ。</span><h1 id="hero-h">ヒトでは満たされない夜に。</h1><p>人ならざるものに心を奪われた人のために、刺さる作品を探して、本気で語るブログです。</p>
+          <div class="chips" style="margin-top:6px">${Object.entries(CATS).map(([k,c])=>`<a class="chip" href="#cat-${k}">${c}</a>`).join('')}<a class="chip" href="#search">タグで探す</a></div>
+        </section>
+        <section aria-labelledby="car-h"><div class="sec-head"><h2 id="car-h">はじめての方へ・特集</h2></div>${carousel()}</section>
+        <div class="layout"><div class="main">
+          <div class="sec-head"><h2>新着記事</h2></div>
+          <a class="feature" href="#article-${first.id}">${eye(first)}<span class="txt">${labels(first)}<h3>${first.title}</h3><span class="excerpt">${first.ex}</span></span></a>
+          <div class="list">${rest.slice(0,8).map(row).join('')}</div>
+          <p style="text-align:center;margin-top:14px"><a class="btn" href="#search">すべての記事を見る（${ARTICLES.length}件）</a></p>
+        </div>${side()}</div>
+      </div>`;
+    },
+    genre(k){
+      const g = GENRES[k]; if (!g) return views.home();
+      const extra = `<p style="margin:-4px 0 14px;color:var(--text-sub)">${GOOD[k]}</p>`;
+      return listPage(`${g.name}の記事`, `${g.group}　›　${g.name}`, ARTICLES.filter(a => a.genres.includes(k)), extra);
+    },
+    cat(k){
+      const c = CATS[k]; if (!c) return views.home();
+      const chips = `<div class="chips" style="margin-bottom:6px">${Object.entries(CATS).map(([kk,cc])=>`<a class="chip${kk===k?' on':''}" href="#cat-${kk}">${cc}</a>`).join('')}</div>`;
+      return listPage(c, c, ARTICLES.filter(a => a.cat === k), chips);
+    },
+    search(){
+      const words = st.q.trim().split(/[\s　]+/).filter(Boolean);
+      const hit = ARTICLES.filter(a =>
+        (st.g.size === 0 || a.genres.some(k => st.g.has(k))) &&
+        (st.c.size === 0 || st.c.has(a.cat)) &&
+        words.every(w => [a.title, a.ex, CATS[a.cat], ...a.genres.map(k=>GENRES[k].name)].some(f => f.includes(w)))
+      );
+      const sel = [...st.c].map(k=>CATS[k]).concat([...st.g].map(k=>GENRES[k].name));
+      const picker = `<form class="picker" id="tag-form" onsubmit="return false">
+        <div class="sform" style="padding:0"><label for="q2">キーワード</label><input id="q2" type="search" value="${esc(st.q)}" placeholder="例：獣度　切ない" autocomplete="off"></div>
+        <fieldset><legend>記事の種類（選んだもののどれか）</legend><div class="chipwrap">${Object.entries(CATS).map(([k,c])=>`<button type="button" class="chip" data-c="${k}" aria-pressed="${st.c.has(k)}">${c}</button>`).join('')}</div></fieldset>
+        <fieldset><legend>ジャンル（選んだもののどれか）</legend>${GROUPS.map(g=>`<span class="grp">${g.name}</span><div class="chipwrap">${g.items.map(([k,n])=>`<button type="button" class="chip" data-g="${k}" aria-pressed="${st.g.has(k)}">${n}</button>`).join('')}</div>`).join('')}</fieldset>
+        <div class="selbar">${sel.length ? `選択中：${sel.join('・')}` : 'タグは複数選べます。種類とジャンルの両方を選ぶと、両方に当てはまる記事に絞り込みます。'}${sel.length||st.q ? '<button type="button" class="btn small" id="clear-tags">条件をクリア</button>' : ''}</div>
+      </form>`;
+      return listPage('タグとキーワードで探す', '検索', hit, picker);
+    },
+    article(id){
+      const a = byId[id]; if (!a) return views.home();
+      let body = a.body ? a.body() : null;
+      if (!body) {
+        const heads = a.works ? Array.from({length:a.works}, (_, i) => `[作品${i+1}の見出し]`) : ['[見出し1]','[見出し2]','[見出し3]'];
+        const workBox = i => `<div class="work"><span class="wl">紹介している作品</span><b>[作品タイトル${a.works>1?' '+(i+1):''}]</b><span class="meta">[サークル名]｜[同人誌・CG集・音声など]｜${GENRES[a.genres[0]].name}</span><a href="#article-${a.id}">公式の作品ページを見る →</a></div>`;
+        body = `<p>${a.ex}</p><p>[導入：この記事を書いたきっかけ、どんな人に読んでほしいか]</p>
+          <nav class="toc" aria-label="目次"><b>目次</b><ol>${heads.map(h=>`<li>${h}</li>`).join('')}<li>まとめ</li></ol></nav>
+          ${heads.map((h,i)=>`<h2>${h}</h2>${a.works ? workBox(i) : ''}<p>[本文：${a.works ? 'どこが刺さったか、どんな人におすすめか、自分の言葉で' : 'この見出しで伝えたいこと'}]</p>`).join('')}
+          <h2>まとめ</h2><p>[まとめと、次に読んでほしい記事への案内]</p>`;
+      }
+      const related = ARTICLES.filter(x => x.id !== a.id && (a.cat === 'guide' || x.genres.some(g => a.genres.includes(g)) )).slice(0,3);
+      return `<nav class="crumb" aria-label="現在地"><a href="#home">トップ</a>›<a href="#cat-${a.cat}">${CATS[a.cat]}</a>›<span>記事</span></nav>
+      <div class="layout"><article class="main article">${labels(a)}<h1>${a.title}</h1>${eye(a)}${body}
+        <div class="author box"><span class="avatar" aria-hidden="true">閨</span><div><b>閨の主</b><p>${AUTHOR}</p></div></div>
+        ${related.length ? `<div style="margin-top:32px"><h2 style="margin-top:0">関連する記事</h2><div class="list">${related.map(row).join('')}</div></div>` : ''}
+        ${commentsHtml(a.id)}
+      </article>${side()}</div>`;
+    },
+    operator(){
+      return `<nav class="crumb" aria-label="現在地"><a href="#home">トップ</a>›<span>運営者情報</span></nav>
+      <article class="article"><h1>運営者情報</h1>
+      <table class="spec"><tbody>
+        <tr><th>サイト名</th><td>人外ノ閨（じんがいのねや）</td></tr>
+        <tr><th>URL</th><td>[サイトのURL]</td></tr>
+        <tr><th>運営者</th><td>閨の主</td></tr>
+        <tr><th>開設日</th><td>[開設日]</td></tr>
+        <tr><th>お問い合わせ</th><td><a href="#contact">お問い合わせフォーム</a>からお願いします</td></tr>
+        <tr><th>サイトの内容</th><td>人外ジャンルの解説と、人外キャラクターが登場する成人向け作品の紹介</td></tr>
+        <tr><th>対象</th><td>18歳以上の方</td></tr>
+      </tbody></table>
+      <h2>運営者について</h2><p>${AUTHOR}</p>
+      <h2>広告について</h2><p>当サイトは、アフィリエイトプログラムに参加し、作品を紹介することで報酬を得る場合があります。広告を含む記事には、その旨を表示します。</p>
+      </article>`;
+    },
+    contact(){
+      return `<nav class="crumb" aria-label="現在地"><a href="#home">トップ</a>›<span>お問い合わせ</span></nav>
+      <article class="article"><h1>お問い合わせ</h1>
+      <p>記事の内容、作品の掲載、削除のご依頼などはこちらからお送りください。内容を確認のうえ、必要に応じてご連絡します。</p>
+      <form class="cform" id="contact-form" novalidate>
+        <label for="ct-name">お名前（ニックネーム可）</label><input id="ct-name" maxlength="40" autocomplete="nickname">
+        <label for="ct-mail">メールアドレス（返信が必要な場合）</label><input id="ct-mail" type="email" maxlength="120" autocomplete="email">
+        <label for="ct-type">お問い合わせの種類</label>
+        <select id="ct-type" class="sel"><option>記事の内容について</option><option>作品の掲載・紹介について</option><option>掲載内容の削除・修正のご依頼</option><option>その他</option></select>
+        <label for="ct-body">内容（必須）</label><textarea id="ct-body" maxlength="2000"></textarea>
+        <div class="hp" aria-hidden="true"><label for="ct-web">ウェブサイト（入力しないでください）</label><input id="ct-web" tabindex="-1" autocomplete="off"></div>
+        <div class="turnstile">ボット対策の確認欄（本番ではCloudflare Turnstileがここに入ります）</div>
+        <label class="check" style="font-size:14px;color:var(--text-sub)"><input type="checkbox" id="ct-agree"> <span><a href="#privacy">プライバシーポリシー</a>に同意します</span></label>
+        <span class="err" id="ct-err" role="alert"></span>
+        <button class="btn primary" type="submit" style="align-self:flex-start">送信する</button>
+        <div id="ct-status"></div>
+      </form></article>`;
+    },
+    privacy(){
+      return `<nav class="crumb" aria-label="現在地"><a href="#home">トップ</a>›<span>プライバシーポリシー</span></nav>
+      <article class="article"><h1>プライバシーポリシー</h1>
+      <p class="note">下書きです。公開前に、実際に使うサービス名などを入れて見直してください。</p>
+      <h2>取得する情報</h2><ul>
+        <li>お問い合わせの際に入力いただいたお名前、メールアドレス、お問い合わせ内容</li>
+        <li>コメントの際に入力いただいたお名前、コメント本文</li>
+        <li>アクセス解析ツール（[ツール名]）によるアクセス情報（Cookieを使用します）</li>
+        <li>年齢確認の結果（お使いの端末にのみ保存し、当サイトには送信しません）</li>
+        <li>診断の回答結果（個人を特定しない形で集計します）</li></ul>
+      <h2>利用目的</h2><ul><li>お問い合わせへの回答</li><li>コメントの表示と、不適切な投稿への対応</li><li>サイトの改善と、記事作りの参考</li></ul>
+      <h2>第三者への提供</h2><p>法令に基づく場合を除き、取得した個人情報を本人の同意なく第三者に提供しません。</p>
+      <h2>コメントの確認について</h2><p>投稿されたコメントは、表示の前に自動の確認（AIを含みます）を行います。確認のため、コメント本文を外部のサービスに送信する場合があります。</p>
+      <h2>広告について</h2><p>当サイトはアフィリエイトプログラムに参加する場合があります。広告の配信事業者は、Cookieを使って利用者の興味に応じた広告を表示することがあります。</p>
+      <h2>免責事項</h2><p>当サイトの情報はできるかぎり正確に掲載するよう努めていますが、その正確性を保証するものではありません。作品の価格や販売状況は、販売サイトでご確認ください。</p>
+      <h2>著作権</h2><p>当サイトの文章や画像の無断転載を禁止します。紹介している作品の著作権は、各権利者に帰属します。</p>
+      <h2>改定</h2><p>このポリシーは、必要に応じて改定することがあります。<br>制定日：[制定日]</p>
+      </article>`;
+    },
+    about(){
+      return `<nav class="crumb" aria-label="現在地"><a href="#home">トップ</a>›<span>このサイトについて</span></nav>
+      <article class="article"><h1>このサイトについて</h1>
+      <p>人外ノ閨は、人外好きが、人外好きのために作品を選んで語るブログです。獣人、竜、鬼、機械、人魚、あやかしなど、人ならざるものが登場する成人向けの同人誌・CG集・音声作品を紹介しています。</p>
+      <h2>年齢制限について</h2><p>成人向けの内容を含むため、18歳未満の方はご利用いただけません。</p>
+      <h2>紹介する作品について</h2><p>紹介する作品は、管理人が実際に読んだ・聴いたものから選んでいます。言葉と意思を持つ人外キャラクターが登場する作品を扱い、未成年を思わせる登場人物の作品や、実在の動物を扱う作品は紹介しません。</p>
+      <h2>コメントについて</h2><p>記事にはどなたでもコメントを書き込めます。誹謗中傷、個人情報、外部サイトへの誘導、未成年を思わせる内容などを含むコメントは、自動の確認で表示しない場合があります。</p>
+      <h2>関連ページ</h2><p><a href="#operator">運営者情報</a>／<a href="#privacy">プライバシーポリシー</a>／<a href="#contact">お問い合わせ</a></p></article>`;
+    }
+  };
+
+  function commentsHtml(id){
+    const list = COMMENTS[id] || [];
+    return `<section class="comments" aria-labelledby="cm-h"><h2 id="cm-h">コメント（${list.length}件）</h2>
+      ${list.length ? list.map(c => `<div class="cmt"><span class="who">${esc(c.name)}<span>${c.date}</span></span><p>${esc(c.text)}</p></div>`).join('') : '<p class="note">まだコメントはありません。最初のひとことをどうぞ。</p>'}
+      <form class="cform" id="cform" data-id="${id}" novalidate>
+        <label for="c-name">名前（空欄なら「名無しの人外好き」）</label><input id="c-name" maxlength="20" autocomplete="off">
+        <label for="c-text">コメント（400字まで）</label><textarea id="c-text" maxlength="400" placeholder="好きな人外や、記事の感想をどうぞ"></textarea>
+        <div class="hp" aria-hidden="true"><label for="c-web">ウェブサイト（入力しないでください）</label><input id="c-web" tabindex="-1" autocomplete="off"></div>
+        <div class="turnstile">ボット対策の確認欄（本番ではCloudflare Turnstileがここに入ります）</div>
+        <span class="err" id="c-err" role="alert"></span>
+        <button class="btn primary" type="submit" style="align-self:flex-start">コメントを送る</button>
+        <p class="note" style="margin:0">送信されたコメントは、表示の前にAIが内容を確認します。誹謗中傷・個人情報・URL・未成年を思わせる内容などは表示されません。</p>
+        <div id="c-status"></div>
+      </form></section>`;
+  }
+  function moderate(text){
+    const t = text.replace(/\s+/g,'');
+    if (/https?:|www\.|\.com|\.jp/i.test(text)) return '外部サイトへのリンクやURLは書き込めません。';
+    if (/[0-9０-９]{2,4}[-ー－]?[0-9０-９]{3,4}[-ー－]?[0-9０-９]{3,4}|@[a-z0-9]/i.test(text)) return '電話番号やメールアドレスなどの個人情報は書き込めません。';
+    if (/(小学|中学|高校生|JK|JC|ロリ|ショタ|園児|幼女|少女|子供|こども)/i.test(t)) return '未成年を思わせる内容は書き込めません。';
+    if (/(死ね|殺す|消えろ|きもい|キモい|ブス|クズ|ゴミ)/.test(t)) return '攻撃的な表現が含まれているため表示できません。';
+    if (/(.)\1{9,}/.test(t)) return '同じ文字の繰り返しが多いため表示できません。';
+    return '';
+  }
+
+  const viewEl = document.getElementById('view');
+  function render(top){
+    const h = (location.hash || '#home').slice(1);
+    let html;
+    if (h.startsWith('article-')) html = views.article(h.slice(8));
+    else if (h.startsWith('genre-')) html = views.genre(h.slice(6));
+    else if (h.startsWith('cat-')) html = views.cat(h.slice(4));
+    else if (views[h]) html = views[h]();
+    else html = views.home();
+    viewEl.innerHTML = html;
+    bindCarousel();
+    const h1 = viewEl.querySelector('h1');
+    document.title = (h === 'home' || !h1) ? '人外ノ閨｜ヒトでは満たされない夜に。' : h1.textContent + '｜人外ノ閨';
+    if (top) window.scrollTo(0,0);
+    closePanels();
+  }
+  window.addEventListener('hashchange', () => render(true));
+
+  viewEl.addEventListener('click', e => {
+    const da = e.target.closest('[data-dans]');
+    if (da) { const id = da.dataset.dans; diagAct(id, s2 => { if (DIAGS[id].type === 'score') { s2.ans.push(da.dataset.v); return; } const n = DIAGS[id].nodes[s2.cur]; s2.hist.push(s2.cur); s2.cur = n[da.dataset.v]; }); const el = document.querySelector(`[data-diag="${id}"] .dbody`); if (el) el.focus(); return; }
+    const db = e.target.closest('[data-dback]');
+    if (db) { diagAct(db.dataset.dback, s2 => { if (s2.ans) { s2.ans.pop(); s2.counted = false; return; } if (s2.hist.length) s2.cur = s2.hist.pop(); }); return; }
+    const dr = e.target.closest('[data-dreset]');
+    if (dr) { const id = dr.dataset.dreset; diagAct(id, s2 => { if (s2.ans) { s2.ans = []; s2.counted = false; return; } s2.cur = DIAGS[id].start; s2.hist = []; }); return; }
+    const stp = e.target.closest('[data-step]'); if (stp) { slideTo(curSlide() + Number(stp.dataset.step)); return; }
+    const dot = e.target.closest('[data-dot]'); if (dot) { slideTo(Number(dot.dataset.dot)); return; }
+    const c = e.target.closest('[data-c]'), g = e.target.closest('[data-g]');
+    if (c || g) {
+      const set = c ? st.c : st.g, k = c ? c.dataset.c : g.dataset.g;
+      set.has(k) ? set.delete(k) : set.add(k);
+      const y = window.scrollY; render(false); window.scrollTo(0, y); return;
+    }
+    if (e.target.id === 'clear-tags') { st.c.clear(); st.g.clear(); st.q = ''; render(false); }
+  });
+  viewEl.addEventListener('input', e => {
+    if (e.target.id === 'q2') {
+      st.q = e.target.value;
+      const pos = e.target.selectionStart, y = window.scrollY;
+      render(false); window.scrollTo(0, y);
+      const el = document.getElementById('q2'); el.focus(); el.setSelectionRange(pos, pos);
+    }
+    if (e.target.id === 'c-text' || e.target.id === 'c-name') { const er = document.getElementById('c-err'); if (er) er.textContent = ''; }
+  });
+  let lastPost = 0;
+  function contactSubmit(){
+    const err = document.getElementById('ct-err'), st2 = document.getElementById('ct-status');
+    const body = document.getElementById('ct-body').value.trim(), mail = document.getElementById('ct-mail').value.trim();
+    err.textContent = '';
+    if (!body) { err.textContent = '内容を入力してください。'; return; }
+    if (mail && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail)) { err.textContent = 'メールアドレスの形式を確認してください。'; return; }
+    if (!document.getElementById('ct-agree').checked) { err.textContent = 'プライバシーポリシーへの同意にチェックを入れてください。'; return; }
+    if (document.getElementById('ct-web').value) return;
+    st2.innerHTML = '<div class="cstatus ok">試作のため送信はされません。本番では内容を保存し、管理人に通知が届きます。</div>';
+  }
+  viewEl.addEventListener('submit', e => {
+    if (e.target.id === 'contact-form') { e.preventDefault(); contactSubmit(); return; }
+    if (e.target.id !== 'cform') return;
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    const name = document.getElementById('c-name').value.trim() || '名無しの人外好き';
+    const text = document.getElementById('c-text').value.trim();
+    const err = document.getElementById('c-err'), status = document.getElementById('c-status');
+    if (text.length < 5) { err.textContent = 'コメントは5文字以上で入力してください。'; return; }
+    if (document.getElementById('c-web').value) { status.innerHTML = '<div class="cstatus ok">確認が終わり、コメントを表示しました。</div>'; return; }
+    if (Date.now() - lastPost < 30000) { err.textContent = '連続での投稿はできません。30秒ほど時間をおいてください。'; return; }
+    lastPost = Date.now();
+    status.innerHTML = '<div class="cstatus wait">内容を確認しています…</div>';
+    setTimeout(() => {
+      const ng = moderate(name + ' ' + text);
+      if (ng) { status.innerHTML = `<div class="cstatus ng">このコメントは表示できません：${ng}</div>`; return; }
+      const d = new Date();
+      (COMMENTS[id] = COMMENTS[id] || []).push({name, text, date:`${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')}`});
+      const y = window.scrollY; render(false); window.scrollTo(0, y);
+      document.getElementById('c-status').innerHTML = '<div class="cstatus ok">確認が終わり、コメントを表示しました。ありがとうございます。</div>';
+    }, 900);
+  });
+
+  document.getElementById('menu-grid').innerHTML =
+    `<div class="mg"><h3>記事の種類</h3>${Object.entries(CATS).map(([k,c])=>`<a href="#cat-${k}">${c}</a>`).join('')}<a href="#search">タグで探す</a></div>` +
+    GROUPS.map(g => `<div class="mg"><h3>${g.name}</h3>${g.items.map(([k,n])=>`<a href="#genre-${k}">${n}</a>`).join('')}</div>`).join('') +
+    `<div class="mg"><h3>サイト情報</h3><a href="#about">このサイトについて</a><a href="#operator">運営者情報</a><a href="#contact">お問い合わせ</a><a href="#home">トップへ戻る</a></div>`;
+
+  const pM = document.getElementById('panel-menu');
+  const bS = document.getElementById('btn-search'), bM = document.getElementById('btn-menu');
+  function closePanels(){ pM.hidden = true; bM.setAttribute('aria-expanded','false'); }
+  bS.addEventListener('click', () => { closePanels(); if (location.hash === '#search') render(true); else location.hash = 'search'; setTimeout(() => { const q = document.getElementById('q2'); if (q) q.focus(); }, 0); });
+  bM.addEventListener('click', () => { const open = pM.hidden; closePanels(); pM.hidden = !open; bM.setAttribute('aria-expanded', String(open)); });
+  pM.addEventListener('click', e => { if (e.target.closest('a')) closePanels(); });
+
+  const gate = document.getElementById('gate'), KEY = 'jingai_neya_age_ok';
+  function ok(){ try { const v = Number(localStorage.getItem(KEY)); return v && Date.now() - v < 30*864e5; } catch(e){ return false; } }
+  if (ok()) gate.hidden = true; else document.body.style.overflow = 'hidden';
+  document.getElementById('gate-yes').addEventListener('click', () => { try { localStorage.setItem(KEY, String(Date.now())); } catch(e){} gate.hidden = true; document.body.style.overflow = ''; });
+  document.getElementById('gate-no').addEventListener('click', () => { document.getElementById('gate-msg').textContent = '18歳未満の方はご覧いただけません。本番では一般向けのページへ移動します。'; });
+  document.getElementById('reset-gate').addEventListener('click', () => { try { localStorage.removeItem(KEY); } catch(e){} gate.hidden = false; document.body.style.overflow = 'hidden'; window.scrollTo(0,0); });
+
+  render(false);
+})();
+</script>
+</body>
+</html>

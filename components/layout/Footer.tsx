@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FOOTER_LINKS, SITE_NAME } from "@/lib/site";
 
-/** フッター（アフィリエイト利用の明記を含む） */
+/** フッター */
 export function Footer() {
   return (
     <footer className="border-t border-line bg-bg-deep">
@@ -17,9 +17,6 @@ export function Footer() {
             </Link>
           ))}
         </nav>
-        <p>
-          当サイトはアフィリエイトプログラム（FANZA／DMMアフィリエイト）を利用しており、作品ページへのリンクには広告（PR）を含みます。リンク先で作品が購入されると、当サイトに報酬が支払われることがあります。
-        </p>
         <p>18歳未満の方の閲覧はご遠慮ください。</p>
         <p>© {SITE_NAME}</p>
       </div>

@@ -23,13 +23,12 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
 
   return (
     <>
-      <Breadcrumb items={[{ href: "/articles", label: "記事一覧" }, { label: article.title }]} />
+      <Breadcrumb items={[{ label: article.title }]} />
       <article className="max-w-[680px]">
         <small className="text-[13px] font-bold tracking-[0.1em] text-accent">{article.label}</small>
         <h1 className="mb-2 text-[28px] leading-[1.4]">{article.title}</h1>
         <p className="mb-6 text-xs text-text-muted">
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
-          ｜この記事にはPRを含みます
         </p>
         <Body />
       </article>

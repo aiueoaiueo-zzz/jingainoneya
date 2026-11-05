@@ -1,4 +1,4 @@
-/** サイト全体で使う定数（ジャンル・作品タイプ・メニュー） */
+/** サイト全体で使う定数（ステップ3で content/data の JSON に移す） */
 
 export const SITE_NAME = "人外ノ閨";
 export const SITE_CATCHCOPY = "ヒトでは満たされない夜に。";
@@ -17,24 +17,8 @@ export const GENRES: readonly Genre[] = [
   { slug: "ishu", name: "異種族ファンタジー", glyph: "異" },
 ] as const;
 
-export type WorkTypeInfo = {
-  slug: string;
-  name: string;
-};
-
-export const WORK_TYPES: readonly WorkTypeInfo[] = [
-  { slug: "doujinshi", name: "同人誌" },
-  { slug: "cg", name: "CG集" },
-  { slug: "voice", name: "音声" },
-  { slug: "game", name: "ゲーム" },
-] as const;
-
 export function findGenre(slug: string): Genre | undefined {
   return GENRES.find((g) => g.slug === slug);
-}
-
-export function findWorkType(slug: string): WorkTypeInfo | undefined {
-  return WORK_TYPES.find((t) => t.slug === slug);
 }
 
 /** 年齢確認の Cookie */
@@ -54,21 +38,11 @@ export const MENU: MenuGroup[] = [
     links: GENRES.map((g) => ({ href: `/genres/${g.slug}`, label: g.name })),
   },
   {
-    heading: "作品タイプから探す",
-    links: WORK_TYPES.map((t) => ({ href: `/types/${t.slug}`, label: t.name })),
-  },
-  {
-    heading: "特集",
-    links: [
-      { href: "/sale", label: "セール情報" },
-      { href: "/ranking", label: "ランキング" },
-      { href: "/articles", label: "まとめ記事" },
-    ],
-  },
-  {
     heading: "サイト情報",
     links: [
       { href: "/about", label: "このサイトについて" },
+      { href: "/privacy", label: "プライバシーポリシー" },
+      { href: "/contact", label: "お問い合わせ" },
       { href: "/", label: "トップへ戻る" },
     ],
   },

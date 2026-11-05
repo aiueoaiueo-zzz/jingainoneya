@@ -1,6 +1,5 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
-import { AffiliateButton } from "@/components/works/AffiliateButton";
 
 /** 記事（MDX）の見た目と、記事内で使える部品 */
 const components: MDXComponents = {
@@ -13,10 +12,8 @@ const components: MDXComponents = {
     href.startsWith("/") ? (
       <Link href={href} className="underline" {...props} />
     ) : (
-      // 外部リンクはアフィリエイトの可能性があるため sponsored を付ける
-      <a href={href} target="_blank" rel="sponsored noopener" className="underline" {...props} />
+      <a href={href} target="_blank" rel="noopener" className="underline" {...props} />
     ),
-  AffiliateButton,
 };
 
 export function useMDXComponents(): MDXComponents {
