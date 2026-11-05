@@ -7,7 +7,7 @@ import { GENRES } from "@/lib/site";
 
 const DIR = path.join(process.cwd(), "content", "data", "diagnoses");
 
-function validate(data: DiagnosisData, file: string): DiagnosisData {
+export function validateDiagnosis(data: DiagnosisData, file: string): DiagnosisData {
   const keys = new Set(data.options.map((o) => o.key));
   if (data.options.length < 2) throw new Error(`${file}：結果（options）は2つ以上必要です`);
   data.questions.forEach((q, i) => {
@@ -33,7 +33,7 @@ export async function getDiagnosis(id: string): Promise<DiagnosisData> {
   } catch {
     throw new Error(`診断「${id}」が見つかりません（content/data/diagnoses/${file}）`);
   }
-  return validate(JSON.parse(source) as DiagnosisData, file);
+  return validateDiagnosis(JSON.parse(source) as DiagnosisData, file);
 }
 
 export async function getDiagnosisIds(): Promise<string[]> {

@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New, Zen_Old_Mincho } from "next/font/google";
-import { AgeGate, AgeGateScript } from "@/components/layout/AgeGate";
-import { AgeBar } from "@/components/layout/AgeBar";
-import { Footer } from "@/components/layout/Footer";
-import { Header } from "@/components/layout/Header";
+import { AgeGateScript } from "@/components/layout/AgeGate";
 import { DEFAULT_OG_IMAGE, siteUrl } from "@/lib/seo";
 import { SITE_CATCHCOPY, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import "./globals.css";
@@ -54,15 +51,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <head>
         <AgeGateScript />
       </head>
-      <body className="flex min-h-dvh flex-col">
-        <AgeBar />
-        <Header />
-        <main className="flex-1 pt-7 pb-16">
-          <div className="mx-auto max-w-[1040px] px-4">{children}</div>
-        </main>
-        <Footer />
-        <AgeGate />
-      </body>
+      {/* サイト本体の枠は app/(site)/layout.tsx、管理画面の枠は app/admin/layout.tsx */}
+      <body className="flex min-h-dvh flex-col">{children}</body>
     </html>
   );
 }

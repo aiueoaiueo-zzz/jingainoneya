@@ -56,7 +56,7 @@ export function extractHeadings(body: string): string[] {
 
 const ALL_GENRE_SLUGS = GENRES.map((g) => g.slug);
 
-function parseArticle(file: string, source: string): Article {
+export function parseArticle(file: string, source: string): Article {
   const { data, content } = matter(source);
   const fileSlug = path.basename(file, ".mdx");
   const slug = String(data.slug ?? fileSlug);
