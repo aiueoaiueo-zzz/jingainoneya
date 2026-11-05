@@ -1,22 +1,19 @@
 import type { Metadata } from "next";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { StaticPage } from "@/components/StaticPage";
 
-export const metadata: Metadata = { title: "お問い合わせ" };
+export const metadata: Metadata = {
+  title: "お問い合わせ",
+  description: "人外ノ閨へのお問い合わせ（記事の内容、作品の掲載、削除・修正のご依頼など）。",
+};
 
-/** 文章は仮。連絡先が決まり次第差し替える */
 export default function ContactPage() {
   return (
     <StaticPage title="お問い合わせ">
       <p>
-        当サイトへのご意見、掲載内容の誤り、掲載作品に関するご連絡は、下記の窓口までお願いします。
+        記事の内容、作品の掲載、削除のご依頼などはこちらからお送りください。内容を確認のうえ、必要に応じてご連絡します。
       </p>
-      <h2>連絡先</h2>
-      <p>[お問い合わせフォームまたは連絡先を公開前に記載]</p>
-      <h2>ご注意</h2>
-      <ul>
-        <li>作品の購入・ダウンロードに関するお問い合わせは、販売サイトへお願いします。</li>
-        <li>内容によっては、お返事できない場合があります。</li>
-      </ul>
+      <ContactForm />
     </StaticPage>
   );
 }

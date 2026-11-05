@@ -81,6 +81,7 @@ export const MENU: MenuGroup[] = [
     links: [
       { href: "/about", label: "このサイトについて" },
       { href: "/operator", label: "運営者情報" },
+      { href: "/privacy", label: "プライバシーポリシー" },
       { href: "/contact", label: "お問い合わせ" },
       { href: "/", label: "トップへ戻る" },
     ],
