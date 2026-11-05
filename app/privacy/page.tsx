@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { StaticPage } from "@/components/StaticPage";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "プライバシーポリシー",
   description: "人外ノ閨のプライバシーポリシー（取得する情報、利用目的、コメントの確認、広告など）。",
-};
+  path: "/privacy",
+});
 
 /** 下書き。公開前に、実際に使うサービス名などを入れて見直す */
 export default function PrivacyPage() {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { Chip } from "@/components/home/Chip";
 import { ListPage } from "@/components/home/ListPage";
@@ -15,7 +16,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const category = findCategory(slug);
   return category
-    ? { title: category.name, description: `人外ノ閨の「${category.name}」の記事一覧です。` }
+    ? pageMetadata({
+        title: category.name,
+        description: `人外ノ閨の「${category.name}」の記事一覧です。`,
+        path: `/categories/${slug}`,
+      })
     : {};
 }
 

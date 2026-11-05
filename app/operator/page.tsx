@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { StaticPage } from "@/components/StaticPage";
 import { SITE } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "運営者情報",
   description: "人外ノ閨の運営者情報（サイト名、運営者、連絡方法、サイトの内容、広告について）。",
-};
+  path: "/operator",
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "[サイトのURL]";
 

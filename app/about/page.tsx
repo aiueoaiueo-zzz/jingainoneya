@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { StaticPage } from "@/components/StaticPage";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "このサイトについて",
-  description:
-    "人外ノ閨のコンセプト、年齢制限、紹介する作品の方針、コメントのルールについて。",
-};
+  description: "人外ノ閨のコンセプト、年齢制限、紹介する作品の方針、コメントのルールについて。",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

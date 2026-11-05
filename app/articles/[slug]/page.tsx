@@ -12,6 +12,7 @@ import { Breadcrumb } from "@/components/Breadcrumb";
 import { Comments } from "@/components/comments/Comments";
 import { WithSidebar } from "@/components/home/WithSidebar";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
+import { DEFAULT_OG_IMAGE, articleJsonLd, jsonLdString } from "@/lib/seo";
 import { findCategory } from "@/lib/site";
 
 // 公開前の記事や存在しない記事に、本物の404を返すため、ページを最後まで作ってから送る
@@ -25,7 +26,24 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/articles/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const article = await getPublishedArticle(slug);
-  return article ? { title: article.title, description: article.description } : {};
+  if (!article) return {};
+  const image = article.eyecatch
+    ? { url: article.eyecatch, alt: `アイキャッチ：${article.title}` }
+    : DEFAULT_OG_IMAGE;
+  return {
+    title: article.title,
+    description: article.description,
+    alternates: { canonical: `/articles/${article.slug}` },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: article.description,
+      url: `/articles/${article.slug}`,
+      publishedTime: `${article.publishAt}T00:00:00+09:00`,
+      images: [image],
+    },
+    twitter: { card: "summary_large_image", title: article.title, description: article.description },
+  };
 }
 
 /** 記事：パンくず → 種類・ジャンル・公開日 → タイトル → アイキャッチ → 本文 → 書いている人 → 関連記事 → コメント */
@@ -65,6 +83,10 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           ...(category ? [{ href: `/categories/${category.slug}`, label: category.name }] : []),
           { label: "記事" },
         ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdString(articleJsonLd(article, category?.name)) }}
       />
       <WithSidebar>
         <article className="max-w-[680px]">
