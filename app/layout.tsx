@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Zen_Kaku_Gothic_New, Zen_Old_Mincho } from "next/font/google";
 import { AgeGate, AgeGateScript } from "@/components/layout/AgeGate";
+import { AgeBar } from "@/components/layout/AgeBar";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { SITE_CATCHCOPY, SITE_NAME } from "@/lib/site";
+import { SITE_CATCHCOPY, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import "./globals.css";
 
 const display = Zen_Old_Mincho({
@@ -28,8 +29,7 @@ export const metadata: Metadata = {
     default: `${SITE_NAME}｜${SITE_CATCHCOPY}`,
     template: `%s｜${SITE_NAME}`,
   },
-  description:
-    "人外好きが、人外好きのために選ぶ。人ならざるものが登場する作品を探して、本気で語るブログです。",
+  description: SITE_DESCRIPTION,
   // 成人向けサイトであることの表明（全ページの <head> に入る）
   other: { rating: "adult" },
 };
@@ -46,9 +46,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <AgeGateScript />
       </head>
       <body className="flex min-h-dvh flex-col">
+        <AgeBar />
         <Header />
         <main className="flex-1 pt-7 pb-16">
-          <div className="mx-auto max-w-[1120px] px-4">{children}</div>
+          <div className="mx-auto max-w-[1040px] px-4">{children}</div>
         </main>
         <Footer />
         <AgeGate />

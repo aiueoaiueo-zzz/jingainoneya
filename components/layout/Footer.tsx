@@ -5,8 +5,8 @@ import { FOOTER_LINKS, SITE_NAME } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="border-t border-line bg-bg-deep">
-      <div className="mx-auto flex max-w-[1120px] flex-col gap-3 px-4 py-7 text-[13px] text-text-muted">
-        <nav aria-label="サイト情報" className="flex flex-wrap gap-x-5">
+      <div className="mx-auto flex max-w-[1040px] flex-col gap-3 px-4 py-7 text-[13px] text-text-muted">
+        <nav aria-label="サイト情報" className="flex flex-wrap gap-x-5.5">
           {FOOTER_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -17,7 +17,7 @@ export function Footer() {
             </Link>
           ))}
         </nav>
-        <p>18歳未満の方の閲覧はご遠慮ください。</p>
+        <p>成人向けの作品を紹介しています。18歳未満の方の閲覧はご遠慮ください。</p>
         <p>© {SITE_NAME}</p>
       </div>
     </footer>

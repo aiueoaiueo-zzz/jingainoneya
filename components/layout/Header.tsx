@@ -1,40 +1,50 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { SEARCH_INPUT_ID, requestSearchFocus } from "@/components/search/focus";
 import { SITE_CATCHCOPY, SITE_NAME } from "@/lib/site";
 import { CloseIcon, MenuIcon, SearchIcon } from "./icons";
 import { MenuPanel } from "./MenuPanel";
-import { SearchPanel } from "./SearchPanel";
 
-type Panel = "search" | "menu" | null;
-
-/** ヘッダー（右上に検索とハンバーガー）。パネルは同時に1つだけ開く */
+/** ヘッダー（左にロゴ、右に虫めがねとハンバーガー） */
 export function Header() {
-  const [open, setOpen] = useState<Panel>(null);
-  const close = () => setOpen(null);
-  const toggle = (panel: Exclude<Panel, null>) => setOpen((cur) => (cur === panel ? null : panel));
+  const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const close = () => setMenuOpen(false);
 
   useEffect(() => {
-    if (!open) return;
+    if (!menuOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(null);
+      if (e.key === "Escape") setMenuOpen(false);
     };
     window.addEventListener("keydown", onKey);
-    if (open === "search") document.getElementById("site-search-q")?.focus();
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [menuOpen]);
+
+  // 虫めがね：パネルを挟まずに検索ページへ移動し、キーワード欄にカーソルを置く
+  const goSearch = () => {
+    close();
+    if (pathname === "/search") {
+      document.getElementById(SEARCH_INPUT_ID)?.focus();
+      return;
+    }
+    requestSearchFocus();
+    router.push("/search");
+  };
 
   const iconButton =
-    "flex size-11 items-center justify-center rounded-card bg-transparent hover:bg-surface";
+    "flex size-11 items-center justify-center rounded-sm bg-transparent hover:bg-surface";
 
   return (
     <header className="sticky top-0 z-20 border-b border-line bg-bg">
-      <div className="mx-auto flex h-16 max-w-[1120px] items-center justify-between gap-3 px-4">
+      <div className="mx-auto flex h-16 max-w-[1040px] items-center justify-between gap-3 px-4">
         <Link
           href="/"
           onClick={close}
-          className="flex min-h-11 min-w-0 flex-wrap items-baseline content-center gap-x-3 no-underline"
+          className="flex min-h-11 min-w-0 flex-wrap content-center items-baseline gap-x-3 no-underline"
         >
           <span className="font-display text-[22px] font-bold tracking-[0.08em]">{SITE_NAME}</span>
           <span className="font-display text-xs tracking-[0.06em] text-text-sub">
@@ -45,27 +55,24 @@ export function Header() {
           <button
             type="button"
             className={iconButton}
-            aria-label={open === "search" ? "検索を閉じる" : "検索"}
-            aria-expanded={open === "search"}
-            aria-controls="panel-search"
-            onClick={() => toggle("search")}
+            aria-label="検索（タグとキーワード）"
+            onClick={goSearch}
           >
-            {open === "search" ? <CloseIcon /> : <SearchIcon />}
+            <SearchIcon />
           </button>
           <button
             type="button"
             className={iconButton}
-            aria-label={open === "menu" ? "メニューを閉じる" : "メニュー"}
-            aria-expanded={open === "menu"}
+            aria-label={menuOpen ? "メニューを閉じる" : "メニュー"}
+            aria-expanded={menuOpen}
             aria-controls="panel-menu"
-            onClick={() => toggle("menu")}
+            onClick={() => setMenuOpen((v) => !v)}
           >
-            {open === "menu" ? <CloseIcon /> : <MenuIcon />}
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
       </div>
-      <SearchPanel id="panel-search" open={open === "search"} onSubmitted={close} />
-      <MenuPanel id="panel-menu" open={open === "menu"} onNavigate={close} />
+      <MenuPanel id="panel-menu" open={menuOpen} onNavigate={close} />
     </header>
   );
 }

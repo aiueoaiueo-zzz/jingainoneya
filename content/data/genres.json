@@ -1,0 +1,54 @@
+{
+  "groups": [
+    {
+      "slug": "beast",
+      "name": "獣・動物系",
+      "genres": [
+        { "slug": "kemono", "name": "獣人", "glyph": "獣" },
+        { "slug": "bird", "name": "鳥人・ハーピー", "glyph": "翼" },
+        { "slug": "reptile", "name": "竜人・爬虫類人", "glyph": "鱗" },
+        { "slug": "insect", "name": "蟲人", "glyph": "蟲" }
+      ]
+    },
+    {
+      "slug": "myth",
+      "name": "幻想・神話系",
+      "genres": [
+        { "slug": "dragon", "name": "竜・ドラゴン", "glyph": "竜" },
+        { "slug": "merfolk", "name": "人魚・水棲", "glyph": "鰭" },
+        { "slug": "demon", "name": "悪魔・天使", "glyph": "悪" },
+        { "slug": "vampire", "name": "吸血鬼", "glyph": "血" },
+        { "slug": "god", "name": "神・神獣", "glyph": "神" },
+        { "slug": "ishu", "name": "異種族（エルフなど）", "glyph": "異" }
+      ]
+    },
+    {
+      "slug": "wafu",
+      "name": "和風・怪異系",
+      "genres": [
+        { "slug": "kaii", "name": "都市伝説・怪異", "glyph": "怪" },
+        { "slug": "oni", "name": "鬼", "glyph": "鬼" },
+        { "slug": "yokai", "name": "妖怪・あやかし", "glyph": "妖" },
+        { "slug": "ghost", "name": "幽霊・霊体", "glyph": "霊" }
+      ]
+    },
+    {
+      "slug": "made",
+      "name": "人工物系",
+      "genres": [
+        { "slug": "machine", "name": "機械・ロボット", "glyph": "機" },
+        { "slug": "doll", "name": "人形・ゴーレム", "glyph": "偶" }
+      ]
+    },
+    {
+      "slug": "other",
+      "name": "異形・その他",
+      "genres": [
+        { "slug": "monster", "name": "モンスター・クリーチャー", "glyph": "魔" },
+        { "slug": "slime", "name": "スライム・不定形", "glyph": "粘" },
+        { "slug": "plant", "name": "植物・菌類", "glyph": "植" },
+        { "slug": "alien", "name": "宇宙人・異星人", "glyph": "星" }
+      ]
+    }
+  ]
+}

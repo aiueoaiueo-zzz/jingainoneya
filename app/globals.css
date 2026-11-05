@@ -1,31 +1,30 @@
 @import "tailwindcss";
 
 /*
- * デザイン仕様（夜の博物誌）
- * 暗い地に明朝の見出し、黄土色のアクセント。スマホ幅優先。
+ * デザイン仕様（段階A：記事が主役の語りブログ）
+ * 「閨」に合わせた暗い夜の色調。明朝の見出し、黄土色のアクセント。スマホ幅（390px）優先。
  */
 @theme {
-  --color-bg: #16171c;
-  --color-bg-deep: #0f1013;
-  --color-surface: #1c1d23;
-  --color-placeholder: #22242b;
-  --color-line: #2a2c34;
-  --color-line-strong: #3a3d47;
+  --color-bg: #15161b;
+  --color-bg-deep: #0e0f12;
+  --color-surface: #1e2028;
+  --color-surface-2: #262833;
+  --color-placeholder: #23252d;
+  --color-line: #2e313b;
+  --color-line-strong: #41444f;
   --color-text: #ece9e2;
   --color-text-sub: #cfccc4;
   --color-text-muted: #b3b0a8;
   --color-accent: #e2b45c;
   --color-on-accent: #1a1408;
+  --color-danger: #f09a8a;
 
   --font-display: var(--font-zen-old-mincho), "Noto Serif JP", serif;
   --font-body: var(--font-zen-kaku-gothic-new), "Hiragino Sans", "Noto Sans JP", sans-serif;
 
-  /* 角丸：カード8px、大きい枠12px、タグ・チップは全丸（rounded-full） */
-  --radius-card: 8px;
-  --radius-box: 12px;
-
-  /* 横スクロールのカード幅 */
-  --spacing-card: 168px;
+  /* 角丸：小さい部品8px（rounded-sm）、カード12px（rounded-card）、チップは全丸（rounded-full） */
+  --radius-sm: 8px;
+  --radius-card: 12px;
 }
 
 @layer base {
@@ -37,7 +36,7 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-body);
-    line-height: 1.7;
+    line-height: 1.8;
   }
   /* 本文は15px。html は16pxのままにして、remで決まる余白・タップ領域（44px）を崩さない */
   body {
@@ -49,6 +48,7 @@
     font-family: var(--font-display);
     text-wrap: balance;
     word-break: auto-phrase;
+    line-height: 1.4;
   }
   :focus-visible {
     outline: 2px solid var(--color-accent);

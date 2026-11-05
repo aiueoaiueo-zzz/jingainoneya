@@ -13,16 +13,18 @@ import { AGE_COOKIE_MAX_AGE, AGE_COOKIE_NAME, SITE_NAME, UNDERAGE_REDIRECT_URL }
 export function AgeGate() {
   const yesRef = useRef<HTMLButtonElement>(null);
 
+  // 承認するまで、年齢確認以外の部分をキーボードでも操作できないようにする
   useEffect(() => {
-    if (!document.documentElement.hasAttribute("data-age-ok")) {
-      yesRef.current?.focus();
-    }
+    if (document.documentElement.hasAttribute("data-age-ok")) return;
+    setBackgroundInert(true);
+    yesRef.current?.focus();
   }, []);
 
   const accept = () => {
     const secure = location.protocol === "https:" ? "; Secure" : "";
     document.cookie = `${AGE_COOKIE_NAME}=1; Max-Age=${AGE_COOKIE_MAX_AGE}; Path=/; SameSite=Lax${secure}`;
     document.documentElement.setAttribute("data-age-ok", "");
+    setBackgroundInert(false);
   };
 
   const decline = () => {
@@ -52,14 +54,14 @@ export function AgeGate() {
             ref={yesRef}
             type="button"
             onClick={accept}
-            className="inline-flex h-11 items-center justify-center rounded-card border border-accent bg-accent px-5 font-bold text-on-accent"
+            className="inline-flex h-11 items-center justify-center rounded-sm border border-accent bg-accent px-5 font-bold text-on-accent"
           >
             18歳以上です（入場する）
           </button>
           <button
             type="button"
             onClick={decline}
-            className="inline-flex h-11 items-center justify-center rounded-card border border-line-strong px-5 font-medium"
+            className="inline-flex h-11 items-center justify-center rounded-sm border border-line-strong px-5 font-medium"
           >
             18歳未満です
           </button>
@@ -68,6 +70,14 @@ export function AgeGate() {
       </div>
     </div>
   );
+}
+
+function setBackgroundInert(inert: boolean) {
+  for (const el of Array.from(document.body.children)) {
+    if (el.hasAttribute("data-age-gate") || el.tagName === "SCRIPT") continue;
+    if (inert) el.setAttribute("inert", "");
+    else el.removeAttribute("inert");
+  }
 }
 
 /**
