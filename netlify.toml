@@ -1,5 +1,4 @@
 # Netlify の設定（管理画面の設定より、このファイルが優先されます）
-# Next.js 用の仕組み（Next.js Runtime）は Netlify が自動で入れます。
 
 [build]
   command = "npm run build"
@@ -7,3 +6,7 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Next.js 用の仕組み（Next.js Runtime）。これがないと、ページが「Not Found」になる
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
