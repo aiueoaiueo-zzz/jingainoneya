@@ -9,6 +9,7 @@ import { headingId, textOf } from "@/components/article/headingId";
 import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Toc } from "@/components/article/Toc";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { Comments } from "@/components/comments/Comments";
 import { WithSidebar } from "@/components/home/WithSidebar";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
 import { findCategory } from "@/lib/site";
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: PageProps<"/articles/[slug]">
   return article ? { title: article.title, description: article.description } : {};
 }
 
-/** 記事：パンくず → 種類・ジャンル・公開日 → タイトル → アイキャッチ → 本文 → 書いている人 → 関連記事（コメントはステップ8） */
+/** 記事：パンくず → 種類・ジャンル・公開日 → タイトル → アイキャッチ → 本文 → 書いている人 → 関連記事 → コメント */
 export default async function ArticlePage({ params }: PageProps<"/articles/[slug]">) {
   const { slug } = await params;
   // 予約中（公開日が未来）や存在しない記事は404
@@ -73,6 +74,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           <Body components={components} />
           <AuthorBox />
           <RelatedArticles article={article} />
+          <Comments slug={article.slug} />
         </article>
       </WithSidebar>
     </>
