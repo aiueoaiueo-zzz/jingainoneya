@@ -1,0 +1,126 @@
+{
+  "id": "kaii",
+  "title": "あなたの怪異タイプ診断",
+  "chartLabel": "タイプごとの相性",
+  "options": [
+    {
+      "key": "urban",
+      "name": "都市伝説系",
+      "image": "kaii",
+      "description": "いつもの帰り道、見上げるほど背の高い影。八尺様のように、条件がそろうと現れる「何か」に見初められる話が刺さるタイプです。",
+      "link": "/articles/kaii",
+      "linkText": "都市伝説・怪異の解説記事を読む",
+      "genres": [
+        "kaii"
+      ]
+    },
+    {
+      "key": "other",
+      "name": "異界・神隠し系",
+      "image": "moon",
+      "description": "気づいたら知らない場所にいて、そこに住むものに気に入られてしまう。帰れるかどうか分からない不安と甘さが同居する世界観です。",
+      "link": "/articles/god",
+      "linkText": "神・神獣の解説記事を読む",
+      "genres": [
+        "kaii",
+        "god"
+      ]
+    },
+    {
+      "key": "ghost",
+      "name": "幽霊・霊体",
+      "image": "ghost",
+      "description": "触れられない、いつか消えるかもしれない。怖さよりも、はかなさと切なさが勝つタイプのあなたに。",
+      "link": "/articles/ghost",
+      "linkText": "幽霊・霊体の解説記事を読む",
+      "genres": [
+        "ghost"
+      ]
+    },
+    {
+      "key": "oni",
+      "name": "鬼",
+      "image": "oni",
+      "description": "角と怪力、でも約束は絶対に守る。荒々しさと義理堅さのギャップに弱いあなたに。",
+      "link": "/articles/oni",
+      "linkText": "鬼の解説記事を読む",
+      "genres": [
+        "oni"
+      ]
+    },
+    {
+      "key": "yokai",
+      "name": "妖怪・あやかし",
+      "image": "yokai",
+      "description": "狐や天狗など、昔話に出てくる存在との古い契り。人の世界と少しずれた時間を生きる相手との関係が刺さるタイプです。",
+      "link": "/articles/yokai",
+      "linkText": "妖怪・あやかしの解説記事を読む",
+      "genres": [
+        "yokai"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "text": "相手の正体が、最後まで分からないほうがゾクゾクする？",
+      "yes": {
+        "urban": 2,
+        "other": 1
+      },
+      "no": {
+        "oni": 1,
+        "yokai": 1
+      }
+    },
+    {
+      "text": "日常のすぐ隣に、それが潜んでいる怖さが好き？",
+      "yes": {
+        "urban": 2,
+        "ghost": 1
+      },
+      "no": {
+        "other": 2
+      }
+    },
+    {
+      "text": "言い伝えや契り、古い約束が絡む話が好き？",
+      "yes": {
+        "yokai": 2,
+        "oni": 1
+      },
+      "no": {
+        "urban": 1
+      }
+    },
+    {
+      "text": "相手は力強く、豪快なほうがいい？",
+      "yes": {
+        "oni": 2
+      },
+      "no": {
+        "ghost": 1,
+        "yokai": 1
+      }
+    },
+    {
+      "text": "触れられない、はかない相手に弱い？",
+      "yes": {
+        "ghost": 2
+      },
+      "no": {
+        "oni": 1
+      }
+    },
+    {
+      "text": "知らない場所に迷い込んでしまう話が好き？",
+      "yes": {
+        "other": 2,
+        "yokai": 1
+      },
+      "no": {
+        "urban": 1,
+        "ghost": 1
+      }
+    }
+  ]
+}

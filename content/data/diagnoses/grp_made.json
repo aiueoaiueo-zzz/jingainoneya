@@ -1,0 +1,80 @@
+{
+  "id": "grp_made",
+  "title": "あなたの人工物系診断",
+  "chartLabel": "ジャンルごとの相性",
+  "options": [
+    {
+      "key": "machine",
+      "name": "機械・ロボット",
+      "image": "machine",
+      "description": "感情を知らない存在が、人間を学んでいく過程。",
+      "link": "/articles/machine",
+      "linkText": "機械・ロボットの解説記事を読む"
+    },
+    {
+      "key": "doll",
+      "name": "人形・ゴーレム",
+      "image": "doll",
+      "description": "作られた存在が持つ、主への一途さと、自我の芽生え。",
+      "link": "/articles/doll",
+      "linkText": "人形・ゴーレムの解説記事を読む"
+    }
+  ],
+  "questions": [
+    {
+      "text": "科学やプログラムで動いている設定が好き？",
+      "yes": {
+        "machine": 2
+      },
+      "no": {
+        "doll": 2
+      }
+    },
+    {
+      "text": "金属の体や、駆動音にときめく？",
+      "yes": {
+        "machine": 2
+      },
+      "no": {
+        "doll": 1
+      }
+    },
+    {
+      "text": "魔法や呪いで命が宿る設定が好き？",
+      "yes": {
+        "doll": 2
+      },
+      "no": {
+        "machine": 1
+      }
+    },
+    {
+      "text": "作り手（主）との一対一の関係が見たい？",
+      "yes": {
+        "doll": 2,
+        "machine": 1
+      },
+      "no": {
+        "machine": 1
+      }
+    },
+    {
+      "text": "AIやデータのような、体のない存在も気になる？",
+      "yes": {
+        "machine": 2
+      },
+      "no": {
+        "doll": 1
+      }
+    },
+    {
+      "text": "美しさと不気味さの境目にひかれる？",
+      "yes": {
+        "doll": 2
+      },
+      "no": {
+        "machine": 1
+      }
+    }
+  ]
+}

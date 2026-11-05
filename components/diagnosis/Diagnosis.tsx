@@ -1,8 +1,8 @@
-/** 診断。ステップ5で、はい・いいえで答える本物の診断に置き換える */
-export function Diagnosis({ id }: { id: string }) {
-  return (
-    <div className="mb-3.5 rounded-card border border-dashed border-line-strong bg-surface p-4 text-center text-sm text-text-muted">
-      診断（{id}）はステップ5で作ります
-    </div>
-  );
+import { getDiagnosis } from "@/lib/diagnoses";
+import { DiagnosisRunner } from "./DiagnosisRunner";
+
+/** 記事の中で使う診断。<Diagnosis id="g_kaii" /> のように書く */
+export async function Diagnosis({ id }: { id: string }) {
+  const data = await getDiagnosis(id);
+  return <DiagnosisRunner data={data} />;
 }

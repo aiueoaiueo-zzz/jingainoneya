@@ -1,0 +1,190 @@
+{
+  "id": "entry",
+  "title": "あなたの人外の入り口診断",
+  "chartLabel": "ルートごとの相性",
+  "options": [
+    {
+      "key": "soft",
+      "name": "「ほぼ人間」からの甘々ルート",
+      "short": "甘々（ほぼ人間）",
+      "image": "kemono",
+      "description": "ケモミミ型の獣人や、エルフなどの異種族がぴったり。人の表情はそのままに、耳やしっぽ、長い寿命みたいな「人じゃない部分」がちょっとずつ効いてくるので、入り口として最強です。",
+      "link": "/articles/ishu",
+      "linkText": "異種族の解説記事を読む",
+      "genres": [
+        "kemono",
+        "ishu"
+      ]
+    },
+    {
+      "key": "sad",
+      "name": "切なさで泣きたい、はかなさルート",
+      "short": "はかなさ",
+      "image": "vampire",
+      "description": "吸血鬼、幽霊、人魚あたりが刺さるはず。「一緒にいられる時間に限りがある」設定が、甘いシーンを何倍にもしてくれます。ハンカチの用意を。",
+      "link": "/articles/vampire",
+      "linkText": "吸血鬼の解説記事を読む",
+      "genres": [
+        "vampire",
+        "ghost",
+        "merfolk"
+      ]
+    },
+    {
+      "key": "pact",
+      "name": "背徳感がほしい、契約ルート",
+      "short": "契約・背徳",
+      "image": "demon",
+      "description": "悪魔・天使との契約ものがおすすめ。対価、約束、裏切るかもしれない緊張感。人に近い見た目なのに価値観がまるで違う、そのズレが楽しいタイプです。",
+      "link": "/articles/demon",
+      "linkText": "悪魔・天使の解説記事を読む",
+      "genres": [
+        "demon",
+        "vampire"
+      ]
+    },
+    {
+      "key": "strong",
+      "name": "強者に見初められたい、溺愛ルート",
+      "short": "強者の溺愛",
+      "image": "dragon",
+      "description": "竜、神・神獣、鬼。何百年も生きている、国ひとつ滅ぼせるような存在が、なぜか自分にだけ手加減してくる。この落差が好きならもう沼の入り口に立っています。",
+      "link": "/articles/dragon",
+      "linkText": "竜・ドラゴンの解説記事を読む",
+      "genres": [
+        "dragon",
+        "god",
+        "oni"
+      ]
+    },
+    {
+      "key": "horror",
+      "name": "怖いのに目が離せない、怪異ルート",
+      "short": "怪異",
+      "image": "kaii",
+      "description": "都市伝説・怪異やクリーチャー系へようこそ。正体が分からない、話が通じるかも分からない。それでも気に入られてしまう理不尽さが癖になります。最初は音声作品で「姿が見えない怖さ」から入るのもおすすめ。",
+      "link": "/articles/wafu",
+      "linkText": "和風・怪異系の入門記事を読む",
+      "genres": [
+        "kaii",
+        "monster",
+        "yokai"
+      ]
+    },
+    {
+      "key": "made",
+      "name": "心を学んでいく、作られた存在ルート",
+      "short": "作られた存在",
+      "image": "machine",
+      "description": "機械・ロボット、人形・ゴーレム。最初は命令どおりにしか動かなかった存在が、だんだん「自分の意思」で選び始める。その成長を見守る楽しさがあります。",
+      "link": "/articles/made",
+      "linkText": "人工物系の入門記事を読む",
+      "genres": [
+        "machine",
+        "doll"
+      ]
+    },
+    {
+      "key": "beast",
+      "name": "人外度高めの、ガチ獣系ルート",
+      "short": "ガチ獣系",
+      "image": "muzzle",
+      "description": "顔まで獣の獣人型、竜人、鳥人。人間とは違う顔だからこそ、感情が伝わったときの喜びが大きいタイプ。毛並み、鱗、翼の描写にこだわった作品を探してみてください。",
+      "link": "/articles/beast",
+      "linkText": "獣・動物系の入門記事を読む",
+      "genres": [
+        "kemono",
+        "reptile",
+        "bird"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "text": "人外でも、顔立ちや表情は人間寄りのほうが安心する？",
+      "yes": {
+        "soft": 2,
+        "sad": 1,
+        "pact": 1
+      },
+      "no": {
+        "beast": 2,
+        "strong": 1,
+        "horror": 1
+      }
+    },
+    {
+      "text": "とにかく甘くて、安心できる関係が見たい？",
+      "yes": {
+        "soft": 2,
+        "strong": 1
+      },
+      "no": {
+        "horror": 1,
+        "pact": 1,
+        "sad": 1
+      }
+    },
+    {
+      "text": "寿命の差や、いつか終わる関係の切なさに弱い？",
+      "yes": {
+        "sad": 2
+      },
+      "no": {
+        "soft": 1
+      }
+    },
+    {
+      "text": "圧倒的に強い存在に、自分だけ特別扱いされたい？",
+      "yes": {
+        "strong": 2,
+        "beast": 1
+      },
+      "no": {
+        "made": 1,
+        "soft": 1
+      }
+    },
+    {
+      "text": "正直、ちょっと怖いくらいがちょうどいい？",
+      "yes": {
+        "horror": 2,
+        "pact": 1
+      },
+      "no": {
+        "soft": 1,
+        "made": 1
+      }
+    },
+    {
+      "text": "人間の気持ちを少しずつ学んでいく存在にグッとくる？",
+      "yes": {
+        "made": 2
+      },
+      "no": {
+        "beast": 1
+      }
+    },
+    {
+      "text": "契約や取引、背徳感のある関係にひかれる？",
+      "yes": {
+        "pact": 2,
+        "horror": 1
+      },
+      "no": {
+        "soft": 1
+      }
+    },
+    {
+      "text": "毛並み・鱗・翼など、体の描写にこだわりたい？",
+      "yes": {
+        "beast": 2,
+        "strong": 1
+      },
+      "no": {
+        "made": 1,
+        "sad": 1
+      }
+    }
+  ]
+}
