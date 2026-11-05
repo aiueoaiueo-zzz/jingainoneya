@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import type { MDXComponents } from "mdx/types";
 import { notFound } from "next/navigation";
+import { ArticleLabels } from "@/components/article/ArticleLabels";
+import { AuthorBox } from "@/components/article/AuthorBox";
 import { AuthorNote } from "@/components/article/AuthorNote";
+import { Eyecatch } from "@/components/article/Eyecatch";
 import { headingId, textOf } from "@/components/article/headingId";
+import { RelatedArticles } from "@/components/article/RelatedArticles";
 import { Toc } from "@/components/article/Toc";
 import { Breadcrumb } from "@/components/Breadcrumb";
+import { WithSidebar } from "@/components/home/WithSidebar";
 import { getPublishedArticle, getPublishedArticles } from "@/lib/articles";
-import { formatDate } from "@/lib/format";
 import { findCategory } from "@/lib/site";
 
 // 公開前の記事や存在しない記事に、本物の404を返すため、ページを最後まで作ってから送る
@@ -23,7 +27,7 @@ export async function generateMetadata({ params }: PageProps<"/articles/[slug]">
   return article ? { title: article.title, description: article.description } : {};
 }
 
-/** 記事（ステップ4で、アイキャッチ・書いている人・関連記事などを足して仕上げる） */
+/** 記事：パンくず → 種類・ジャンル・公開日 → タイトル → アイキャッチ → 本文 → 書いている人 → 関連記事（コメントはステップ8） */
 export default async function ArticlePage({ params }: PageProps<"/articles/[slug]">) {
   const { slug } = await params;
   // 予約中（公開日が未来）や存在しない記事は404
@@ -60,13 +64,16 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           { label: "記事" },
         ]}
       />
-      <article className="max-w-[680px]">
-        <p className="text-xs text-text-muted">
-          {category?.name}｜<time dateTime={article.publishAt}>{formatDate(article.publishAt)}</time>
-        </p>
-        <h1 className="mt-2 mb-2.5 text-[28px]">{article.title}</h1>
-        <Body components={components} />
-      </article>
+      <WithSidebar>
+        <article className="max-w-[680px]">
+          <ArticleLabels article={article} />
+          <h1 className="mt-2 mb-2.5 text-[28px]">{article.title}</h1>
+          <Eyecatch article={article} className="my-4" />
+          <Body components={components} />
+          <AuthorBox />
+          <RelatedArticles article={article} />
+        </article>
+      </WithSidebar>
     </>
   );
 }

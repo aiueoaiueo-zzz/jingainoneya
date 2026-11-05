@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ComingSoon } from "@/components/ComingSoon";
+import { Chip } from "@/components/home/Chip";
+import { ListPage } from "@/components/home/ListPage";
+import { getPublishedArticles } from "@/lib/articles";
 import { CATEGORIES, findCategory } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -11,13 +13,27 @@ export async function generateMetadata({
   params,
 }: PageProps<"/categories/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  return { title: findCategory(slug)?.name ?? "記事の種類" };
+  const category = findCategory(slug);
+  return category
+    ? { title: category.name, description: `人外ノ閨の「${category.name}」の記事一覧です。` }
+    : {};
 }
 
-/** 記事の種類別一覧（ステップ4で作り込む） */
+/** 記事の種類別一覧：種類の切り替えチップと記事一覧 */
 export default async function CategoryPage({ params }: PageProps<"/categories/[slug]">) {
   const { slug } = await params;
   const category = findCategory(slug);
   if (!category) notFound();
-  return <ComingSoon title={category.name} />;
+  const articles = (await getPublishedArticles()).filter((a) => a.category === slug);
+  return (
+    <ListPage title={category.name} crumbs={[{ label: category.name }]} articles={articles}>
+      <nav aria-label="記事の種類" className="mb-1.5 flex gap-2 overflow-x-auto pb-1.5">
+        {CATEGORIES.map((c) => (
+          <Chip key={c.slug} href={`/categories/${c.slug}`} current={c.slug === slug}>
+            {c.name}
+          </Chip>
+        ))}
+      </nav>
+    </ListPage>
+  );
 }

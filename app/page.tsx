@@ -1,14 +1,20 @@
-import { SITE_CATCHCOPY } from "@/lib/site";
+import { FeaturedSlides } from "@/components/home/FeaturedSlides";
+import { Hero } from "@/components/home/Hero";
+import { LatestArticles } from "@/components/home/LatestArticles";
+import { WithSidebar } from "@/components/home/WithSidebar";
 
-/** トップ（ステップ4でヒーロー・特集スライド・新着記事・サイドバーを並べる） */
+/**
+ * トップ。セクションを部品単位で並べる。
+ * 段階Bでは、ここに「新着作品」「セール中」「ランキング」の部品を差し込む。
+ */
 export default function Home() {
   return (
-    <section className="py-10">
-      <p className="text-[13px] font-bold tracking-[0.1em] text-accent">
-        人外好きが、人外好きのために選ぶ。
-      </p>
-      <h1 className="mt-2 text-3xl">{SITE_CATCHCOPY}</h1>
-      <p className="mt-3 text-text-muted">サイトを準備しています。</p>
-    </section>
+    <div className="flex flex-col gap-11">
+      <Hero />
+      <FeaturedSlides />
+      <WithSidebar>
+        <LatestArticles />
+      </WithSidebar>
+    </div>
   );
 }

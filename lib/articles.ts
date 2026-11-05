@@ -130,11 +130,7 @@ export async function getRelatedArticles(article: Article, limit = 3): Promise<A
   const articles = await getPublishedArticles();
   return articles
     .filter((a) => a.slug !== article.slug)
-    .filter(
-      (a) =>
-        article.category === "guide" ||
-        a.category === "guide" ||
-        a.genres.some((g) => article.genres.includes(g)),
-    )
+    // 入門ガイドは全ジャンルを持つので、どの記事とも関連する
+    .filter((a) => a.genres.some((g) => article.genres.includes(g)))
     .slice(0, limit);
 }

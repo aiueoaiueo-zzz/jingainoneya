@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ComingSoon } from "@/components/ComingSoon";
+import { ListPage } from "@/components/home/ListPage";
+import { getPublishedArticles } from "@/lib/articles";
 import { GENRES, findGenre } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -9,13 +10,23 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<"/genres/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  return { title: `${findGenre(slug)?.name ?? "ジャンル"}の作品` };
+  const genre = findGenre(slug);
+  return genre ? { title: `${genre.name}の記事`, description: genre.good } : {};
 }
 
-/** ジャンル別一覧（土台編では空ページ） */
+/** ジャンル別一覧：ジャンルの「良さ」一文と、そのジャンルの記事 */
 export default async function GenrePage({ params }: PageProps<"/genres/[slug]">) {
   const { slug } = await params;
   const genre = findGenre(slug);
   if (!genre) notFound();
-  return <ComingSoon title={`${genre.name}の作品`} crumbs={[{ label: genre.name }]} />;
+  const articles = (await getPublishedArticles()).filter((a) => a.genres.includes(slug));
+  return (
+    <ListPage
+      title={`${genre.name}の記事`}
+      crumbs={[{ label: `${genre.group}　›　${genre.name}` }]}
+      articles={articles}
+    >
+      <p className="-mt-1 mb-3.5 text-text-sub">{genre.good}</p>
+    </ListPage>
+  );
 }

@@ -1,37 +1,40 @@
 import type { Metadata } from "next";
-import Form from "next/form";
 import { Suspense } from "react";
-import { Breadcrumb } from "@/components/Breadcrumb";
+import { ListPage } from "@/components/home/ListPage";
 import { KeywordInput } from "@/components/search/KeywordInput";
+import { TagPicker } from "@/components/search/TagPicker";
+import { getPublishedArticles } from "@/lib/articles";
+import { parseSearchQuery, searchArticles } from "@/lib/search";
 
-export const metadata: Metadata = { title: "タグで探す" };
+export const metadata: Metadata = {
+  title: "タグとキーワードで探す",
+  description: "記事の種類、ジャンル、キーワードを組み合わせて、人外ノ閨の記事を探せます。",
+};
 
-/** タグ＋キーワード検索（ステップ4でタグと結果一覧を作り込む） */
+/** タグ＋キーワード検索。条件なしなら全記事 */
 export default function SearchPage({ searchParams }: PageProps<"/search">) {
   return (
-    <div>
-      <Breadcrumb items={[{ label: "タグで探す" }]} />
-      <h1 className="mb-4 text-[26px]">タグで探す</h1>
-      <Form action="/search" className="flex flex-wrap items-center gap-2.5">
-        <label htmlFor="search-q" className="text-[13px] text-text-muted">
-          キーワード
-        </label>
-        <Suspense fallback={<KeywordInput placeholderOnly />}>
-          <Keyword searchParams={searchParams} />
-        </Suspense>
-        <button
-          type="submit"
-          className="inline-flex h-11 items-center justify-center rounded-sm border border-accent bg-accent px-5 font-bold text-on-accent"
-        >
-          検索
-        </button>
-      </Form>
-      <p className="py-10 text-center text-text-muted">タグと検索結果は準備中です。</p>
-    </div>
+    <Suspense fallback={<SearchFallback />}>
+      <SearchResults searchParams={searchParams} />
+    </Suspense>
   );
 }
 
-async function Keyword({ searchParams }: Pick<PageProps<"/search">, "searchParams">) {
-  const { q } = await searchParams;
-  return <KeywordInput defaultValue={Array.isArray(q) ? q[0] : q} />;
+async function SearchResults({ searchParams }: Pick<PageProps<"/search">, "searchParams">) {
+  const query = parseSearchQuery(await searchParams);
+  const articles = searchArticles(await getPublishedArticles(), query);
+  return (
+    <ListPage title="タグとキーワードで探す" crumbs={[{ label: "検索" }]} articles={articles}>
+      <TagPicker initial={query} />
+    </ListPage>
+  );
+}
+
+function SearchFallback() {
+  return (
+    <div>
+      <h1 className="mt-10 mb-3.5 text-[26px]">タグとキーワードで探す</h1>
+      <KeywordInput placeholderOnly />
+    </div>
+  );
 }
