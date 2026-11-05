@@ -49,7 +49,7 @@ export function extractHeadings(body: string): string[] {
     if (line.trim().startsWith("```")) inFence = !inFence;
     if (inFence) continue;
     const m = /^##\s+(.+?)\s*$/.exec(line);
-    if (m) headings.push(m[1]);
+    if (m && m[1] !== "まとめ") headings.push(m[1]);
   }
   return headings;
 }
@@ -88,6 +88,7 @@ function parseArticle(file: string, source: string): Article {
     authorNote: data.authorNote ? String(data.authorNote) : null,
     sponsored: data.sponsored === true,
     headings: extractHeadings(content),
+    hasTocMarker: /^<Toc\s*\/>\s*$/m.test(content),
   };
 }
 
@@ -102,8 +103,15 @@ async function loadAllArticles(): Promise<Article[]> {
       parseArticle(file, await fs.readFile(path.join(ARTICLES_DIR, file), "utf8")),
     ),
   );
+  // 新しい順。同じ日なら、記事の種類の順（入門ガイドが先）→ ジャンルの並び順
+  const categoryOrder = (a: Article) => CATEGORIES.findIndex((c) => c.slug === a.category);
+  const genreOrder = (a: Article) => ALL_GENRE_SLUGS.indexOf(a.genres[0] ?? "");
   return articles.sort(
-    (a, b) => b.publishAt.localeCompare(a.publishAt) || a.slug.localeCompare(b.slug),
+    (a, b) =>
+      b.publishAt.localeCompare(a.publishAt) ||
+      categoryOrder(a) - categoryOrder(b) ||
+      genreOrder(a) - genreOrder(b) ||
+      a.slug.localeCompare(b.slug),
   );
 }
 

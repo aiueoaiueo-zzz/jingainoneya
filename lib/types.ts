@@ -17,6 +17,8 @@ export type Article = {
   authorNote: string | null;
   /** 作品をもらって紹介する記事なら true（PRを表示） */
   sponsored: boolean;
-  /** 本文の「##」見出し（目次用） */
+  /** 本文の「##」見出し（目次用。「まとめ」は目次に入れない） */
   headings: string[];
+  /** 本文に <Toc /> があれば、その場所に目次を出す（なければ最初の見出しの前） */
+  hasTocMarker: boolean;
 };

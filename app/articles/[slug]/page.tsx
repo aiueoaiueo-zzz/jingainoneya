@@ -35,10 +35,11 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
   if (!article) notFound();
   const { default: Body } = await import(`@/content/articles/${slug}.mdx`);
   const category = findCategory(article.category);
-  const firstHeading = article.headings[0];
+  const firstHeading = article.hasTocMarker ? undefined : article.headings[0];
 
-  // 「##」見出し：最初の見出しの前に目次、「まとめ」の前に閨の主のひとことを入れる
+  // 「##」見出し：最初の見出しの前に目次（本文に <Toc /> があればそこ）、「まとめ」の前に閨の主のひとことを入れる
   const components: MDXComponents = {
+    Toc: () => <Toc headings={article.headings} />,
     h2: ({ children }) => {
       const text = textOf(children);
       return (
