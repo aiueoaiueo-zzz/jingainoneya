@@ -6,6 +6,11 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   // 記事（content/articles/*.mdx）を読み込めるようにする
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  // 記事・診断・設定のファイルは、サーバーの処理の中で直接読むので、公開先に必ず同梱する
+  // （毎日0時の作り直し、みんなの結果、サイトマップなど）
+  outputFileTracingIncludes: {
+    "/**": ["./content/**/*"],
+  },
   turbopack: {
     rules: {
       "*.css": {

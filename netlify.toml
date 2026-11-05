@@ -1,0 +1,9 @@
+# Netlify の設定（管理画面の設定より、このファイルが優先されます）
+# Next.js 用の仕組み（Next.js Runtime）は Netlify が自動で入れます。
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
