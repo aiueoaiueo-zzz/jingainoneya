@@ -4,17 +4,21 @@
  */
 import categoriesJson from "@/content/data/categories.json";
 import genresJson from "@/content/data/genres.json";
+import siteJson from "@/content/data/site.json";
 
-export const SITE_NAME = "人外ノ閨";
-export const SITE_CATCHCOPY = "ヒトでは満たされない夜に。";
-export const SITE_DESCRIPTION =
-  "人外好きが、人外好きのために選ぶ。獣人・竜・鬼・怪異・機械など、人ならざるものが登場する成人向け作品を紹介・語るブログ。";
+/** サイト名・キャッチコピー・自己紹介など（content/data/site.json） */
+export const SITE = siteJson;
+export const SITE_NAME = siteJson.name;
+export const SITE_CATCHCOPY = siteJson.catchcopy;
+export const SITE_DESCRIPTION = siteJson.description;
 
 export type Genre = {
   slug: string;
   name: string;
-  /** 仮イラストの代わりに出す一文字 */
-  glyph: string;
+  /** このジャンルの「良さ」の一文 */
+  good: string;
+  /** 仮イラストの種類 */
+  illustration: string;
   /** 系統の名前 */
   group: string;
 };

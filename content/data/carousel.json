@@ -1,0 +1,24 @@
+{
+  "slides": [
+    {
+      "article": "nyumon",
+      "label": "はじめての方へ",
+      "text": "人外の良さと、自分の好みの見つけ方"
+    },
+    {
+      "article": "kemono-do",
+      "label": "特集：獣人",
+      "text": "「どこまで獣か」で選ぶ、獣度のものさし"
+    },
+    {
+      "article": "kaii-mishomerareru",
+      "label": "特集：怪異・ホラー",
+      "text": "怖いのに目が離せない、怪異系人外の魅力"
+    },
+    {
+      "article": "matome-kotoba",
+      "label": "おすすめまとめ",
+      "text": "言葉が通じない異種族もの5選"
+    }
+  ]
+}

@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    // 記事の先頭の前付け（--- で囲んだ部分）を本文として表示しない
+    remarkPlugins: [["remark-frontmatter", ["yaml"]]],
+  },
+});
 
 export default withMDX(nextConfig);
